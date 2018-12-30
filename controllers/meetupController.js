@@ -1,6 +1,6 @@
 const uuid = require("uuid");
 const meetupValidation = require("../validations/meetup");
-const responseValidation=require("../validations/response");
+const responseValidation = require("../validations/response");
 
 //@model
 const Meetup = require("../models/meetUpModel");
@@ -106,7 +106,7 @@ exports.updateMeetup = (req, res) => {
 exports.response = (req, res) => {
   const id = req.params.id;
   //
-  const {errors,isValid}=responseValidation(req.body);
+  const { errors, isValid } = responseValidation(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
   }
