@@ -3,6 +3,7 @@ const meetupValidation = require("../validations/meetup");
 
 //@model
 const Meetup = require("../models/meetUpModel");
+const Response=require("../models/responseModel");
 
 exports.create = (req, res) => {
   const { errors, isValid } = meetupValidation(req.body);
@@ -99,3 +100,28 @@ exports.updateMeetup = (req, res) => {
   }
   return res.status(404).json({ error: "sorry the requested result could not be found." });
 };
+
+//@response
+exports.response=(req,res)=>{
+  const id=req.params.id;
+  if (Meetup.findById(id)) {
+    const data={
+      id:uuid.v4(),
+      data:[
+        {
+          meetup:req.body.meetup,
+          topic:req.body.topic,
+          status:req.body.status
+        }
+      ]
+    };
+    const save=Response.create(data);
+    if (save) {
+      return res.json({success:'response created successfully.',save});
+    }else {
+      return res.status(400).json({error:'something wrong please try again'});
+    }
+  }else {
+    return res.status(400).json({error:"sorry meetup could not be found."})
+  }
+}
