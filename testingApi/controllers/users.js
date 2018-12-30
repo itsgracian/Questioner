@@ -10,17 +10,36 @@ describe("User", () => {
       expect(result).is.a("function");
     });
   });
-  //@testing validation
+  //
   describe("find all users", () => {
     it("should be a function", (done) => {
       const result = userController.findAll;
       expect(result).to.be.an("function");
       done();
     });
-    it("should return an array of object", (done) => {
-      const result = userController.findAll(req, res);
-      expect(result).to.be.an("array");
+    });
+    describe("find one user", () => {
+    it("should be a function", (done) => {
+      const result = userController.findOne;
+      expect(result).to.be.an("function");
       done();
     });
   });
-});
+  //
+  describe("delete user", () => {
+    it("should be a function", (done) => {
+      const result = userController.delete;
+      expect(result).to.be.an("function");
+      done();
+    });
+  });
+  //
+  describe("update user", () => {
+    it("should be a function", (done) => {
+      const result = userController.update;
+      expect(result).to.be.an("function");
+      done();
+    });
+  });
+
+  });

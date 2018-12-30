@@ -29,9 +29,10 @@ class User {
     return this.users.find(user => user.email === element);
   }
 
-  deleteUser(id) {
-    const search = this.users.indexOf(id);
-    this.users.splice(search, 1);
+  deleteUser(userId) {
+    const data = this.users;
+    const search = data.indexOf({id:userId});
+    data.splice(search, 1);
     return true;
   }
 

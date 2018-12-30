@@ -23,17 +23,15 @@ exports.findOne = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
   //@check if user id is available
-  if (User.findById(id)) {
     //@deleteUser
-    const rem = User.deleteUser(id);
+    const rem = User.deleteUser(req.params.id);
     if (rem) {
-      return res.json({ success: "user deleted successfully." });
+      return res.json({ success: "user deleted successfully.",rem});
     }
-    return res.status(500).json({ error: "something wrong try again later." });
-  }
-  return res.status(404).json({
-    error: "the requested result couldn't be found."
-  });
+    return res.status(404).json({
+      error: "the requested result couldn't be found."
+    });
+
 };
 //@update user
 exports.update = (req, res) => {
@@ -47,6 +45,7 @@ exports.update = (req, res) => {
     }
     //@user field to update
     const updateUser = {
+      id:id,
       username: req.body.username.toLowerCase(),
       firstname: req.body.firstname.toLowerCase(),
       lastname: req.body.lastname.toLowerCase(),
@@ -90,7 +89,6 @@ exports.update = (req, res) => {
           return bcrypt.hash(updateUser.password, salt, (error, hash) => {
             if (error) return res.status(500).json(error);
             updateUser.password = hash;
-            updateUser.id = id;
             return res.json({
               success: "user updated successfully.",
               userUpdated: User.updateUser(id, updateUser)

@@ -1,5 +1,5 @@
 const uuid = require("uuid");
-const bcrypt=require("bcryptjs");
+const bcrypt = require("bcryptjs");
 const registerValidation = require("../../validations/register");
 const User = require("../../models/userModel");
 /*create new user*/
@@ -14,11 +14,11 @@ exports.register = (req, res) => {
     firstname: req.body.firstname.toLowerCase(),
     lastname: req.body.lastname.toLowerCase(),
     email: req.body.email,
-    othername: (req.body.othername)? req.body.othername.toLowerCase() : "",
+    othername: (req.body.othername) ? req.body.othername.toLowerCase() : "",
     password: req.body.password,
     registered: new Date().toGMTString(),
     isAdmin: (req.body.isAdmin) ? req.body.isAdmin : false,
-    phoneNumber:req.body.phoneNumber
+    phoneNumber: req.body.phoneNumber
   };
   //check for username
   if (User.checkUsername(user.username)) {
@@ -29,18 +29,19 @@ exports.register = (req, res) => {
     return res.status(400).json({ error: "email already exist." });
   }
   //@hash
-  bcrypt.genSalt(10,(err,salt)=>{
+  bcrypt.genSalt(10, (err, salt) => {
     if (err) {
       console.log(err);
     }
-    bcrypt.hash(user.password,salt,(error,hash)=>{
-      user.password=hash;
+    bcrypt.hash(user.password, salt, (error, hash) => {
+      user.password = hash;
       //save new user
       const save = User.create(user);
       return res.json({
-        success:"user created successfully",
+        success: "user created successfully",
         save
       });
-    })
-  })
+    });
+  });
+  return false;
 };
