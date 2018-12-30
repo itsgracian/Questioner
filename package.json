@@ -12,12 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "airbnb-style": "^2.0.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "uuid": "^3.3.2",
-    "validator": "^10.9.0",
     "chai": "^4.2.0",
-    "bcryptjs": "^2.4.3"
+    "express": "^4.16.4",
+    "pug": "^2.0.3",
+    "uuid": "^3.3.2",
+    "validator": "^10.9.0"
   },
   "devDependencies": {
     "chai-param": "^0.1.2",

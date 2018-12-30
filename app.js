@@ -6,6 +6,9 @@ const userRouter = require("./router/userRoutes");
 const adminRouter = require("./router/adminRoutes");
 //@setting app
 const app = express();
+//@set tmplate engine
+app.set('view engine','pug');
+app.set('views',path.join(__dirname,'views'));
 //@public folder
 app.use(express.static(path.join(__dirname, "public")));
 //@bodyParser middleware
@@ -29,6 +32,9 @@ app.use((req, res, next) => {
 //@router setup
 app.use("/api/v1", userRouter);
 app.use("/api/v2", adminRouter);
+app.get('/',(req,res)=>{
+  res.render('index');
+})
 
 
 module.exports = app;
