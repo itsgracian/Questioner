@@ -106,7 +106,7 @@ exports.response = (req, res) => {
   const id = req.params.id;
   if (Meetup.findById(id)) {
     const data = {
-      id: uuid.v4(),
+      status: uuid.v4(),
       data: [
         {
           meetup: req.body.meetup,
@@ -119,7 +119,7 @@ exports.response = (req, res) => {
     if (save) {
       return res.json({ success: "response created successfully.", save });
     }
-    return res.status(400).json({ error: "something wrong please try again" });
+    return res.status(400).json({ error: "something wrong please try again." });
   }
-  return res.status(400).json({ error: "sorry meetup could not be found." });
+  return res.status(404).json({ error: "sorry meetup could not be found." });
 };
