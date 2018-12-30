@@ -1,0 +1,76 @@
+{
+    "extends": "airbnb",
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
+    "env": {
+        "node": true,
+        "browser": true,
+        "es6": true
+    },
+    "rules": {
+        "no-console": "off",
+        "no-undef": "off",
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "spaced-comment": [
+            "error",
+            "never"
+        ],
+        "func-names": [
+            "error",
+            "never"
+        ],
+        "prefer-arrow-callback": [
+            "error",
+            {
+                "allowUnboundThis": false,
+                "allowNamedFunctions": false
+            }
+        ],
+        "prefer-destructuring": [
+            "error",
+            {
+                "array": false,
+                "object": false
+            },
+            {
+                "enforceForRenamedProperties": false
+            }
+        ],
+        "no-unused-expressions": [
+            "error",
+            {
+                "allowShortCircuit": true
+            }
+        ],
+        "eqeqeq": [
+            "error",
+            "always",
+            {
+                "null": "ignore"
+            }
+        ],
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
+        "no-var": "error",
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "local",
+                "args": "none"
+            }
+        ],
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        "no-return-assign": ["error","except-parens"]
+    }
+}
