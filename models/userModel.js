@@ -31,7 +31,7 @@ class User {
 
   deleteUser(userId) {
     const data = this.users;
-    const search = data.indexOf({id:userId});
+    const search = data.indexOf({ id: userId });
     data.splice(search, 1);
     return true;
   }

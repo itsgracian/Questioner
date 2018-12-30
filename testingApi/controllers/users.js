@@ -17,8 +17,8 @@ describe("User", () => {
       expect(result).to.be.an("function");
       done();
     });
-    });
-    describe("find one user", () => {
+  });
+  describe("find one user", () => {
     it("should be a function", (done) => {
       const result = userController.findOne;
       expect(result).to.be.an("function");
@@ -41,5 +41,4 @@ describe("User", () => {
       done();
     });
   });
-
-  });
+});

@@ -23,15 +23,14 @@ exports.findOne = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
   //@check if user id is available
-    //@deleteUser
-    const rem = User.deleteUser(req.params.id);
-    if (rem) {
-      return res.json({ success: "user deleted successfully.",rem});
-    }
-    return res.status(404).json({
-      error: "the requested result couldn't be found."
-    });
-
+  //@deleteUser
+  const rem = User.deleteUser(id);
+  if (rem) {
+    return res.json({ success: "user deleted successfully." });
+  }
+  return res.status(404).json({
+    error: "the requested result couldn't be found."
+  });
 };
 //@update user
 exports.update = (req, res) => {
@@ -45,7 +44,7 @@ exports.update = (req, res) => {
     }
     //@user field to update
     const updateUser = {
-      id:id,
+      id,
       username: req.body.username.toLowerCase(),
       firstname: req.body.firstname.toLowerCase(),
       lastname: req.body.lastname.toLowerCase(),
