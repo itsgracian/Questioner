@@ -3,7 +3,7 @@ const meetupValidation = require("../validations/meetup");
 
 //@model
 const Meetup = require("../models/meetUpModel");
-const Response=require("../models/responseModel");
+const Response = require("../models/responseModel");
 
 exports.create = (req, res) => {
   const { errors, isValid } = meetupValidation(req.body);
@@ -102,26 +102,24 @@ exports.updateMeetup = (req, res) => {
 };
 
 //@response
-exports.response=(req,res)=>{
-  const id=req.params.id;
+exports.response = (req, res) => {
+  const id = req.params.id;
   if (Meetup.findById(id)) {
-    const data={
-      id:uuid.v4(),
-      data:[
+    const data = {
+      id: uuid.v4(),
+      data: [
         {
-          meetup:req.body.meetup,
-          topic:req.body.topic,
-          status:req.body.status
+          meetup: req.body.meetup,
+          topic: req.body.topic,
+          status: req.body.status
         }
       ]
     };
-    const save=Response.create(data);
+    const save = Response.create(data);
     if (save) {
-      return res.json({success:'response created successfully.',save});
-    }else {
-      return res.status(400).json({error:'something wrong please try again'});
+      return res.json({ success: "response created successfully.", save });
     }
-  }else {
-    return res.status(400).json({error:"sorry meetup could not be found."})
+    return res.status(400).json({ error: "something wrong please try again" });
   }
-}
+  return res.status(400).json({ error: "sorry meetup could not be found." });
+};
