@@ -15,3 +15,4 @@ https://evening-sierra-90401.herokuapp.com/
 
 
 [![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master "view this repo on code climare")
+https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master
