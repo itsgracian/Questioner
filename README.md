@@ -14,5 +14,8 @@ https://evening-sierra-90401.herokuapp.com/
 (https://coveralls.io/github/itsgracian/Questioner-API-datastructure?branch=master)
 
 
-[![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master "view this repo on code climare")
-https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master
+[![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master "view this repo on code climate")
+(https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master)
+
+[![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://evening-sierra-90401.herokuapp.com/ "you can watch API Route on heroku")
+(https://evening-sierra-90401.herokuapp.com/)
