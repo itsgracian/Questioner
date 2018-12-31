@@ -9,8 +9,9 @@ https://evening-sierra-90401.herokuapp.com/
 
 [![Build Status](https://travis-ci.com/itsgracian/Questioner-API-datastructure.svg?branch=master)](https://travis-ci.com/itsgracian/Questioner-API-datastructure)
 
+
 [![Coverage Status](https://coveralls.io/repos/github/itsgracian/Questioner-API-datastructure/badge.svg?branch=master)]
 (https://coveralls.io/github/itsgracian/Questioner-API-datastructure?branch=master)
 
-[![Coverage Status](https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master)]
+[![JavaScript Style Guide: Good Parts](https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master)]
 (https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master)
