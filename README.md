@@ -13,5 +13,4 @@ https://evening-sierra-90401.herokuapp.com/
 [![Coverage Status](https://coveralls.io/repos/github/itsgracian/Questioner-API-datastructure/badge.svg?branch=master)]
 (https://coveralls.io/github/itsgracian/Questioner-API-datastructure?branch=master)
 
-#code climate link
-https://codeclimate.com/github/itsgracian/Questioner-API-datastructure
+[![Coverage Status](https://codeclimate.com/github/itsgracian/Questioner-API-datastructure)
