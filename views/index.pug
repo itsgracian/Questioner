@@ -1,7 +1,81 @@
 doctype html
 html
   head
+    meta(charset="utf-8")
+    meta(name="author", description="gratian tuyishimire")
     title Questioner API Endpoint using DataStructure to store data in memory
-  
+    link(rel="stylesheet", href="/css/index.css",type="text/css")
   body
-    h1 hello world
+    section.routing
+      .route-title
+        h2 Questioner Routes
+      .route-list
+        .rsection
+          .title
+            h3 User routes
+          .nav-route
+            ul
+              li
+                span.exp Method: POST (create new user)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/register
+              li
+                span.exp Method: GET (all users)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/users
+              li
+                span.exp Method: PATCH (update user)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/users/:userId
+              li
+                span.exp Method: DELETE (delete users)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/users/:userId
+              li
+                span.exp Method: GET (one user)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/users/username
+        .rsection
+          .title
+            h3 Meetup routes
+          .nav-route
+            ul
+              li
+                span.exp Method: POST (create meetup)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/meetups
+              li
+                span.exp Method: GET (all meetups)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/meetups
+              li
+                span.exp Method: PATCH (update meetup)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/meetups/:meetupId
+              li
+                span.exp Method: DELETE (delete meetup)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/meetups/:meetupId
+              li
+                span.exp Method: GET (upcoming meetups)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/meetups/v/upcoming
+              li
+                span.exp Method: POST (rsvp meetups)
+                span.url https://evening-sierra-90401.herokuapp.com/api/v1/meetups/:meetupId/rsvps
+      
+        .rsection
+          .title
+            h3 Question routes
+          .nav-route
+            li
+              span.exp Method: POST (create question, make sure that you are registered 
+                     and make sure that you have created questions)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/questions
+            li
+              span.exp Method: PATCH (upvote question and make sure that you are registered)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/questions/:questionId/upvote
+            li
+              span.exp Method: PATCH (downvote question and make sure that you are registered)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/questions/:questionId/downvote
+            li
+              span.exp Method: DELETE (delete question but make sure that you are registered)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/questions/:questionId
+              
+    footer
+      p gratian tuyishimire
+      p all right reserved &copy; 2018
+      
+          
+                
+     
