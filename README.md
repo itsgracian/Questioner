@@ -13,5 +13,5 @@ https://evening-sierra-90401.herokuapp.com/
 [![Coverage Status](https://coveralls.io/repos/github/itsgracian/Questioner-API-datastructure/badge.svg?branch=master)]
 (https://coveralls.io/github/itsgracian/Questioner-API-datastructure?branch=master)
 
-[![JavaScript Style Guide: Good Parts](https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master)]
-(https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master)
+
+[![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=master "view this repo on code climare")
