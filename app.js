@@ -6,14 +6,12 @@ const userRouter = require("./router/userRoutes");
 const adminRouter = require("./router/adminRoutes");
 //@setting app
 const app = express();
-//@set tmplate engine
-app.set('view engine','pug');
-app.set("views",path.join(__dirname,"views"));
+
 //@public folder
 app.use(express.static(path.join(__dirname, "public")));
 //@bodyParser middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 //handiling and preventing CORS Error
 app.use((req, res, next) => {
   //providing my api to everyone
@@ -31,10 +29,8 @@ app.use((req, res, next) => {
 });
 //@router setup
 app.use("/api/v1", userRouter);
-app.use("/api/v2", adminRouter);
-app.get('/',(req,res)=>{
-  res.render('index');
-})
+app.use("/api/v1", adminRouter);
+
 
 
 module.exports = app;
