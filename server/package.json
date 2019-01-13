@@ -4,7 +4,7 @@
   "description": "Questioner product",
   "main": "index.js",
   "scripts": {
-    "test": "mocha || true",
+    "test": "mocha testingApi/*",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
