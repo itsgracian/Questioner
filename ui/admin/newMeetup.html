@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device=width, initial-scale=1.0">
+    <meta description="author" content="gratian">
+    <title>Questioner|Home</title>
+    <link rel='shortcut icon' href='../images/avatar.png'>
+    <link rel="stylesheet" href="../css/users.css">
+  </head>
+  <body>
+    <section class="left-side">
+      <div class="top-h">
+        <div class="top-name"><span>Welcome gratian </span></div>
+        <div class="top-avatar">
+          <img src="../images/avatar.png" alt="avatar">
+        </div>
+      </div>
+      <div class="close"><p>X</p></div>
+      <!--menu  0885F9!-->
+      <div class="top-menu">
+         <nav>
+           <ul>
+             <li>
+                <a href="home.html">
+                    <div class="menuIcon">
+                      <img src="../images/icons/blackIcons/browsing.svg" alt="icon">
+                    </div>
+                   <span>My Dashboard</span>
+                </a>
+             </li>
+
+             <li>
+                <a href="meetup.html">
+                    <div class="menuIcon">
+                      <img src="../images/icons/blackIcons/question.svg" alt="icon">
+                    </div>
+                   <span>Meet Up</span>
+                </a>
+             </li>
+
+             <li>
+                <a href="profile.html">
+                  <div class="menuIcon">
+                    <img src="../images/icons/blackIcons/user.svg" alt="icon">
+                  </div>
+                 <span>My Profile</span>
+                </a>
+             </li>
+
+             <li>
+                <a href="../index.html">
+                  <div class="menuIcon">
+                    <img src="../images/icons/blackIcons/logout.svg" alt="icon">
+                  </div>
+                 <span>Logout</span>
+                </a>
+             </li>
+           </ul>
+         </nav>
+      </div>
+    </section>
+    <!--rightside!-->
+    <section class="right-side">
+      <div class="header">
+        <div class="header-m">
+          <ul>
+            <li class="menuBar">
+             <img src="../images/icons/blackIcons/menu.svg" alt="">
+            </li>
+            <li>
+              <a href="allmeetup.html">upcomming meetup</a>
+            </li>
+          </ul>
+        </div>
+         <div class="profile-hover">
+           <div class="pro">
+             <ul>
+               <li>
+                 <a href="#">
+                   <img src="../images/icons/blackIcons/bell.svg" alt="notification" class="notification">
+                 </a>
+               </li>
+               <li class="av">
+                 <img src="../images/avatar.png" alt="">
+               </li>
+             </ul>
+           </div>
+         </div>
+      </div>
+    <!--profile!-->
+    <div class="editAccount">
+      <!--!-->
+      <div class="other-proInfo">
+        <div class="otherproHeader">
+          <h3>create new meetup</h3>
+        </div>
+        <div class="moreInfo">
+          <form class="forms" action="index.html" method="post">
+            <div class="editForm">
+              <label for="">Topic</label>
+              <input type="text" name="" value="" placeholder="topic">
+            </div>
+            <div class="editForm">
+              <label for="">Location</label>
+              <input type="text" name="" value="" placeholder="meetup location">
+            </div>
+            <div class="editForm">
+              <label for="">Happening On</label>
+              <input type="date" name="" value="" placeholder="choose date">
+            </div>
+            <div class="editForm">
+              <label for="">Images only(jpg,png,jpeg)</label>
+              <input type="file" name="image" value="" class="files">
+              <div class="imagText">
+                <p></p>
+                <button type="button" name="button" class="browseBtn">browse file</button>
+              </div>
+              <div class="image-upload">
+
+              </div>
+            </div>
+          </form>
+          <button type="button" name="button" class="closeAccountBtn">save meetup</button>
+        </div>
+      </div>
+    </div>
+    <!--!-->
+    <div class="msgError">
+
+    </div>
+    </section>
+
+    <!--js!-->
+    <script type="text/javascript" src="../js/home.js"></script>
+    <script type="text/javascript" src="../js/edit.js"></script>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+/*google font*/
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+*,body{
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: "Comfortaa",cursive;
+}
+a{
+  text-decoration: none;
+}
+.header{
+  position: fixed;
+  width: 4%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+.header li{
+  float: none;
+  margin-top: 20px;
+  padding: 10px;
+}
+.svgIco{
+  width: 35px;
+}
+.showcase{
+  width: 100%;
+  background: linear-gradient(rgba(51, 12, 241, 0.94),rgba(23, 20, 199, 0.42)),url('../images/bk.jpg');
+  background-size: cover;
+  height: 100vh;
+  background-size: cover;
+}
+.auth{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.authentication-form{
+  width: 30%;
+  background-color: #fff;
+  border-radius: 5px;
+  height: auto;
+  margin-top: 50px;
+}
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  flex-direction: column;
+}
+.logo img{
+  width: 30px;
+}
+.logo h5{
+  margin-top: 10px;
+  font-size: 1rem;
+}
+.form{
+  padding: 20px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+.form-group{
+  position: relative;
+  margin-bottom: 1rem;
+}
+.form-group img{
+  width: 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 25px;
+}
+.form-group label{
+  font-size: 13px;
+}
+.form-group input{
+  height: 60px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #d9d9d9;
+  font-family: "Comfortaa",cursive;
+  outline: none;
+  box-shadow: none;
+  padding-left: 20px;
+}
+.loginBtn{
+  margin-top: 50px;
+  text-align: center;
+}
+.loginBtn input{
+  background: linear-gradient(260deg,#337eb9,#384499);
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.loginBtn p{
+  margin-bottom: 1rem;
+}
+.changedBtn{
+  background: #fff!important;
+  color: #ddd!important;
+  font-weight: bold;
+  border:2px solid #ddd!important;
+}
+::placeholder {
+  color: #ddd;
+  font-weight: bold;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #ddd;
+  font-weight: bold;
+}
+
+::-ms-input-placeholder {
+  color: #ddd;
+  font-weight: bold;
+}
+.registerShow{
+  height: auto!important;
+}
+
+@media screen and (max-width:768px) {
+  .showcase{
+    background: #fff;
+  }
+  .authentication-form{
+    width: 90%;
+  }
+  .header{
+    display: none;
+  }
+}
