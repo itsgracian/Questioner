@@ -44,7 +44,7 @@ router.delete("/meetups/:id", meetUp.deleteMeetup);
 router.patch("/meetups/:id", meetUp.updateMeetup);
 //@router POST
 //@desc RSPV
-router.post("/meetups/:id/rsvps",meetUp.response);
+router.post("/meetups/:id/rsvps", meetUp.response);
 //@end meetup router
 //@question router
 //@router POST,

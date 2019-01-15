@@ -92,7 +92,7 @@ h5{
 }
 .buttons{
   margin-top: 20px;
-  
+
 }
 .buttons button{
   padding: 15px;
@@ -178,5 +178,31 @@ h5{
   }
   .intro h2{
     font-size: 36px;
+  }
+}
+/*tablet*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  .header{
+    width: 7%!important;
+  }
+  .authentication-form{
+    width: 50%!important;
+  }
+  .showcase{
+    background: linear-gradient(rgba(51, 12, 241, 0.94),rgba(23, 20, 199, 0.42)),url('../images/bk.jpg');
+  }
+  .home, .know, .footer{
+    min-height: 60vh;
+  }
+  .header li{
+    margin: auto;
+    margin-top: 30px;
+  }
+}
+/*landscape tablet*/
+@media (min-width: 481px) and (max-width: 767px) {
+  .header li{
+    margin: none!important;
+    padding: 30px!important;
   }
 }

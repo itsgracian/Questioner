@@ -93,9 +93,10 @@ h5{
 .header{
   padding: 20px;
   clear: both;
-  margin-bottom: 0px;
-  /*border-bottom: 1px solid #ddd;*/
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
   height: 50px;
+  box-shadow: 0px 1px 2px 0px #ddd;
 }
 .header-m{
   position: absolute;
@@ -208,7 +209,7 @@ h5{
   justify-content: center;
 }
 .linkFixed{
-  position: fixed;
+  position: relative;
 }
 .ft-link,.morecomment{
   width: 40px;
@@ -217,6 +218,9 @@ h5{
   background:linear-gradient(90deg,#e052a0,#f15c41);
   padding: 10px;
   margin-top: 40px;
+}
+.goback{
+  background: linear-gradient(90deg,#888adc,#3cacce)!important;
 }
 .ft-link img{
   width: 40px;
@@ -251,6 +255,11 @@ h5{
   outline: none;
   box-shadow: none;
   display:inline-block;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.clickLike:first-child{
+  margin-left: 0px;
 }
 .likeOrTalk,.talkSome{
   width: 20px;
@@ -268,7 +277,7 @@ h5{
   padding-top: 4px;
 }
 .textArea,.textAreaView{
-  width: 85%;
+  width: 89%;
   border: none;
   outline: none;
   box-shadow: none;
@@ -278,7 +287,8 @@ h5{
   display: inline-block;
   padding-top: 7px;
   font-family: "comfortaa",cursive;
-  height: 30px;
+  height: 30px!important;
+  resize: vertical;
 }
 .askMeetup{
   padding: 10px;
@@ -290,7 +300,7 @@ h5{
 }
 .textAreaView{
   width: 97%!important;
-  min-height: 50px!important;
+  height: 50px!important;
   padding: 10px!important;
   padding-left: 3px!important;
 }
@@ -668,6 +678,9 @@ h5{
   padding-left: 1px!important;
   padding-top: 5px!important;
 }
+.comBtn{
+  display: none;
+}
 /*media query*/
 @media screen and (max-width:768px) {
   .left-side{
@@ -732,6 +745,8 @@ h5{
   }
   .header{
     height: auto;
+    border-bottom: none;
+    box-shadow: none;
   }
   .new{
     grid-template-columns: 1fr;
@@ -856,5 +871,8 @@ h5{
   }
   .openAction{
     border-radius: 3px;
+  }
+  .comBtn{
+    display: inline-block;
   }
 }
