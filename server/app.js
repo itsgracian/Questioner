@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 });
 //@router setup
 app.use("/api/v1", userRouter);
-app.use("/api/v1", adminRouter);
+app.use("/api/v1/admin", adminRouter);
 
 
 

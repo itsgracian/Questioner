@@ -1,9 +1,6 @@
-const uuid = require("uuid");
-
 class QuestionModel {
   constructor() {
     this.questions = {
-      status: uuid.v4(),
       data: []
     };
   }
@@ -35,6 +32,11 @@ class QuestionModel {
     const equal = this.findById(id);
     const question = this.questions.data.indexOf(equal);
     return (this.questions.data[question] = element);
+  }
+
+  findAskQ() {
+    //return this.questions.data.find(question=>question.user===userId);
+    return this.questions.data;
   }
 }
 

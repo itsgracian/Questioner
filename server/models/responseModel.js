@@ -1,11 +1,12 @@
-class Response{
-  constructor(){
-    this.response=[];
+class Response {
+  constructor() {
+    this.response = [];
   }
-  create(element){
+
+  create(element) {
     this.response.push(element);
     return element;
   }
 }
 
-module.exports=new Response();
+module.exports = new Response();

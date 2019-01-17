@@ -49,7 +49,7 @@ router.post("/meetups/:id/rsvps", meetUp.response);
 //@question router
 //@router POST,
 //@desc create question on specific meetUp
-router.post("/questions", question.create);
+router.post("/meetups/:meetupId/questions/", question.create);
 //@router patch
 //@desc vote question
 router.patch("/questions/:id/upvote", question.vote);
@@ -59,5 +59,8 @@ router.patch("/questions/:id/downvote", question.downvote);
 //@router DELETE
 //@desc delete question
 router.delete("/questions/:id", question.deleteQuestion);
+//@router GET Question
+//@desc Get all question
+router.get("/questions/:userId",question.askedQ);
 //@export router
 module.exports = router;

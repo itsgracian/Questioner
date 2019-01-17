@@ -14,8 +14,8 @@ exports.create = (req, res) => {
   }
   const newMeetup = {
     id: uuid.v4(),
-    topic: req.body.topic.toLowerCase(),
-    location: req.body.location.toLowerCase(),
+    topic: req.body.topic,
+    location: req.body.location,
     happeningOn: new Date(req.body.happeningOn).toGMTString(),
     tags: (req.body.tags) ? req.body.tags.split(",") : "",
     createdOn: new Date().toGMTString()
@@ -27,6 +27,7 @@ exports.create = (req, res) => {
   const save = Meetup.create(newMeetup);
   if (save) {
     return res.json({
+      status: 201,
       success: "meetup created successfully",
       save
     });
@@ -40,13 +41,13 @@ exports.allMeetup = (req, res) => res.json(Meetup.findAll());
 exports.findOneMeetup = (req, res) => {
   const id = req.params.id;
   if (Meetup.findById(id)) {
-    return res.json(Meetup.findById(id));
+    return res.status(201).json({ status: 201, meetup: Meetup.findById(id) });
   }
   return res.status(404).json({ error: "sorry the requested result could not be found." });
 };
 //upcoming meetUp
 exports.upcomingMeetup = (req, res) => {
-  res.json({ upcoming: Meetup.upcoming() });
+  res.status(201).json({ status: 201, upcoming: Meetup.upcoming() });
 };
 //@deletemeetup
 exports.deleteMeetup = (req, res) => {
@@ -56,7 +57,7 @@ exports.deleteMeetup = (req, res) => {
   }
   const remove = Meetup.deletemeetup(id);
   if (remove) {
-    return res.json({ success: "well done meetUp removed successfully." });
+    return res.status(201).json({ status: 201, success: "well done meetUp removed successfully." });
   }
   return res.status(500).json({ error: "something wrong try again." });
 };
@@ -90,12 +91,12 @@ exports.updateMeetup = (req, res) => {
         }
         //@update
         const modify = Meetup.updatemeetup(id, meetupData);
-        return res.json({ success: "updated successfully.", data: modify });
+        return res.status(201).json({ success: "updated successfully.", data: modify });
       });
     } else {
       //@update
       const modify = Meetup.updatemeetup(id, meetupData);
-      res.json({ success: "updated successfully.", data: modify });
+      res.status(201).json({ success: "updated successfully.", data: modify });
     }
     return true;
   }

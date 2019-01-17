@@ -3,7 +3,6 @@ const uuid = require("uuid");
 class MeetUpModel {
   constructor() {
     this.meetups = {
-      status: uuid.v4(),
       data: []
     };
   }

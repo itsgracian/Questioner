@@ -7,27 +7,28 @@ const Meetup = require("../models/meetUpModel");
 const User = require("../models/userModel");
 //@create question on specific meetUp
 exports.create = (req, res) => {
+  const meetupId=req.params.meetupId;
   const { errors, isValid } = questionValidation(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
   }
   //@do something
   //@check if meetup id is valid
-  if (Meetup.findById(req.body.meetup)) {
+  if (Meetup.findById(meetupId)) {
     //@check if user is available
     if (User.findById(req.body.user)) {
       const newQ = {
         id: uuid.v4(),
         title: req.body.title,
         body: req.body.body,
-        meetup: req.body.meetup,
+        meetup: meetupId,
         user: req.body.user,
         createdOn: new Date().toGMTString(),
         votes: (req.body.votes) ? req.body.votes : 0
       };
       const saveQ = Question.create(newQ);
       if (saveQ) {
-        return res.json({ success: "question created successfully.", question: saveQ });
+        return res.json({ status:200,success: "question created successfully.", question: saveQ });
       }
       return res.status(500).json({ error: "something wrong try again later." });
     }
@@ -46,7 +47,7 @@ exports.vote = (req, res) => {
     Question.findById(id).votes = vote;
     //@update
     const update = Question.updatequestion(id, Question.findById(id));
-    return res.json({ success: "thanks, your vote was recorded successfully.", update });
+    return res.status(201).json({ status:201,success: "thanks, your vote was recorded successfully.", update });
   }
   //@when not question is not available
   return res.status(404).json({ error: "sorry the requested result couldn't be found." });
@@ -65,7 +66,8 @@ exports.downvote = (req, res) => {
       Question.findById(id).votes = vote;
       //@update
       const update = Question.updatequestion(id, Question.findById(id));
-      return res.json({ success: "thanks, your vote was removed successfully.", update });
+      return res.status(201).json({ status:201,
+        success: "thanks, your vote was removed successfully.", update });
     }
     //@other wise vote will be decreased
     //decrement -1
@@ -73,7 +75,9 @@ exports.downvote = (req, res) => {
     Question.findById(id).votes = vote;
     //@update
     const update = Question.updatequestion(id, Question.findById(id));
-    return res.json({ success: "thanks, your vote was removed successfully.", update });
+    return res.json({ status:201,
+      success: "thanks, your vote was removed successfully.",
+      update });
   }
   //@when not question is not available
   return res.status(404).json({ error: "sorry the requested result couldn't be found." });
@@ -90,7 +94,8 @@ exports.deleteQuestion = (req, res) => {
       //@remove question
       const remove = Question.deletequestion(id);
       if (remove) {
-        return res.json({ success: "question removed successfully." });
+        return res.status(201).json({ status:201,
+        success: "question removed successfully." });
       }
       return res.status(500).json({ error: "something wrong try again." });
     }
@@ -99,4 +104,26 @@ exports.deleteQuestion = (req, res) => {
   }
   //@when not question is not available
   return res.status(404).json({ error: "sorry the requested result couldn't be found." });
+};
+
+//@
+exports.askedQ = (req, res) => {
+  const id = req.params.userId;
+  const find = User.findById(id);
+  const q = Question.findAskQ();
+  if (!find) {
+    return res.status(404).json({ error: "sorry the requested resource could not be found." });
+  }
+  //@check also if user has created question
+  if (q.length === 0) {
+    return res.status(404).json({ error: "whoops!! not found." });
+  }
+  const some = q.filter(quest => quest.user === id);
+  if (some.length === 0) {
+    return res.status(400).json({
+      error: `sorry ${find.username},you didn't create question.`
+    });
+  }
+  const message = `Hey ${find.username} this is your questions.`;
+  return res.status(201).json({ status: 201, message, YourQuestion: some });
 };
