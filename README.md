@@ -13,7 +13,7 @@ Questioner helps the meetup organizer prioritize questions to be answered. Other
 [![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://evening-sierra-90401.herokuapp.com/ "you can watch API Route on heroku")
 
 
-# Tech/Framework Used:
+# Framework Used:
 * [Express](https://expressjs.com/)
 * [Nodejs](https://nodejs.org/en/)
 

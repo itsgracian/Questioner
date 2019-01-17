@@ -1,7 +1,7 @@
 const chaihttp = require("chai-http");
 const chai = require("chai");
 const { expect } = require("chai");
-const server = require("../app");
+const server = require("../../app");
 const meetup = require("../controllers/meetupController");
 
 //chaihttp middleware

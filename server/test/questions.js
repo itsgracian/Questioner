@@ -1,7 +1,7 @@
 const chaihttp = require("chai-http");
 const chai = require("chai");
 const expect = require("chai").expect;
-const server = require("../app");
+const server = require("../../app");
 const question = require("../controllers/questionController");
 
 //@
