@@ -3,6 +3,7 @@ const chai = require("chai");
 const expect = require("chai").expect;
 const server = require("../../app");
 const question = require("../controllers/questionController");
+const Question=require("../models/questionModel");
 
 //@
 chai.use(chaihttp);
@@ -79,4 +80,19 @@ describe("Questions", () => {
         });
     });
   });
+  describe("Question",()=>{
+    it("Should retun object",(done)=>{
+      const element={some:12};
+      const result=Question.create(element)
+      expect(result).to.be.an('object');
+      done();
+    });
+  });
+  describe("Question",()=>{
+    it("Should retun true",(done)=>{
+      const result=Question.deletequestion(1);
+      expect(result).to.equal(true);
+      done();
+    })
+  })
 });

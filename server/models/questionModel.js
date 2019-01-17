@@ -7,7 +7,7 @@ class QuestionModel {
 
   create(element) {
     this.questions.data.push(element);
-    return element;
+    return {element};
   }
 
   findAll() {
