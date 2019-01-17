@@ -7,7 +7,8 @@
     "test": "nyc mocha test/*",
     "coveralls":"nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "show":"npm run open coverage/lcov-report/index.html"
   },
   "author": "gratian",
   "license": "ISC",
