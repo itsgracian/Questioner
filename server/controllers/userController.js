@@ -8,7 +8,7 @@ exports.findAll = (req, res) => {
   if (!data) {
     return res.status(404).json({ error: "sorry the requested result couldn't be found" });
   }
-  return res.json(data);
+  return res.status(201).json({users:data});
 };
 exports.findOne = (req, res) => {
   //@findone user

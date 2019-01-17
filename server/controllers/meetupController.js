@@ -27,7 +27,7 @@ exports.create = (req, res) => {
   const save = Meetup.create(newMeetup);
   if (save) {
     return res.json({
-      status: 201,
+      status: 200,
       success: "meetup created successfully",
       save
     });
@@ -36,7 +36,7 @@ exports.create = (req, res) => {
 };
 
 //@allMeetup
-exports.allMeetup = (req, res) => res.json(Meetup.findAll());
+exports.allMeetup = (req, res) => res.status(201).json(Meetup.findAll());
 //@findOne meetUp
 exports.findOneMeetup = (req, res) => {
   const id = req.params.id;

@@ -28,7 +28,7 @@ exports.create = (req, res) => {
       };
       const saveQ = Question.create(newQ);
       if (saveQ) {
-        return res.json({ status:200,success: "question created successfully.", question: saveQ });
+        return res.status(200).json({ status:200,success: "question created successfully.", question: saveQ });
       }
       return res.status(500).json({ error: "something wrong try again later." });
     }
