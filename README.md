@@ -36,7 +36,6 @@ npm start
 # To Start the server using nodemon package
 ```
 
-
 npm run dev
 
 # Running Test
