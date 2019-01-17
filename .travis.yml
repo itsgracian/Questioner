@@ -1,1 +1,7 @@
 language: node_js
+env:
+  global:
+    - secure: oRblQGlTExDemtJJHpCpzQ
+  matrix:
+    - USE_NETWORK=true
+    - USE_NETWORK=false
