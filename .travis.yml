@@ -1,7 +1,11 @@
 language: node_js
 env:
   global:
-    - secure: oRblQGlTExDemtJJHpCpzQ
+    - CAMPFIRE_TOKEN=oRblQGlTExDemtJJHpCpzQ
+    - TIMEOUT=1000
   matrix:
     - USE_NETWORK=true
     - USE_NETWORK=false
+
+export token=oRblQGlTExDemtJJHpCpzQ
+export USE_NETWORK=true
