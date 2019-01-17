@@ -1,3 +1,5 @@
+const Coveralls=require("coveralls")
+Coveralls.wear;
 const assert = require("chai").assert;
 //models
 const user = require("../../models/userModel");

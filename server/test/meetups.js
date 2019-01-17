@@ -1,3 +1,5 @@
+const Coveralls=require("coveralls")
+Coveralls.wear;
 const chaihttp = require("chai-http");
 const chai = require("chai");
 const { expect } = require("chai");
