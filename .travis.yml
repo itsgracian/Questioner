@@ -1,11 +1,8 @@
 language: node_js
-env:
-  global:
-    - CAMPFIRE_TOKEN=oRblQGlTExDemtJJHpCpzQ
-    - TIMEOUT=1000
-  matrix:
-    - USE_NETWORK=true
-    - USE_NETWORK=false
+node_js:
+  -"8"
+script:
+  -npm test
 
-export token=oRblQGlTExDemtJJHpCpzQ
-export USE_NETWORK=true
+after_success:
+  -npm run coveralls
