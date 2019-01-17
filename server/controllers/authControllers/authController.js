@@ -43,5 +43,4 @@ exports.register = (req, res) => {
       });
     });
   });
-  return false;
 };

@@ -98,7 +98,6 @@ exports.updateMeetup = (req, res) => {
       const modify = Meetup.updatemeetup(id, meetupData);
       res.status(201).json({ success: "updated successfully.", data: modify });
     }
-    return true;
   }
   return res.status(404).json({ error: "sorry the requested result could not be found." });
 };

@@ -63,7 +63,7 @@ exports.update = (req, res) => {
       bcrypt.genSalt(10, (err, salt) => {
         if (err) return res.status(500).json(err);
 
-        return bcrypt.hash(updateUser.password, salt, (error, hash) => {
+         bcrypt.hash(updateUser.password, salt, (error, hash) => {
           if (error) return res.status(500).json(error);
           updateUser.password = hash;
           updateUser.id = id;
@@ -94,10 +94,8 @@ exports.update = (req, res) => {
             });
           });
         });
-        return true;
       }); //@end forEach
     } //@end else
-    return false;
   }
   return res.status(404).json({
     error: "the requested result couldn't be found."
