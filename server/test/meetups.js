@@ -1,6 +1,7 @@
 const chaihttp = require("chai-http");
 const chai = require("chai");
 const { expect } = require("chai");
+const uuid = require("uuid");
 const server = require("../../app");
 const meetup = require("../controllers/meetupController");
 //chaihttp middleware
@@ -23,7 +24,7 @@ describe("Meetup", () => {
         });
     });
   });
-  describe("For Creating Meetup",()=>{
+  describe("For Creating Meetup", () => {
     //@when there is an error
     it("Should return status code of 400", (done) => {
       chai.request(server)
@@ -34,7 +35,7 @@ describe("Meetup", () => {
           done();
         });
     });
-  })
+  });
   //find all meetUp
   describe("Find all meetups", () => {
     it("Should return status code of 201", () => {
@@ -42,7 +43,6 @@ describe("Meetup", () => {
         .get("/api/v1/meetups")
         .end((err, res) => {
           expect(res.status).to.equal(201);
-
         });
     });
   });
@@ -57,7 +57,7 @@ describe("Meetup", () => {
           done();
         });
     });
-    describe("Meetup",()=>{
+    describe("Meetup", () => {
       it("Should return error message", (done) => {
         chai.request(server)
           .get("/api/v1/meetups/45")
@@ -66,7 +66,7 @@ describe("Meetup", () => {
             done();
           });
       });
-    })
+    });
   });
   //updateMeetup
   describe("PATCH updateMeetup()", () => {
@@ -91,7 +91,7 @@ describe("Meetup", () => {
         });
     });
   });
-  describe("For DELETE meetup",()=>{
+  describe("For DELETE meetup", () => {
     it("Should return an object", (done) => {
       chai.request(server)
         .delete("/api/v1/meetups/45")
@@ -100,54 +100,54 @@ describe("Meetup", () => {
           done();
         });
     });
-  })
+  });
   //
-  describe("GET find One meetup",()=>{
-    it("should return status code of 201",()=>{
+  describe("GET find One meetup", () => {
+    it("should return status code of 201", () => {
       chai.request(server)
         .get("/api/v1/meetups/45")
-        .end((err,res)=>{
+        .end((err, res) => {
           expect(res.status).to.equal(404);
-        })
-    })
-  })
-  describe("updateMeetup()",()=>{
+        });
+    });
+  });
+  describe("updateMeetup()", () => {
     it("Should be an object", (done) => {
       chai.request(server)
         .patch("/api/v1/meetups/45")
-        .send({some:"yes"})
+        .send({ some: "yes" })
         .end((err, res) => {
           expect(res.body).to.be.an("object");
           done();
         });
     });
-  })
-});
-
-describe("image",()=>{
-  it("Should return status of 200",(done)=>{
-    const data={
-      images:["kjdsfdsf"]
-    };
-    chai.request(server)
-     .patch("/api/v1/meetups/45/images")
-     .send(data)
-     .end((err,res)=>{
-       expect(res.status).to.equal(404);
-       done();
-     })
   });
 });
-describe("rsvps",()=>{
-  it("Should retu status code of 404",(done)=>{
+
+describe("image", () => {
+  it("Should return status of 200", (done) => {
+    const data = {
+      images: ["kjdsfdsf"]
+    };
     chai.request(server)
-     .post("/meetups/:id/rsvps")
-     .send({
-       title:"yes man"
-     })
-     .end((err,res)=>{
-       expect(res.status).to.equal(404);
-       done();
-     })
-  })
-})
+      .patch("/api/v1/meetups/45/images")
+      .send(data)
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        done();
+      });
+  });
+});
+describe("rsvps", () => {
+  it("Should retu status code of 404", (done) => {
+    chai.request(server)
+      .post("/meetups/:id/rsvps")
+      .send({
+        title: "yes man"
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        done();
+      });
+  });
+});
