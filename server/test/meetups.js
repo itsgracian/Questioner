@@ -14,12 +14,12 @@ describe("Meetup", () => {
       location: "ldsfdsf",
       happeningOn: "2019-jan-20"
     };
-    it("Should return status code of 200", (done) => {
+    it("Should return status code of 201", (done) => {
       chai.request(server)
         .post("/api/v1/meetups")
         .send(datas)
         .end((err, res) => {
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(201);
           done();
         });
     });
@@ -38,11 +38,11 @@ describe("Meetup", () => {
   });
   //find all meetUp
   describe("Find all meetups", () => {
-    it("Should return status code of 201", () => {
+    it("Should return status code of 200", () => {
       chai.request(server)
         .get("/api/v1/meetups")
         .end((err, res) => {
-          expect(res.status).to.equal(201);
+          expect(res.status).to.equal(200);
         });
     });
   });

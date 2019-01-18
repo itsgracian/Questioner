@@ -26,7 +26,7 @@ exports.create = (req, res) => {
   }
   const save = Meetup.create(newMeetup);
   if (save) {
-    return res.json({
+    return res.status(201).json({
       status: 201,
       success: "meetup created successfully",
       save

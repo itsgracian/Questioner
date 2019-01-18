@@ -28,7 +28,7 @@ exports.create = (req, res) => {
       };
       const saveQ = Question.create(newQ);
       if (saveQ) {
-        return res.status(200).json({ status:200,success: "question created successfully.", question: saveQ });
+        return res.status(201).json({ status:201,success: "question created successfully.", question: saveQ });
       }
       return res.status(500).json({ error: "something wrong try again later." });
     }
@@ -47,7 +47,7 @@ exports.vote = (req, res) => {
     Question.findById(id).votes = vote;
     //@update
     const update = Question.updatequestion(id, Question.findById(id));
-    return res.status(201).json({ status:201,success: "thanks, your vote was recorded successfully.", update });
+    return res.status(200).json({ status:200,success: "thanks, your vote was recorded successfully.", update });
   }
   //@when not question is not available
   return res.status(404).json({ error: "sorry the requested result couldn't be found." });
@@ -66,7 +66,7 @@ exports.downvote = (req, res) => {
       Question.findById(id).votes = vote;
       //@update
       const update = Question.updatequestion(id, Question.findById(id));
-      return res.status(201).json({ status:201,
+      return res.status(200).json({ status:200,
         success: "thanks, your vote was removed successfully.", update });
     }
     //@other wise vote will be decreased
@@ -75,7 +75,7 @@ exports.downvote = (req, res) => {
     Question.findById(id).votes = vote;
     //@update
     const update = Question.updatequestion(id, Question.findById(id));
-    return res.json({ status:201,
+    return res.status(200).json({ status:200,
       success: "thanks, your vote was removed successfully.",
       update });
   }
@@ -125,5 +125,5 @@ exports.askedQ = (req, res) => {
     });
   }
   const message = `Hey ${find.username} this is your questions.`;
-  return res.status(201).json({ status: 201, message, YourQuestion: some });
+  return res.status(200).json({ status: 200, message, YourQuestion: some });
 };
