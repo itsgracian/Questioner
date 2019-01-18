@@ -27,7 +27,7 @@ exports.create = (req, res) => {
   const save = Meetup.create(newMeetup);
   if (save) {
     return res.json({
-      status: 200,
+      status: 201,
       success: "meetup created successfully",
       save
     });
@@ -36,18 +36,18 @@ exports.create = (req, res) => {
 };
 
 //@allMeetup
-exports.allMeetup = (req, res) => res.status(201).json(Meetup.findAll());
+exports.allMeetup = (req, res) => res.status(200).json(Meetup.findAll());
 //@findOne meetUp
 exports.findOneMeetup = (req, res) => {
   const id = req.params.id;
   if (Meetup.findById(id)) {
-    return res.status(201).json({ status: 201, meetup: Meetup.findById(id) });
+    return res.status(200).json({ status: 200, meetup: Meetup.findById(id) });
   }
   return res.status(404).json({ error: "sorry the requested result could not be found." });
 };
 //upcoming meetUp
 exports.upcomingMeetup = (req, res) => {
-  res.status(201).json({ status: 201, upcoming: Meetup.upcoming() });
+  res.status(201).json({ status: 200, upcoming: Meetup.upcoming() });
 };
 //@deletemeetup
 exports.deleteMeetup = (req, res) => {
