@@ -3,11 +3,13 @@ const express = require("express");
 const router = express.Router();
 
 //@controllers
-
 const auth = require("../controllers/authControllers/authController");
 const userController = require("../controllers/userController");
 const meetUp = require("../controllers/meetupController");
 const question = require("../controllers/questionController");
+//@middleware
+const multer=require("../middleware/multer-config.js");
+
 //@router POST
 //@desc register new user
 router.post("/register", auth.register);
@@ -45,6 +47,9 @@ router.patch("/meetups/:id", meetUp.updateMeetup);
 //@router POST
 //@desc RSPV
 router.post("/meetups/:id/rsvps", meetUp.response);
+//router PATCH
+//@add images
+router.patch("/meetups/:meetupId/images",multer, meetUp.addImage);
 //@end meetup router
 //@question router
 //@router POST,

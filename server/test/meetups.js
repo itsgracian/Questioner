@@ -3,6 +3,7 @@ const chai = require("chai");
 const { expect } = require("chai");
 const server = require("../../app");
 const meetup = require("../controllers/meetupController");
+const should=require("chai").should;
 
 //chaihttp middleware
 chai.use(chaihttp);
@@ -20,9 +21,12 @@ describe("Meetup", () => {
         .send(datas)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          res.body.should.be('object');
           done();
         });
     });
+  });
+  describe("For Creating Meetup",()=>{
     //@when there is an error
     it("Should return status code of 400", (done) => {
       chai.request(server)
@@ -33,7 +37,7 @@ describe("Meetup", () => {
           done();
         });
     });
-  });
+  })
   //find all meetUp
   describe("Find all meetups", () => {
     it("Should return status code of 201", () => {
@@ -41,6 +45,7 @@ describe("Meetup", () => {
         .get("/api/v1/meetups")
         .end((err, res) => {
           expect(res.status).to.equal(201);
+
         });
     });
   });
@@ -49,20 +54,22 @@ describe("Meetup", () => {
   describe("GET /Find meetup by id", () => {
     it("Should return status code of 404", (done) => {
       chai.request(server)
-        .get("/api/v1/meetups/:meetupId")
+        .get("/api/v1/meetups/56")
         .end((err, res) => {
           expect(res.status).to.equal(404);
           done();
         });
     });
-    it("Should return error message", (done) => {
-      chai.request(server)
-        .get("/api/v1/meetups/:meetupId")
-        .end((err, res) => {
-          expect(res.body.error).to.equal("sorry the requested result could not be found.");
-          done();
-        });
-    });
+    describe("Meetup",()=>{
+      it("Should return error message", (done) => {
+        chai.request(server)
+          .get("/api/v1/meetups/45")
+          .end((err, res) => {
+            expect(res.body.error).to.equal("sorry the requested result could not be found.");
+            done();
+          });
+      });
+    })
   });
   //updateMeetup
   describe("PATCH updateMeetup()", () => {
@@ -74,83 +81,48 @@ describe("Meetup", () => {
           done();
         });
     });
-    it("Should be an object", (done) => {
-      chai.request(server)
-        .patch("/api/v1/meetups/meetupId")
-        .end((err, res) => {
-          expect(res.body).to.be.an("object");
-          done();
-        });
-    });
   });
+
   //describe DELETE
   describe("DELETE deleteMeetup", () => {
     it("Should return status code of 404", (done) => {
       chai.request(server)
-        .delete("/api/v1/meetups/:meetupId")
+        .delete("/api/v1/meetups/45")
         .end((err, res) => {
           expect(res.status).to.equal(404);
           done();
         });
     });
+  });
+  describe("For DELETE meetup",()=>{
     it("Should return an object", (done) => {
       chai.request(server)
-        .delete("/api/v1/meetups/:meetupId")
+        .delete("/api/v1/meetups/45")
         .end((err, res) => {
           expect(res.body).to.be.an("object");
           done();
         });
     });
-  });
-  //@
-  describe("create()", () => {
-    it("should be a function", () => {
-      const result = meetup.create;
-      expect(result).to.be.a("function");
-    });
-  });
+  })
   //
-  describe("allMeetup()", () => {
-    it("should be a function", () => {
-      const result = meetup.allMeetup;
-      expect(result).to.be.a("function");
-    });
-  });
-  //
-  describe("findOneMeetup()", () => {
-    it("should be a function", () => {
-      const result = meetup.findOneMeetup;
-      expect(result).to.be.a("function");
-    });
-  });
-  //
-  describe("upcomingMeetup()", () => {
-    it("should be a function", () => {
-      const result = meetup.upcomingMeetup;
-      expect(result).to.be.a("function");
-    });
-  });
-  //
-  describe("deleteMeetup()", () => {
-    it("should be a function", () => {
-      const result = meetup.deleteMeetup;
-      expect(result).to.be.a("function");
-    });
-  });
-  //
-  describe("updateMeetup()", () => {
-    it("should be a function", () => {
-      const result = meetup.updateMeetup;
-      expect(result).to.be.a("function");
-    });
-  });
   describe("GET find One meetup",()=>{
     it("should return status code of 201",()=>{
       chai.request(server)
-        .get("/api/v1/meetups/:id")
+        .get("/api/v1/meetups/45")
         .end((err,res)=>{
           expect(res.status).to.equal(404);
         })
     })
+  })
+  describe("updateMeetup()",()=>{
+    it("Should be an object", (done) => {
+      chai.request(server)
+        .patch("/api/v1/meetups/45")
+        .send({some:"yes"})
+        .end((err, res) => {
+          expect(res.body).to.be.an("object");
+          done();
+        });
+    });
   })
 });

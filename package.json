@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha server/test/* --timeout 1200 --exit",
-    "coveralls":"nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "dev": "nodemon server.js",
     "start": "node  server.js"
   },

@@ -9,9 +9,6 @@ const app = express();
 
 //@public folder
 app.use(express.static(path.join(__dirname, "public")));
-//@bodyParser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 //handiling and preventing CORS Error
 app.use((req, res, next) => {
   //providing my api to everyone
@@ -25,8 +22,11 @@ app.use((req, res, next) => {
     return res.status(200).json({});
   }
   next();
-  return false;
 });
+//@bodyParser middleware
+app.use(bodyParser.json());
+//set public folder
+app.use("/images",express.static(path.join(__dirname,"server/public/uploads")));
 //@router setup
 app.use("/api/v1", userRouter);
 app.use("/api/v1/admin", adminRouter);

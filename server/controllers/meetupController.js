@@ -130,3 +130,34 @@ exports.response = (req, res) => {
   }
   return res.status(404).json({ error: "sorry meetup could not be found." });
 };
+
+//@addImage
+exports.addImage=(req,res)=>{
+  const id=req.params.meetupId;
+  const find=Meetup.findById(id);
+  if (find) {
+    if (!req.files) {
+      return res.status(400).json({error:"please image is required"});
+    }
+    const url=req.protocol+"://"+req.get("host");
+    const imagesUrl=[];
+    const images=req.files;
+    images.forEach((img)=>{
+      imagesUrl.push(url+"/images/"+img.filename);
+    });
+    const data={
+      id:find.id,
+      topic:find.topic,
+      location:find.location,
+      tags:find.tags,
+      images:imagesUrl,
+      createdOn:find.createdOn
+    };
+    //updates
+    const save=Meetup.updatemeetup(id,data);
+    return res.status(201).json({ success: "updated successfully.", data: save });
+
+  }else {
+    return res.status(404).json({error:"sorry the requested result could not be found."});
+  }
+}

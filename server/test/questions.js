@@ -88,11 +88,4 @@ describe("Questions", () => {
       done();
     });
   });
-  describe("Question",()=>{
-    it("Should retun true",(done)=>{
-      const result=Question.deletequestion(1);
-      expect(result).to.equal(true);
-      done();
-    })
-  })
 });
