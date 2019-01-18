@@ -269,8 +269,9 @@ h5{
 }
 .numberVotes{
   font-weight: bold;
-  font-size: 12px;
+  font-size: 10px;
   padding-top: 3px;
+  color: #333;
 }
 .post-comment{
   border-top: 1px solid #ddd;

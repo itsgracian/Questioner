@@ -44,6 +44,7 @@ a{
   background-size: cover;
   min-height: 100vh;
   background-size: cover;
+  padding-bottom: 40px;
 }
 .auth{
   display: flex;
