@@ -3,8 +3,6 @@ const chai = require("chai");
 const { expect } = require("chai");
 const server = require("../../app");
 const meetup = require("../controllers/meetupController");
-const should=require("chai").should;
-
 //chaihttp middleware
 chai.use(chaihttp);
 //@test starts
@@ -21,7 +19,6 @@ describe("Meetup", () => {
         .send(datas)
         .end((err, res) => {
           expect(res.status).to.equal(200);
-          res.body.should.be('object');
           done();
         });
     });
@@ -126,3 +123,31 @@ describe("Meetup", () => {
     });
   })
 });
+
+describe("image",()=>{
+  it("Should return status of 200",(done)=>{
+    const data={
+      images:["kjdsfdsf"]
+    };
+    chai.request(server)
+     .patch("/api/v1/meetups/45/images")
+     .send(data)
+     .end((err,res)=>{
+       expect(res.status).to.equal(404);
+       done();
+     })
+  });
+});
+describe("rsvps",()=>{
+  it("Should retu status code of 404",(done)=>{
+    chai.request(server)
+     .post("/meetups/:id/rsvps")
+     .send({
+       title:"yes man"
+     })
+     .end((err,res)=>{
+       expect(res.status).to.equal(404);
+       done();
+     })
+  })
+})
