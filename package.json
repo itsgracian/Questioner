@@ -4,36 +4,44 @@
   "description": "Questioner product",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha server/test/* --timeout 1200 --exit",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "dev": "nodemon server.js",
-    "start": "node  server.js"
+    "test": "mocha server/test/*",
+    "dev": "nodemon --exec babel-node --presets env server.js",
+    "start": "nodemon --exec babel-node --presets env server.js"
   },
   "author": "gratian",
   "license": "ISC",
   "dependencies": {
     "airbnb-style": "^2.0.0",
+    "babel-core": "^6.26.3",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "multer": "^1.4.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^7.7.1",
+    "pg-array": "^0.5.0",
     "pug": "^2.0.3",
     "uuid": "^3.3.2",
     "validator": "^10.9.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/register": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "chai-param": "^0.1.2",
-    "coveralls": "^3.0.2",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "mocha": "^5.2.0",
-    "mocha-lcov-reporter": "^1.3.0",
-    "multer": "^1.4.1",
     "nodemon": "^1.18.9",
-    "nyc": "^13.1.0"
+    "should-http": "^0.1.1"
   }
 }

@@ -1,36 +1,31 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const path = require("path");
+import express from "express";
+import bodyParser from "body-parser";
+import passport from "passport";
+import path from "path";
 //@router
-const userRouter = require("./server/router/userRoutes");
-const adminRouter = require("./server/router/adminRoutes");
-//@setting app
-const app = express();
+import authRoutes from "./server/router/api/authRoute";
+import userRoutes from "./server/router/api/userRoutes";
 
-//@public folder
-app.use(express.static(path.join(__dirname, "public")));
-//handiling and preventing CORS Error
+//@express server
+const app = express();
+//@cors middleware
 app.use((req, res, next) => {
-  //providing my api to everyone
-  res.header("Access-Control-Allow-Origin", "*");
-  //allow access
-  res.header("Access-Control-Allow-Headers",
-    "Origin,X-Requested-With,Content-Type,Accept,Authorization");
-  //access which is allowed
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "POST,GET,PUT,PATCH,DELETE");
-    return res.status(200).json({});
-  }
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods','POST,GET,PUT,PATCH,DELETE,OPTIONS");
   next();
 });
-//@bodyParser middleware
+//@bodyParser
 app.use(bodyParser.json());
-//set public folder
-app.use("/images",express.static(path.join(__dirname,"server/public/uploads")));
-//@router setup
-app.use("/api/v1", userRouter);
-app.use("/api/v1/admin", adminRouter);
+//@static folder
+app.use("/images/", express.static(path.join(__dirname, "public/uploads")));
+//@router configuration
+app.use("/api/v1/", authRoutes);
+app.use("/api/v1/", userRoutes);
 
+//@passport middleware
+app.use(passport.initialize());
+require("./server/config/passport")(passport);
 
-
-module.exports = app;
+//@populate
+export default app;

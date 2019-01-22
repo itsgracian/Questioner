@@ -1,5 +1,5 @@
-const validator = require("validator");
-const isEmpty = require("./isEmpty");
+import validator from "validator";
+import isEmpty from "./isEmpty";
 
 module.exports = (data) => {
   const errors = {};
