@@ -25,21 +25,21 @@ pool.on('remove', () => {
 const create = () => {
 const usersTable = `CREATE TABLE IF NOT EXISTS
     users(
-      id BIGSERIAL PRIMARY KEY,
-      firstname VARCHAR NOT NULL,
-      lastname VARCHAR NOT NULL,
-      othername VARCHAR() NOT NULL,
-      email VARCHAR() NOT NULL,
-      phone VARCHAR() NOT NULL,
-      username VARCHAR() NOT NULL,
-      password VARCHAR() NOT NULL,
+      id SERIAL PRIMARY KEY,
+      firstname VARCHAR(100) NOT NULL,
+      lastname VARCHAR(100) NOT NULL,
+      othername VARCHAR(100) NOT NULL,
+      email VARCHAR(100) NOT NULL,
+      phone VARCHAR(100) NOT NULL,
+      username VARCHAR(100) NOT NULL,
+      password VARCHAR(100) NOT NULL,
       registered DATE NOT NULL DEFAULT CURRENT_DATE,
       isadmin BOOLEAN NOT NULL DEFAULT false
     )`;
 
 const meetupsTable = `CREATE TABLE IF NOT EXISTS
     meetups(
-      meetup_id BIGSERIAL PRIMARY KEY,
+      meetup_id SERIAL PRIMARY KEY,
       topic VARCHAR() NOT NULL,
       location VARCHAR(100) NOT NULL,
       images VARCHAR [] NULL,
@@ -51,33 +51,33 @@ const meetupsTable = `CREATE TABLE IF NOT EXISTS
 
 const questionsTable = `CREATE TABLE IF NOT EXISTS
     questions(
-      question_id BIGSERIAL PRIMARY KEY,
+      question_id SERIAL PRIMARY KEY,
       user_id INT NOT NULL,
       meetup INT NOT NULL,
-      title VARCHAR() NOT NULL,
+      title VARCHAR(100) NOT NULL,
       body text
     )`;
 
 const rsvpsTable = `CREATE TABLE IF NOT EXISTS
     rsvp(
-      rsvp_id BIGSERIAL PRIMARY KEY,
+      rsvp_id SERIAL PRIMARY KEY,
       user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
       meetup INT NOT NULL REFERENCES meetups(meetup_id) ON DELETE CASCADE ON UPDATE CASCADE,
-      response VARCHAR(200) NOT NULL
+      response VARCHAR(100) NOT NULL
     )`;
 
 const votesTable = `CREATE TABLE IF NOT EXISTS
     votes(
-      vote_id BIGSERIAL NOT NULL PRIMARY KEY,
-      user_id BIGINT NOT NULL,
-      question_id BIGINT NOT NULL,
-      upvotes NUMERIC,
-      downvotes NUMERIC
+      vote_id SERIAL NOT NULL PRIMARY KEY,
+      user_id INT NOT NULL,
+      question_id INT NOT NULL,
+      upvotes INT,
+      downvotes INT
     )`;
 
 const commentsTable = `CREATE TABLE IF NOT EXISTS
     comments(
-      comment_id BIGSERIAL PRIMARY KEY,
+      comment_id SERIAL PRIMARY KEY,
       commentedby INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
       comment TEXT NOT NULL,
       datecreation DATE NOT NULL DEFAULT CURRENT_DATE
@@ -105,5 +105,3 @@ drop,
 create,
 pool
 };
-
-require('make-runnable');
