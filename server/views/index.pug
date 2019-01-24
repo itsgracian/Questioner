@@ -1,13 +1,37 @@
-doctype html
-html(lang='en', dir='ltr')
-  head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title Questioner | API Reference
-    link(rel="stylesheet", href="/css/style.css", type="text/css")
-    link(rel="shortcut icon", href="./api_icon.jpg")
-  body
-    section.all
-      .sections
-        .logo
-          img(src="./api_icon.jpg")
+extends layout
+
+block content
+  section.main-stuff
+    .humbuger
+      img(src='./images/menu.svg', alt='')
+    .inside
+      .logo
+        center
+          img(src='./images/api_icon.jpg', alt='')
+        h1 Questioner
+      .intro
+        h3  User API Reference
+      .rsection
+        .nav-route
+          ul
+            li
+              span.exp Method: POST (create new user)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/signup
+            li
+              span.exp Method: POST (user signin)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/signin
+            li
+              span.exp Method: GET (user's info)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/users/username
+            li
+              span.exp Method: PATCH (update user)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/users
+            li
+              span.exp Method: DELETE (delete users)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/users
+            li
+              span.exp Method: PATCH (change password)
+              span.url https://evening-sierra-90401.herokuapp.com/api/v1/users/change-password
+    
+                
+    

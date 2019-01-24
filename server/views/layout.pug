@@ -1,0 +1,31 @@
+doctype html
+html(lang='en', dir='ltr')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width-device=width initial-scale=1.0')
+    title Questioner | API
+    link(rel='stylesheet', href='/css/reference.css')
+    link(rel="shortcut icon",href="/api_icon.jpg")
+  body
+    section.header
+      .close X
+      center
+        img.logoImg(src='./images/api_icon.jpg')
+      .navigation-bar
+        nav
+          ul
+            li
+              a(href="/") Users
+            li
+              a(href="/meetups") Meetups
+            li
+              a(href="/questions") Questions
+            li
+              a(href="/comments") Comments
+            li
+              a(href="/rsvp") RSVP
+    block content
+    footer
+      p all right reserved @2019
+      p.name created by gracian tuyishimire
+    script(type='text/javascript', src='./js/index.js')

@@ -2,10 +2,14 @@ import express from "express";
 import bodyParser from "body-parser";
 import passport from "passport";
 import path from "path";
+import dotenv from "dotenv";
+dotenv.config();
+
 //@router
 import authRoutes from "./server/router/api/authRoute";
 import userRoutes from "./server/router/api/userRoutes";
 import indexRoutes from "./server/router/indexRoutes";
+
 
 //@express server
 const app = express();

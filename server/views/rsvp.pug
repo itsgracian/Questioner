@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  section.main-stuff
+    .humbuger
+      img(src='./images/menu.svg', alt='')
+    .inside
+      .logo
+        center
+          img(src='./images/api_icon.jpg', alt='')
+        h1 Questioner
+      .intro
+        h3  RSVP API Reference
+      .rsection
+        .nav-route
+          li
+            span.exp Method: POST (rsvp)
+            span.url https://evening-sierra-90401.herokuapp.com/api/v1/meetups/rsvp/:meetupId
+    
