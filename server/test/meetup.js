@@ -32,17 +32,4 @@ describe("Meetups", () => {
         done();
       });
     })
-    it("it should return status code of 201",(done)=>{
-      const data={
-        topic: "title number 1",
-        location: "location",
-        happeningOn: "date"
-      };
-      chai.request(server)
-      .post("/api/v1/meetups")
-      .end((err,res)=>{
-        expect(res).to.have.status(200);
-        done();
-      })
-    })
 });
