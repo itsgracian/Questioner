@@ -1,5 +1,3 @@
-/*const pool = require("../config/connection");
-const commentValidation = require("../validations/comment");*/
 import pool from "../config/connection";
 import commentValidation from "../validations/comment";
 
@@ -117,4 +115,20 @@ exports.deleteComment = (req, res) => {
         });
     })
     .catch(error => res.status(500).json(error));
+};
+
+exports.allComment = (req, res) => {
+  const questionId = req.params.questionId;
+  //query
+  const sql = "SELECT * FROM comments INNER JOIN questions ON questions.question_id=comments.question INNER JOIN users ON users.id=comments.commentedby WHERE question=$1";
+  pool.query(sql, [questionId])
+    .then((data) => {
+      if (data.rows.length === 0) {
+        return res.status(404).json({ error: "Sorry none of your comments." });
+      }
+      return res.json({ status: 200, data: data.rows });
+    })
+    .catch(error =>
+      //console.log(error);
+      res.status(500).json(error));
 };

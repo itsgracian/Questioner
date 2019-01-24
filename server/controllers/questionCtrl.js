@@ -1,10 +1,9 @@
-/*const pool = require("../config/connection");
-const questionValidation = require("../validations/question");*/
 import pool from "../config/connection";
 import questionValidation from "../validations/question";
 //@create
 exports.create = (req, res) => {
   const { errors, isValid } = questionValidation(req.body);
+  const meetupId = req.params.meetupId;
   //@check
   if (!isValid) {
     return res.status(400).json(errors);
@@ -12,7 +11,7 @@ exports.create = (req, res) => {
   //@find if user is availble
   const userId = req.user.rows[0].id;
   //@find if meetup id is availble
-  pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [req.body.meetup])
+  pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [meetupId])
     .then((result) => {
       if (result.rows.length === 0) {
         return res.status(404).json({ error: "sorry meetup not found." });
@@ -43,86 +42,6 @@ exports.create = (req, res) => {
     })
     .catch(er => res.status(500).json(er));
 };
-
-//@upvote
-exports.upvote = (req, res) => {
-  const id = req.params.questionId;
-  pool.query("SELECT * FROM questions WHERE question_id=$1", [id],
-    (error, result) => {
-      if (error) {
-        return res.status(500).json(error);
-      }
-      if (result.rows.length === 0) {
-        return res.status(404).json({ error: "sorry the requested result could not be found." });
-      }
-      let vote = result.rows[0].votes;
-      //increment by 1
-      vote += 1;
-      //@update
-      pool.query("UPDATE questions SET votes=$1 WHERE question_id=$2 RETURNING *", [vote, id],
-        (er, question) => {
-          if (er) {
-            console.log(er);
-          }
-          if (!question) {
-            return res.status(500).json({ error: "failed to vote try again." });
-          }
-          return res.json({
-            success: true,
-            message: "your vote was recorded successfully.",
-            status: question.rowCount,
-            data: question.rows
-          });
-        });
-    });
-};
-
-//@downvote
-exports.downvote = (req, res) => {
-  const id = req.params.questionId;
-  //@check if question is available
-  pool.query("SELECT * FROM questions WHERE question_id=$1", [id],
-    (error, result) => {
-      if (error) {
-        return res.status(500).json(error);
-      }
-      if (result.rows.length === 0) {
-        return res.status(404).json({ error: "sorry the requested result could not be found." });
-      }
-      let vote = result.rows[0].votes;
-      //@decrease by 1
-      //@but i don't want vote to be under minus
-      //@ i just want downvote ends to  0 vote
-      if (vote !== 0) {
-        //@when votes is greater than 0
-        //then decrease by 1
-        vote -= 1;
-        down(res, vote, id);
-      } else {
-        vote = 0;
-        down(res, vote, id);
-      }
-    });
-};
-
-//@function for downvote
-function down(res, vote, id) {
-  pool.query("UPDATE questions SET votes=$1 WHERE question_id=$2 RETURNING *", [vote, id],
-    (err, question) => {
-      if (err) {
-        return res.status(500).json(err);
-      }
-      if (!question) {
-        return res.status(500).json({ error: "failed to downvote try again." });
-      }
-      return res.json({
-        success: true,
-        message: "your request was recorded successfully.",
-        status: question.rowCount,
-        data: question.rows
-      });
-    });
-}
 
 //@deleteQuestion
 exports.deleteQuestion = (req, res) => {
@@ -158,4 +77,18 @@ exports.deleteQuestion = (req, res) => {
           });
         });
     });
+};
+
+exports.myquestions = (req, res) => {
+  //@find questions according to someone's questions
+  const userId = req.user.rows[0].id;
+  //query
+  pool.query("SELECT * FROM questions INNER JOIN users ON users.id=questions.user_id WHERE user_id=$1", [userId])
+    .then((data) => {
+      if (data.rows.length === 0) {
+        return res.status(404).json({ error: "Sorry You didn't ask anything." });
+      }
+      return res.json({ status: 200, data: data.rows });
+    })
+    .catch(error => res.status(500).json(error));
 };

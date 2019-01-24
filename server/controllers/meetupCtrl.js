@@ -1,7 +1,3 @@
-/*const pgArray = require("pg-array");
-const pool = require("../config/connection");
-const meetupValidation = require("../validations/meetup");
-const tagValidation = require("../validations/tags");*/
 import pgArray from "pg-array";
 import pool from "../config/connection";
 import meetupValidation from "../validations/meetup";
@@ -28,7 +24,7 @@ exports.create = (req, res) => {
       return res.status(400).json(error);
     }
     if (result) {
-      return res.status(201).json({
+      return res.status(200).json({
         success: true,
         message: "meetup created successfully.",
         status: result.rowCount,
@@ -183,6 +179,23 @@ exports.addImage = (req, res) => {
     });
 };
 
+function updateTags(res, tags, id) {
+  pool.query("UPDATE meetups SET tags=$1 WHERE meetup_id=$2 RETURNING *",
+    [tags, id], (error, meetup) => {
+      if (error) {
+        console.log(error);
+      }
+      if (!meetup) {
+        return res.status(500).json({ error: "something wrong try again later." });
+      }
+      return res.json({
+        success: true,
+        message: "well done! meetup tags recorded successfully.",
+        status: meetup.rowCount,
+        data: meetup.rows
+      });
+    });
+}
 //@addTags
 exports.addTags = (req, res) => {
   const id = req.params.id;
@@ -217,20 +230,3 @@ exports.addTags = (req, res) => {
       }
     });
 };
-function updateTags(res, tags, id) {
-  pool.query("UPDATE meetups SET tags=$1 WHERE meetup_id=$2 RETURNING *",
-    [tags, id], (error, meetup) => {
-      if (error) {
-        console.log(error);
-      }
-      if (!meetup) {
-        return res.status(500).json({ error: "something wrong try again later." });
-      }
-      return res.json({
-        success: true,
-        message: "well done! meetup tags recorded successfully.",
-        status: meetup.rowCount,
-        data: meetup.rows
-      });
-    });
-}

@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 //@bodyParser
 app.use(bodyParser.json());
 //@static folder
-app.use("/images/", express.static(path.join(__dirname, "public/uploads")));
+app.use("/images/", express.static(path.join(__dirname, "server/public/uploads")));
 //@router configuration
 app.use("/api/v1/", authRoutes);
 app.use("/api/v1/", userRoutes);

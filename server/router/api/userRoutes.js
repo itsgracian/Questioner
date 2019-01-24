@@ -11,7 +11,8 @@ const userCtrl = require("../../controllers/userCtrl");
 const meetupCtrl = require("../../controllers/meetupCtrl");
 const questionCtrl = require("../../controllers/questionCtrl");
 const commentCtrl = require("../../controllers/commentCtrl");
-
+const voteCtrl=require("../../controllers/voteCtrl");
+const rsvpCtrl=require("../../controllers/rsvpCtrl");
 //@router GET
 //@desc find user
 router.get("/users/:username", passport.authenticate("jwt", { session: false }), userCtrl.findUsername);
@@ -62,19 +63,14 @@ router.post("/meetups/:id/tags", passport.authenticate("jwt", { session: false }
 //@question router
 //@router POST
 //@desc create question
-router.post("/questions", passport.authenticate("jwt", { session: false }), questionCtrl.create);
-//@router PATCH
-//@desc upvote
-router.patch("/questions/:questionId/upvote", passport.authenticate("jwt", { session: false }),
-  questionCtrl.upvote);
-//@router PATCH
-//@desc downvote
-router.patch("/questions/:questionId/downvote", passport.authenticate("jwt", { session: false }),
-  questionCtrl.downvote);
+router.post("/meetups/:meetupId/questions", passport.authenticate("jwt", { session: false }),
+questionCtrl.create);
 //@router DELETE
 //@desc delete question
 router.delete("/questions/:questionId", passport.authenticate("jwt", { session: false }),
   questionCtrl.deleteQuestion);
+//@router GET user questions
+router.get("/questions",passport.authenticate("jwt",{session:false}),questionCtrl.myquestions);
 //@end of question router
 //@comment router
 //@router POST
@@ -90,5 +86,23 @@ router.patch("/comments/:id", passport.authenticate("jwt", { session: false }), 
 //@router DELETE
 //@delete comment
 router.delete("/comments/:id", passport.authenticate("jwt", { session: false }), commentCtrl.deleteComment);
+//@router GET
+//@desc GET all comments according to meetup
+router.get("/questions/:questionId/comments",passport.authenticate("jwt",{session:false}),
+commentCtrl.allComment);
+//@end of comment routes
+//@vote routes
+//@router POST
+//@desc upvote
+router.post("/questions/:questionId/upvote", passport.authenticate("jwt", { session: false }),
+  voteCtrl.upvote);
+//@router POST
+//@desc downvote
+router.post("/questions/:questionId/downvote", passport.authenticate("jwt", { session: false }),
+  voteCtrl.downvote);
+//@vote routes end
+//@rsvp
+router.post("/meetups/rsvp/:meetupId",passport.authenticate("jwt",{ session:false }),
+rsvpCtrl.respond);
 //@exports
 module.exports = router;

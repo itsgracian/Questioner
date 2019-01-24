@@ -4,7 +4,8 @@
   "description": "Questioner product",
   "main": "index.js",
   "scripts": {
-    "test": "mocha server/test/*",
+    "test": "nyc --reporter=html --reporter=text --timeout=1500 mocha --require babel-polyfill --require babel-register server/test/* --exit",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "dev": "nodemon --exec babel-node --presets env server.js",
     "start": "nodemon --exec babel-node --presets env server.js"
   },
@@ -33,15 +34,19 @@
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/register": "^7.0.0",
     "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "chai-param": "^0.1.2",
+    "coveralls": "^3.0.2",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.18.9",
+    "nyc": "^13.1.0",
     "should-http": "^0.1.1"
   }
 }

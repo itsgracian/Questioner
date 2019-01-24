@@ -1,7 +1,7 @@
 {
     "extends": "airbnb",
     "parserOptions": {
-        "ecmaVersion": 6
+        "ecmaversion": 6
     },
     "env": {
         "node": true,
@@ -15,6 +15,7 @@
             "error",
             "double"
         ],
+        "consistent-return": "off",
         "spaced-comment": [
             "error",
             "never"
@@ -71,6 +72,10 @@
                 "props": false
             }
         ],
-        "no-return-assign": ["error","except-parens"]
+        "no-return-assign": [
+            "error",
+            "except-parens"
+        ],
+        "no-plusplus":"off"
     }
 }
