@@ -81,8 +81,8 @@ exports.downvote = (req, res) => {
               .catch((er) => {
                 console.log(er);
               });
-          } else if (parseInt(votes.rows[0].downvotes, 10) !== 0) {
-            return res.status(400).json({ error: "sorry you are allowed to dowvote once." });
+          } else if (parseInt(votes.rows[0].downvotes,10)===1) {
+            return res.status(400).json({ error: "sorry you are allowed to dowvote once.." });
           } else if (votes.rows[0].upvotes === 0 || votes.rows[0].upvotes === "") {
             const downs = 1;
             pool.query("INSERT INTO votes(users_id,question_id,downvotes)VALUES($1,$2,$3)",
