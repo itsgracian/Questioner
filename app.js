@@ -27,7 +27,7 @@ app.set("views",path.join(__dirname,"server/views"));
 //@bodyParser
 app.use(bodyParser.json());
 //@static folder
-app.use("/images/", express.static(path.join(__dirname, "server/public/uploads")));
+app.use("/images/", express.static(path.join(__dirname, "public/uploads")));
 app.use(express.static(path.join(__dirname,"server/public")));
 //@router configuration
 app.use("/",indexRoutes);
