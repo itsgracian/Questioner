@@ -22,7 +22,8 @@ module.exports = {
                   othername: (req.body.othername) ? req.body.othername.toLowerCase() : "",
                   email: req.body.email,
                   password: req.body.password,
-                  phoneNumber: req.body.phoneNumber
+                  phoneNumber: req.body.phoneNumber,
+                  isadmin:(req.body.isadmin) ? req.body.isadmin: false
                 };
                 //hash password
                 bcrypt.genSalt(10, (err, salt) => {
@@ -32,10 +33,10 @@ module.exports = {
                     if (hashErr) res.status(400).json(hashErr);
                     newUser.password = hash;
                     //@save it to database
-                    pool.query("INSERT INTO users(firstname,lastname,username,othername,email,password,phoneNumber)"
-                     + "VALUES($1,$2,$3,$4,$5,$6,$7)",
+                    pool.query("INSERT INTO users(firstname,lastname,username,othername,email,password,phoneNumber,isadmin)"
+                     + "VALUES($1,$2,$3,$4,$5,$6,$7,$8)",
                     [newUser.firstname, newUser.lastname, newUser.username, newUser.othername,
-                      newUser.email, newUser.password, newUser.phoneNumber])
+                      newUser.email, newUser.password, newUser.phoneNumber,newUser.isadmin])
                       .then((saved) => {
                         if (saved) {
                           return res.json({ success: true, message: "well done! thank your for signup", user: newUser });
