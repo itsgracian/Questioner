@@ -1,1 +1,1 @@
-web: node --require babel-register index.js
+web: node --require babel-register server.js

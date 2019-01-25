@@ -56,6 +56,8 @@ module.exports = {
         }
         //pool.end();
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => {
+        console.log(error);
+      });
   }
 };
