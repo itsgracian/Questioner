@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import passport from "passport";
 import path from "path";
 import dotenv from "dotenv";
+import data from "./server/config/db";
 dotenv.config();
 
 //@router

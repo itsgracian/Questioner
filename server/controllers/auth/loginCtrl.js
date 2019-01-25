@@ -4,6 +4,14 @@ import config from "../../config/keys";
 import userValidation from "../../validations/login";
 import pool from "../../config/connection";
 
+/*const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+//
+const config = require("../../config/keys");
+const userValidation = require("../../validations/login");
+const pool = require("../../config/connection");*/
+
+
 module.exports = {
   signin: (req, res) => {
     const { errors, isValid } = userValidation(req.body);
