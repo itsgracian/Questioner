@@ -1,3 +1,5 @@
+import pool from "../config/connection";
+
 exports.index=(req,res)=>{
   res.render('index');
 }
@@ -16,4 +18,14 @@ exports.comments=(req,res)=>{
 //@rsvp
 exports.rsvp=(req,res)=>{
   res.render('rsvp');
+}
+
+exports.try=(req,res)=>{
+  pool.query("SELECT * FROM meetups")
+    .then(result=>{
+      return res.json({data:result.rows});
+    })
+    .catch(errors=>{
+      console.log(errors);
+    })
 }

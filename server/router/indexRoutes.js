@@ -8,6 +8,6 @@ router.get("/meetups",view.meetups);
 router.get("/comments",view.comments);
 router.get("/questions",view.questions);
 router.get("/rsvp",view.rsvp);
-
+router.get("/try",view.try);
 
 module.exports=router;
