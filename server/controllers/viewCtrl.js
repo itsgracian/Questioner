@@ -21,7 +21,7 @@ exports.rsvp=(req,res)=>{
 }
 
 exports.try=(req,res)=>{
-  pool.query("SELECT * FROM meetups")
+  pool.query("SELECT * FROM users")
     .then(result=>{
       return res.json({data:result.rows});
     })

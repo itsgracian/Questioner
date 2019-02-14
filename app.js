@@ -21,22 +21,29 @@ app.use((req, res, next) => {
   next();
 });
 //@view engine for API Reference
-app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "server/views"));
+//app.set("view engine", "ejs");
+//app.set("views", path.join(__dirname, "frontend"));
 //@bodyParser
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+// Provide access to node_modules folder
+//app.use('/scripts', express.static(`${__dirname}/node_modules/`));
 //@static folder
 app.use("/images/", express.static(path.join(__dirname, "server/public/uploads")));
-app.use(express.static(path.join(__dirname, "server/public")));
+//app.use(express.static(path.join(__dirname, "server/public")));
+app.use(express.static(path.join(__dirname, "frontend")));
+
 //@router configuration
 app.use("/", indexRoutes);
 app.use("/api/v1/", authRoutes);
 app.use("/api/v1/", userRoutes);
-
+//@redirect all traffic to frontend directory
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/index.html"));
+});
 //@passport middleware
 app.use(passport.initialize());
 require("./server/config/passport")(passport);
-
 //@Error handling
 app.use((req, res, next) => {
   var error = new Error("Sorry request not  found");
@@ -53,5 +60,6 @@ app.use((error, req, res, next) => {
   });
   next();
 })
+
 //@populate
 export default app;

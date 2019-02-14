@@ -6,7 +6,7 @@ exports.create = (req, res) => {
   const meetupId = req.params.meetupId;
   //@check
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(400).json({errors});
   }
   //@find if user is availble
   const userId = req.user.rows[0].id;
@@ -31,16 +31,26 @@ exports.create = (req, res) => {
           }
           if (!results) {
             return res.status(500).json({ error: "something wrong try again." });
+          }else{
+            //@by default question votes will be 0
+            pool.query("INSERT INTO votes(users_id,question_id,upvotes,downvotes) VALUES($1,$2,$3,$4)",
+           [data.user,results.rows[0].question_id,1,0])
+            .then((votes)=>{
+              return res.status(200).json({
+                success: true,
+                message: "well done! your question was recorded successfully.",
+                status: results.rowCount,
+                data: results.rows
+              });
+            })
+            .catch((erVot)=>{
+              //console.log(erVot);
+              return res.status(500).json({ error: "something wrong try again." });
+            })
           }
-          return res.status(200).json({
-            success: true,
-            message: "well done! your question has been recorded successfully",
-            status: results.rowCount,
-            data: results.rows
-          });
         });
     })
-    .catch(er => res.status(500).json(er));
+    .catch(er => res.status(500).json({error:er}));
 };
 
 //@deleteQuestion

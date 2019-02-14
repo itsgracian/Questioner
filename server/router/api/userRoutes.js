@@ -13,6 +13,11 @@ const questionCtrl = require("../../controllers/questionCtrl");
 const commentCtrl = require("../../controllers/commentCtrl");
 const voteCtrl=require("../../controllers/voteCtrl");
 const rsvpCtrl=require("../../controllers/rsvpCtrl");
+const indexCtrl=require("../../controllers/indexCtrl");
+
+//Index Users
+//@router GET
+router.get("/index",passport.authenticate("jwt",{session:false}),indexCtrl.adminIndex);
 //@router GET
 //@desc find user
 router.get("/users/:username", passport.authenticate("jwt", { session: false }), userCtrl.findUsername);
@@ -26,6 +31,9 @@ router.delete("/users", passport.authenticate("jwt", { session: false }), userCt
 //@desc change password
 router.patch("/users/change-password", passport.authenticate("jwt", { session: false }),
   userCtrl.changePassword);
+//@router GET
+//@desc find user by id
+router.get("/users/current/user",passport.authenticate("jwt",{session:false}),userCtrl.findById);
 //@user router end
 //@meetup router
 //@router POST
@@ -36,11 +44,18 @@ router.post("/meetups", passport.authenticate("jwt", { session: false }), role.i
 //@desc findall meetup
 router.get("/meetups", passport.authenticate("jwt", { session: false }), meetupCtrl.allMeetup);
 //@router GET
+//@desc view meetups and its questions
+router.get("/meetups/v/:id",passport.authenticate("jwt",{session:false}),meetupCtrl.singleMeetup);
+//@GET
+//@asked questions on single meetup
+router.get("/meetups/v/questions/:meetupId",passport.authenticate("jwt",{session:false}),
+meetupCtrl.meetupAskedQuestions);
+//@router GET
 //@desc findMeetup
 router.get("/meetups/:id", passport.authenticate("jwt", { session: false }), meetupCtrl.findMeetupById);
 //@router GET
 //@desc upcoming meetup
-router.get("/meetups/v/upcoming", passport.authenticate("jwt", { session: false }), meetupCtrl.upcoming);
+router.get("/meetups/m/upcoming", passport.authenticate("jwt", { session: false }), meetupCtrl.upcoming);
 //@router DELETE
 //@desc delete meetup
 //@Private access: only admin
@@ -76,7 +91,7 @@ router.get("/questions",passport.authenticate("jwt",{session:false}),questionCtr
 //@router POST
 //@add comment
 //@ACC Private
-router.post("/comments", passport.authenticate("jwt", { session: false }), commentCtrl.create);
+router.post("/comments/:questionId", passport.authenticate("jwt", { session: false }), commentCtrl.create);
 //@router GET
 //@desc edit comments
 router.get("/comments/:id", passport.authenticate("jwt", { session: false }), commentCtrl.edit);
@@ -87,7 +102,7 @@ router.patch("/comments/:id", passport.authenticate("jwt", { session: false }), 
 //@delete comment
 router.delete("/comments/:id", passport.authenticate("jwt", { session: false }), commentCtrl.deleteComment);
 //@router GET
-//@desc GET all comments according to meetup
+//@desc GET all comments according to question
 router.get("/questions/:questionId/comments",passport.authenticate("jwt",{session:false}),
 commentCtrl.allComment);
 //@end of comment routes

@@ -7,13 +7,13 @@ exports.create = (req, res) => {
   const { errors, isValid } = meetupValidation(req.body);
   //@check validations
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(400).json({errors});
   }
   //
   const data = {
     topic: req.body.topic.toLowerCase(),
     location: req.body.location.toLowerCase(),
-    happeningOn: new Date(req.body.happeningOn).toDateString()
+    happeningOn: new Date(req.body.happeningOn)
     //tags: (req.body.tags) ? req.body.tags.split(",") : ""
   };
   //@inserting data to database
@@ -43,6 +43,31 @@ exports.allMeetup = (req, res) => {
       return res.status(200).json({ status: meetup.rowCount, data: meetup.rows });
     });
 };
+//@MeetupQuestions
+exports.singleMeetup=(req,res)=>{
+  const id=req.params.id;
+  pool.query("SELECT * FROM meetups WHERE meetup_id=$1",[id])
+    .then(meetup=>{
+      if (meetup.rows.length===0) {
+        return res.status(404).json({error:"sorry the requestd result could not be found."});
+      }
+      else{
+        //@select it question
+        pool.query("SELECT * FROM questions WHERE meetup=$1",[id])
+          .then(question=>{
+            return res.status(201).json({meetup:meetup.rows,question:question.rows,questionCount:question.rowCount});
+         })
+         .catch(er=>{
+           //console.log(er);
+           return res.status(500).json({error:"Server Error try again later."});
+         })
+      }
+    })
+    .catch(error=>{
+      //console.log(error);
+      return res.status(500).json({error:"Server Error try again later."});
+    })
+}
 //@meetup findMeetupById
 exports.findMeetupById = (req, res) => {
   const id = req.params.id;
@@ -116,7 +141,7 @@ exports.updateMeetup = (req, res) => {
       }
       //validation check
       if (!isValid) {
-        return res.status(400).json(errors);
+        return res.status(400).json({errors});
       }
       const data = {
         topic: req.body.topic.toLowerCase(),
@@ -156,7 +181,6 @@ exports.addImage = (req, res) => {
       const url = `${req.protocol}://${req.get("host")}`;
       const imageUrl = [];
       const images = req.files;
-
       images.forEach((image) => {
         imageUrl.push(`${url}/images/${image.filename}`);
       });
@@ -164,7 +188,8 @@ exports.addImage = (req, res) => {
       pool.query("UPDATE meetups SET images=$1 WHERE meetup_id=$2 RETURNING *",
         [pgArray(imageUrl), id], (er, meetup) => {
           if (er) {
-            console.log(er);
+            //onsole.log(er);
+            return res.status(500).json({error:"something wrong try again later."});
           }
           if (!meetup) {
             return res.status(500).json({ error: "something wrong try again later." });
@@ -230,3 +255,41 @@ exports.addTags = (req, res) => {
       }
     });
 };
+
+//meetupAskedQuestions
+exports.meetupAskedQuestions=(req,res)=>{
+  const mId=req.params.meetupId;
+  pool.query("SELECT * FROM meetups WHERE meetup_id=$1",[mId])
+    .then(meetup=>{
+      if (meetup.rows.length===0) {
+        return res.status(404).json({error:"sorry the requestd result could not be found."});
+      }
+      else{
+        //@select it question
+        pool.query("SELECT * FROM questions INNER JOIN users ON users.id=questions.user_id WHERE meetup=$1 ORDER BY question_id DESC",[mId])
+        .then(question=>{
+          if (question.rows.length===0) {
+            return res.status(404).json({error:"Sorry There is no questions on this meetup."})
+          }
+          const sql="SELECT question_id,SUM(upvotes) AS totalup, SUM(downvotes) AS totaldown FROM votes GROUP BY question_id";
+           pool.query(sql)
+             .then(votes=>{
+               return res.status(201).json({meetup:meetup.rows,questions:question.rows,
+               questionCount:question.rowCount,votes:votes.rows});
+
+             })
+             .catch(votError=>{
+               console.log(votError);
+             })
+         })
+         .catch(er=>{
+           //console.log(er);
+           return res.status(500).json({error:"Server Error try again later."});
+         })
+      }
+    })
+    .catch(error=>{
+      //console.log(error);
+      return res.status(500).json({error:"Server Error try again later."});
+    })
+}

@@ -6,12 +6,12 @@ exports.create = (req, res) => {
   const { errors, isValid } = commentValidation.postComment(req.body);
   //@check for validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(400).json({errors});
   }
   //@initial data
   const data = {
     comment: req.body.comment,
-    question: req.body.question,
+    question: req.params.questionId,
     userId: req.user.rows[0].id
   };
   //@check if question id is available
@@ -120,15 +120,33 @@ exports.deleteComment = (req, res) => {
 exports.allComment = (req, res) => {
   const questionId = req.params.questionId;
   //query
-  const sql = "SELECT * FROM comments INNER JOIN questions ON questions.question_id=comments.question INNER JOIN users ON users.id=comments.commentedby WHERE question=$1";
-  pool.query(sql, [questionId])
-    .then((data) => {
-      if (data.rows.length === 0) {
-        return res.status(404).json({ error: "Sorry none of your comments." });
-      }
-      return res.json({ status: 200, data: data.rows });
-    })
-    .catch(error =>
-      //console.log(error);
-      res.status(500).json(error));
+  const sql = "SELECT * FROM comments INNER JOIN users ON users.id=comments.commentedby WHERE question=$1";
+  pool.query("SELECT * FROM questions WHERE question_id=?",[questionId])
+   .then(question=>{
+     //
+     if (question.rows.length===0) {
+       return res.status(404).json({error:"sorry the requested resource could not be found."})
+     }
+     else {
+       pool.query(sql, [questionId])
+         .then((data) => {
+           //search for question votes
+           const voteSql="SELECT SUM(upvotes) AS totalup, SUM(downvotes) AS totaldown FROM votes WHERE question_id=$1";
+           pool.query(voteSql,[questionId])
+            .then(total=>{
+              return res.json({ status: 200, data: data.rows,total:total.rows,question:question.rows});
+            })
+            .catch((votError)=>{
+              console.log(votError);
+            })
+         })
+         .catch(error =>{
+           //console.log(error);
+           return res.status(500).json({error});
+         })
+     }
+   })
+   .catch(qerror=>{
+     console.log(qerror);
+   })
 };

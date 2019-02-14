@@ -4,19 +4,11 @@ import config from "../../config/keys";
 import userValidation from "../../validations/login";
 import pool from "../../config/connection";
 
-/*const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-//
-const config = require("../../config/keys");
-const userValidation = require("../../validations/login");
-const pool = require("../../config/connection");*/
-
-
 module.exports = {
   signin: (req, res) => {
     const { errors, isValid } = userValidation(req.body);
     if (!isValid) {
-      return res.status(400).json(errors);
+      return res.status(400).json({errors});
     }
     //@login check
     pool.query("SELECT * FROM users WHERE email=$1", [req.body.email])
@@ -35,7 +27,7 @@ module.exports = {
               firstname: user.rows[0].firstname,
               lastname: user.rows[0].lastname,
               username: user.rows[0].username,
-              phoneNumber: user.rows[0].phoneNumber,
+              phoneNumber: user.rows[0].phonenumber,
               email: user.rows[0].email,
               isadmin: user.rows[0].isadmin
             };
@@ -52,7 +44,7 @@ module.exports = {
             });
           });
         } else {
-          return res.status(404).json({ error: "User not found" });
+          return res.status(404).json({ error:"Whoops Authentication failed." });
         }
         //pool.end();
       })

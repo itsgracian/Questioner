@@ -30,7 +30,7 @@ exports.updateUser = (req, res) => {
   };
   //
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(400).json({errors});
   }
   pool.query("SELECT * FROM users WHERE id=$1", [id])
     .then((user) => {
@@ -59,11 +59,11 @@ exports.updateUser = (req, res) => {
               }
               return res.status(500).json({ error: "something wrong try again later." });
             })
-            .catch(updErr => res.status(500).json(updErr));
+            .catch(updErr => res.status(500).json({error:/*updErr*/"something wrong try again later."}));
         })
-        .catch(usersErr => res.status(500).json(usersErr));
+        .catch(usersErr => res.status(500).json({error:/*usersErr*/"something wrong try again later."}));
     })
-    .catch(e => res.status(500).json(e));
+    .catch(e => res.status(500).json({error:/*e*/"something wrong try again later."}));
 };
 
 //@deleteUser
@@ -97,7 +97,7 @@ exports.changePassword = (req, res) => {
   const { errors, isValid } = passwordValidation(req.body);
   //@check
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(400).json({errors});
   }
   pool.query("SELECT * FROM users WHERE id=$1", [id])
     .then((result) => {
@@ -120,7 +120,7 @@ exports.changePassword = (req, res) => {
             }
             bcrypt.hash(data.newpassword, salt, (hashErr, hash) => {
               if (hashErr) {
-                res.status(500).json(hashErr);
+                res.status(500).json({error:/*hashErr*/"something wrong,try again later."});
               }
               data.newpassword = hash;
               //@change password
@@ -132,11 +132,23 @@ exports.changePassword = (req, res) => {
                   return res.status(500).json({ error: "something wrong try again later." });
                 })
                 .catch((updErr) => {
-                  res.status(500).json(updErr);
+                  res.status(500).json({error:/*updErr*/"server error,please wait for short time."});
                 });
             });
           });
         });
     })
-    .catch(error => res.status(500).json(error));
+    .catch(error => res.status(500).json({error:"server error,please wait for short time."}));
 };
+
+exports.findById=(req,res)=>{
+  const userId =req.user.rows[0].id;
+  pool.query("SELECT * FROM users WHERE id=$1", [userId])
+    .then((user) => {
+      if (user.rows.length === 0) {
+        return res.status(404).json({ error: "sorry the requested result could not be found." });
+      }
+      return res.json({user:user.rows[0]});
+    })
+    .catch(e => res.status(500).json({error:e}));
+}

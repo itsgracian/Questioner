@@ -3,6 +3,10 @@ import pool from "../config/connection";
 //@upvote
 exports.upvote = (req, res) => {
   const id = req.params.questionId;
+  //after upvotes calculate total votes
+  //this query is going to work everywhere
+const sql="SELECT SUM(upvotes) AS totalup, SUM(downvotes) AS totaldown FROM votes WHERE question_id=$1";
+  //
   pool.query("SELECT * FROM questions WHERE question_id=$1", [id],
     (error, result) => {
       if (error) {
@@ -19,19 +23,37 @@ exports.upvote = (req, res) => {
           //when downvote and upvote equal to 0
           if (votes.rows.length === 0) {
             upvotes = +1;
-            pool.query("INSERT INTO votes(users_id,question_id,upvotes)VALUES($1,$2,$3)",
+            pool.query("INSERT INTO votes(users_id,question_id,upvotes)VALUES($1,$2,$3) RETURNING*",
               [req.user.rows[0].id, id, upvotes])
-              .then(up => res.status(200).json({ success: true, message: "voted successfully." }))
+              .then(up => {
+                pool.query(sql,[id])
+                .then(totals=>{
+                  res.status(200).json({ success: true, message: "voted successfully.",
+                  total:totals.rows})
+                })
+                .catch((totError)=>{
+                  console.log(totError);
+                })
+              })
               .catch((er) => {
-                console.log(er);
+                //console.log(er);
+                return res.status(500).json({error:er});
               });
           } else if (parseInt(votes.rows[0].upvotes, 10) !== 0) {
             return res.status(400).json({ error: "sorry you are allowed to vote once." });
           } else if (votes.rows[0].downvotes === 0 || votes.rows[0].downvotes === "") {
             upvotes = +1;
-            pool.query("INSERT INTO votes(users_id,question_id,upvotes,downvotes)VALUES($1,$2,$3,$4)",
+            pool.query("INSERT INTO votes(users_id,question_id,upvotes,downvotes)VALUES($1,$2,$3,$4) RETURNING*",
               [req.user.rows[0].id, id, upvotes, 0])
-              .then(up => res.status(200).json({ success: true, message: "voted successfully." }))
+              .then(up => {
+                pool.query(sql,[id])
+                .then(totals=>{
+                  res.status(200).json({ success: true, message: "voted successfully.",total:totals.rows })
+                })
+                .catch((totError)=>{
+                  console.log(totError);
+                })
+              })
               .catch((er) => {
                 console.log(er);
               });
@@ -41,18 +63,28 @@ exports.upvote = (req, res) => {
             //
             const down = parseInt(votes.rows[0].downvotes - 1, 10);
             const up = parseInt(votes.rows[0].upvotes + 1, 10);
-            pool.query("UPDATE votes SET users_id=$1,question_id=$2,downvotes=$3,upvotes=$4 WHERE vote_id=$5",
+        pool.query("UPDATE votes SET users_id=$1,question_id=$2,downvotes=$3,upvotes=$4 WHERE vote_id=$5 RETURNING*",
               [req.user.rows[0].id, id, down, up, votes.rows[0].vote_id])
-              .then(up => res.status(200).json({ success: true, message: "voted successfully." }))
+              .then(up =>{
+                pool.query(sql,[id])
+                 .then(totals=>{
+                   res.status(200).json({ success: true, message: "voted successfully.",total:totals.rows })
+                 })
+                 .catch((totError)=>{
+                   console.log(totError);
+                 })
+              })
               .catch((er) => {
-                console.log(er);
+                // console.log(er);
+                return res.status(500).json({error:er});
               });
           } else {
             return false;
           }
         })
         .catch((error) => {
-          console.log(error);
+          //console.log(error);
+          return res.status(500).json({error});
         });
     });
 };
@@ -60,6 +92,9 @@ exports.upvote = (req, res) => {
 //@downvote
 exports.downvote = (req, res) => {
   const id = req.params.questionId;
+  //after upvotes calculate total votes
+  //this query is going to work everywhere
+  const sql="SELECT SUM(upvotes) AS totalup, SUM(downvotes) AS totaldown FROM votes WHERE question_id=$1";
   //@check if question is available
   pool.query("SELECT * FROM questions WHERE question_id=$1", [id],
     (error, result) => {
@@ -75,21 +110,42 @@ exports.downvote = (req, res) => {
         .then((votes) => {
           if (votes.rows.length === 0) {
             const down = 1;
-            pool.query("INSERT INTO votes(users_id,question_id,downvotes) VALUES ($1,$2,$3)",
+            pool.query("INSERT INTO votes(users_id,question_id,downvotes) VALUES ($1,$2,$3) RETURNING*",
               [req.user.rows[0].id, id, down])
-              .then(down => res.status(200).json({ success: true, message: "downvoted successfully." }))
+              .then(down =>{
+                //
+                pool.query(sql,[id])
+                .then((totals)=>{
+                  res.status(200).json({ success: true, message: "downvoted successfully.",total:totals.rows})
+                })
+                .catch((totError)=>{
+                  console.log(totError);
+                })
+
+              })
               .catch((er) => {
-                console.log(er);
+                // console.log(er);
+                return res.status(500).json({error:er});
               });
           } else if (parseInt(votes.rows[0].downvotes,10)===1) {
             return res.status(400).json({ error: "sorry you are allowed to dowvote once.." });
           } else if (votes.rows[0].upvotes === 0 || votes.rows[0].upvotes === "") {
             const downs = 1;
-            pool.query("INSERT INTO votes(users_id,question_id,downvotes)VALUES($1,$2,$3)",
+            pool.query("INSERT INTO votes(users_id,question_id,downvotes)VALUES($1,$2,$3) RETURNING*",
               [req.user.rows[0].id, id, downs])
-              .then(up => res.status(200).json({ success: true, message: "Downvoted successfully." }))
+              .then(up =>{
+                //
+                pool.query(sql,[id])
+                .then((totals)=>{
+                  res.status(200).json({ success: true, message: "Downvoted successfully.",total:totals.rows})
+                })
+                .catch((totError)=>{
+                  console.log(totError);
+                })
+              })
               .catch((er) => {
-                console.log(er);
+                // console.log(er);
+                return res.status(500).json({error:er});
               });
           } else if (votes.rows[0].upvotes !== "" || votes.rows[0].upvotes !== 0) {
             //when downvote==0 we don't need to go under 0
@@ -97,11 +153,20 @@ exports.downvote = (req, res) => {
             //
             const down = parseInt(votes.rows[0].downvotes + 1, 10);
             const up = parseInt(votes.rows[0].upvotes - 1, 10);
-            pool.query("UPDATE votes SET users_id=$1,question_id=$2,downvotes=$3,upvotes=$4 WHERE vote_id=$5",
+            pool.query("UPDATE votes SET users_id=$1,question_id=$2,downvotes=$3,upvotes=$4 WHERE vote_id=$5 RETURNING*",
               [req.user.rows[0].id, id, down, up, votes.rows[0].vote_id])
-              .then(up => res.status(200).json({ success: true, message: "Downvoted successfully." }))
+              .then(up =>{
+                pool.query(sql,[id])
+                .then((totals)=>{
+                  res.status(200).json({ success: true, message: "Downvoted successfully.",total:totals.rows})
+                })
+                .catch((totError)=>{
+                  console.log(totError);
+                })
+              })
               .catch((er) => {
-                console.log(er);
+                //console.log(er);
+                return res.status(500).json({error:er});
               });
           } else {
             return false;

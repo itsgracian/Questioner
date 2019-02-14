@@ -3,11 +3,11 @@ import view from "../controllers/viewCtrl";
 const router=express.Router();
 
 //@this router works for  API Reference
-router.get("/",view.index);
-router.get("/meetups",view.meetups);
-router.get("/comments",view.comments);
-router.get("/questions",view.questions);
-router.get("/rsvp",view.rsvp);
-router.get("/try",view.try);
+//router.get("/ref",view.index);
+//router.get("/ref-meetups",view.meetups);
+//router.get("/ref-comments",view.comments);
+//router.get("/ref-questions",view.questions);
+//router.get("/ref-rsvp",view.rsvp);
+router.get("/ref-try",view.try);
 
 module.exports=router;
