@@ -8,7 +8,7 @@ import AllMeetup from "../templates/admin/Meetup.js";
 class Meetup{
    async getMeetup(){
        try {
-        const response= await fetch(`/api/v1/meetups`,{
+        const response= await fetch(`http://localhost:5000/api/v1/meetups`,{
           method:"GET",
           mode: "no-cors",
           headers:{

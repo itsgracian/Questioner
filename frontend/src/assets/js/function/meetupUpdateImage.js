@@ -11,7 +11,7 @@ function updateImage(e,id){
     let form=new FormData();
     form.append('images',imageFile);
     //
-    fetch(`/api/v1/meetups/`+id+'/images',{
+    fetch(`http://localhost:5000/api/v1/meetups/`+id+'/images',{
       method:"POST",
       mode: "no-cors",
       headers:{

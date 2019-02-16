@@ -11,7 +11,7 @@ function updateProfile(e){
     let form=new FormData();
     form.append('images',imageFile);
     //
-    fetch(`/api/v1/users/profile/picture/`,{
+    fetch(`http://localhost:5000/api/v1/users/profile/picture/`,{
       method:"PATCH",
       mode: "no-cors",
       headers:{

@@ -21,7 +21,7 @@ function Ask(id){
     body:document.querySelector(".textAreaView").value,
     title:document.querySelector(".askInput input[name='title']").value
   };
-  const url=`/api/v1/meetups/`+id+'/questions';
+  const url=`http://localhost:5000/api/v1/meetups/`+id+'/questions';
   //ask question
   fetch(url,{
     method:"POST",

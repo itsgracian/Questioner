@@ -20,7 +20,7 @@ function UpdateUserInfo(e){
     email: document.querySelector("input[name='email']").value
   }
   //send
-  fetch(`/api/v1/users`,{
+  fetch(`http://localhost:5000/api/v1/users`,{
     method:"PATCH",
     mode: "no-cors",
     headers:{
@@ -80,7 +80,7 @@ function UpdatePassword(e){
     recentpassword: document.querySelector("input[name='recentpassword']").value,
   }
   //
-  fetch(`/api/v1/users/change-password`,{
+  fetch(`http://localhost:5000/api/v1/users/change-password`,{
     method:"PATCH",
     mode: "no-cors",
     headers:{
