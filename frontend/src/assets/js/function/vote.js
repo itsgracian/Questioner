@@ -3,7 +3,7 @@ function UpVote(qId){
   let downvoting=document.querySelector("small[keys='"+qId+"'].downvoting");
   fetch(`http://localhost:5000/api/v1/questions/${qId}/upvote`,{
     method:"POST",
-    mode: "no-cors",
+    mode: "cors",
     headers:{
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
@@ -32,9 +32,9 @@ function UpVote(qId){
 function DownVote(qId){
   let upvoting=document.querySelector("small[keys='"+qId+"'].upvoting");
   let downvoting=document.querySelector("small[keys='"+qId+"'].downvoting");
-  fetch(`http://localhost:5000http://localhost:5000/api/v1/questions/${qId}/downvote`,{
+  fetch(`http://localhost:5000/api/v1/questions/${qId}/downvote`,{
     method:"POST",
-    mode: "no-cors",
+    mode: "cors",
     headers:{
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",

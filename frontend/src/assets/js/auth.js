@@ -16,7 +16,6 @@ function onSubmit(e) {
   };
   fetch("http://localhost:5000/api/v1/signin", {
     method: "POST",
-    mode: "no-cors",
     headers: {
       "Accept": "application/json, text/plain, */*",
       "Content-Type": "application/json"
@@ -83,9 +82,9 @@ function signup(e) {
     password: document.querySelector("input[name='password']").value
   };
   //fetch
-  fetch(corsAny+"http://localhost:5000/api/v1/signup", {
+  fetch("http://localhost:5000/api/v1/signup", {
     method: "POST",
-    mode: "no-cors",
+    mode: "cors",
     headers: {
       "Accept": "application/json, text/plain,*/*",
       "Content-Type": "application/json"

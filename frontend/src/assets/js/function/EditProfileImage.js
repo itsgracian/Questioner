@@ -16,8 +16,7 @@ function updateProfile(e){
       mode: "cors",
       headers:{
         "Authorization":getToken(),
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type":"application/json"
+        "Access-Control-Allow-Origin": "*"
       },
       body:form
     })

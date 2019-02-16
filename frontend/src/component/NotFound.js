@@ -47,6 +47,7 @@ const NotFound = {
     </section>
   `;
     return markup;
-  }
+  },
+  after_render:()=>{}
 }
 export default NotFound;

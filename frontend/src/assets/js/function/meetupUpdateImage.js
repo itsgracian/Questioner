@@ -16,7 +16,6 @@ function updateImage(e,id){
       mode: "cors",
       headers:{
         "Authorization":getToken(),
-        "Content-Type":"application/json",
         "Access-Control-Allow-Origin": "*"
       },
       body:form

@@ -54,7 +54,7 @@ function addComment(Qid){
     headers:{
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
-      "Authorization":getToken()
+      "Authorization":getToken(),
       "Access-Control-Allow-Origin": "*"
     },
     body:JSON.stringify(data)
