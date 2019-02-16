@@ -11,10 +11,10 @@ class SingleQuestion{
    try {
      const response=await fetch(`http://localhost:5000/api/v1/questions/${id}/comments`,{
        method:"GET",
+       mode: "no-cors",
        headers:{
          "Accept":"application/json,*/*",
          "Content-type":"application/json",
-          "Access-Control-Allow-Origin": "*",
          "Authorization":getToken()
        }
      });

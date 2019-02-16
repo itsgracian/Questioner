@@ -13,8 +13,8 @@ function updateProfile(e){
     //
     fetch(`http://localhost:5000/api/v1/users/profile/picture/`,{
       method:"PATCH",
+      mode: "no-cors",
       headers:{
-        "Access-Control-Allow-Origin": "*",
         "Authorization":getToken()
       },
       body:form

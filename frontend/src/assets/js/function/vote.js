@@ -3,10 +3,10 @@ function UpVote(qId){
   let downvoting=document.querySelector("small[keys='"+qId+"'].downvoting");
   fetch(`http://localhost:5000/api/v1/questions/${qId}/upvote`,{
     method:"POST",
+    mode: "no-cors",
     headers:{
       "Accept":"application/json,*/*",
       "Content-type":"application/json",
-      "Access-Control-Allow-Origin": "*",
       "Authorization":getToken()
     },
     body:JSON.stringify({})
@@ -33,10 +33,10 @@ function DownVote(qId){
   let downvoting=document.querySelector("small[keys='"+qId+"'].downvoting");
   fetch(`http://localhost:5000/api/v1/questions/${qId}/downvote`,{
     method:"POST",
+    mode: "no-cors",
     headers:{
       "Accept":"application/json,*/*",
       "Content-type":"application/json",
-      "Access-Control-Allow-Origin": "*",
       "Authorization":getToken()
     },
     body:JSON.stringify({})

@@ -15,10 +15,10 @@ function onSubmit(e) {
   };
   fetch("http://localhost:5000/api/v1/signin", {
     method: "POST",
+    mode: "no-cors",
     headers: {
       "Accept": "application/json, text/plain, */*",
-      "Content-type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+      "Content-type": "application/json"
     },
     body: JSON.stringify(user)
   })
@@ -84,10 +84,10 @@ function signup(e) {
   //fetch
   fetch("http://localhost:5000/api/v1/signup", {
     method: "POST",
+    mode: "no-cors",
     headers: {
       "Accept": "application/json, text/plain,*/*",
-      "Content-type": "application/json",
-      "Access-Control-Allow-Origin": "*"
+      "Content-type": "application/json"
     },
     body: JSON.stringify(data)
   })

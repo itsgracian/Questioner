@@ -8,10 +8,10 @@ function postComment(Qid){
   // //fetch API
   fetch(`http://localhost:5000/api/v1/comments/${Qid}`,{
     method:"POST",
+    mode: "no-cors",
     headers:{
       "Accept":"application/json,*/*",
       "Content-type":"application/json",
-      "Access-Control-Allow-Origin": "*",
       "Authorization":getToken()
     },
     body:JSON.stringify(data)
@@ -49,10 +49,10 @@ function addComment(Qid){
   // //fetch API
   fetch(`http://localhost:5000/api/v1/comments/${Qid}`,{
     method:"POST",
+    mode: "no-cors",
     headers:{
       "Accept":"application/json,*/*",
       "Content-type":"application/json",
-      "Access-Control-Allow-Origin": "*",
       "Authorization":getToken()
     },
     body:JSON.stringify(data)

@@ -25,10 +25,10 @@ function Ask(id){
   //ask question
   fetch(url,{
     method:"POST",
+    mode: "no-cors",
     headers:{
       "Accept":"application/json, text/plain, */*",
-      "Content-type":"application/json",
-      "Access-Control-Allow-Origin": "*",
+      "Content-Type":"application/json",    
       "Authorization":getToken()
     },
     body:JSON.stringify(data)

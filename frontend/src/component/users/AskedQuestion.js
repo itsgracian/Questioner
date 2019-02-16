@@ -12,10 +12,10 @@ class AskedQuestion{
       const url=`http://localhost:5000/api/v1/meetups/v/questions/`+id;
       const response=await fetch(url,{
         method:"GET",
+        mode: "no-cors",
         headers:{
           "Accept":"application/json,*/*",
           "Content-type":"application/json",
-          "Access-Control-Allow-Origin": "*",
           "Authorization":getToken()
         }
       });
