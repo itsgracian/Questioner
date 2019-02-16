@@ -14,6 +14,7 @@ class ViewMeetup{
         headers:{
           "Accept":"application/json,application/text,*/*",
           "Content-type":"application/json",
+          "Access-Control-Allow-Origin": "*",
           "Authorization":getToken()
         }
       });

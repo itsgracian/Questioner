@@ -11,6 +11,7 @@ class Profile{
         headers:{
           "Accept":"application/json,*/*",
           "Content-type":"application/json",
+          "Access-Control-Allow-Origin": "*",
           "Authorization":getToken()
         }
       });

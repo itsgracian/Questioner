@@ -15,6 +15,7 @@ class AskedQuestion{
         headers:{
           "Accept":"application/json,*/*",
           "Content-type":"application/json",
+          "Access-Control-Allow-Origin": "*",
           "Authorization":getToken()
         }
       });
@@ -44,7 +45,7 @@ class AskedQuestion{
     <section class="right-side">
     ${Right}
     ${response.error?
-    `<div class="container"><div class="errorPage"><h5>${response.error}</h5></div></div>` 
+    `<div class="container"><div class="errorPage"><h5>${response.error}</h5></div></div>`
     :AskedQ(meetup,question,votes)}
     </section>
     `);

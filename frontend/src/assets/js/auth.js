@@ -16,8 +16,9 @@ function onSubmit(e) {
   fetch("http://localhost:5000/api/v1/signin", {
     method: "POST",
     headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-type": "application/json"
+      "Accept": "application/json, text/plain, */*",
+      "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*"
     },
     body: JSON.stringify(user)
   })
@@ -84,8 +85,9 @@ function signup(e) {
   fetch("http://localhost:5000/api/v1/signup", {
     method: "POST",
     headers: {
-      Accept: "application/json, text/plain,*/*",
-      "Content-type": "application/json"
+      "Accept": "application/json, text/plain,*/*",
+      "Content-type": "application/json",
+      "Access-Control-Allow-Origin": "*"
     },
     body: JSON.stringify(data)
   })

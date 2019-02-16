@@ -12,6 +12,7 @@ class EditProfile{
         headers:{
           "Accept":"application/json,*/*",
           "Content-type":"application/json",
+          "Access-Control-Allow-Origin": "*",
           "Authorization":getToken()
         }
       });
@@ -157,7 +158,7 @@ class EditProfile{
                     <button type="button" name="button" onclick="browseImage()" class="browseBtn">browse image</button>
                   </div>
                     <div class="image-upload">
-                    
+
                     </div>
                   <small key="image-error" class="textMuted"></small>
                 </div>

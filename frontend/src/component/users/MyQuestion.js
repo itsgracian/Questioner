@@ -14,6 +14,7 @@ class MyQuestion{
         headers:{
           "Accept":"application/json,*/*",
           "Content-Type":"application/json",
+          "Access-Control-Allow-Origin": "*",
           "Authorization":getToken()
         }
       });

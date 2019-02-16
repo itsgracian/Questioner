@@ -6,6 +6,7 @@ function UpVote(qId){
     headers:{
       "Accept":"application/json,*/*",
       "Content-type":"application/json",
+      "Access-Control-Allow-Origin": "*",
       "Authorization":getToken()
     },
     body:JSON.stringify({})
@@ -35,6 +36,7 @@ function DownVote(qId){
     headers:{
       "Accept":"application/json,*/*",
       "Content-type":"application/json",
+      "Access-Control-Allow-Origin": "*",
       "Authorization":getToken()
     },
     body:JSON.stringify({})

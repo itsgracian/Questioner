@@ -29,9 +29,10 @@ function saveMeetup(event) {
   fetch("http://localhost:5000/api/v1/meetups", {
     method: "POST",
     headers: {
-      Accept: "application/json,application/text,*/*",
+      "Accept": "application/json,application/text,*/*",
       "Content-type": "application/json",
-      Authorization: getToken()
+      "Access-Control-Allow-Origin": "*",
+      "Authorization": getToken()
     },
     body: JSON.stringify(meetup)
   })
@@ -69,8 +70,9 @@ function trashMeetup(id) {
   fetch(`http://localhost:5000/api/v1/meetups/${id}`, {
     method: "DELETE",
     headers: {
-      Accept: "application/json",
-      Authorization: getToken()
+      "Accept": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Authorization": getToken()
     }
   })
     .then(res => res.json())
@@ -111,9 +113,10 @@ function updateMeetup(id) {
   fetch(`http://localhost:5000/api/v1/meetups/${id}`, {
     method: "PATCH",
     headers: {
-      Accept: "application/json,*/*",
+      "Accept": "application/json,*/*",
       "Content-type": "application/json",
-      Authorization: getToken()
+      "Access-Control-Allow-Origin": "*",
+      "Authorization": getToken()
     },
     body: JSON.stringify(meetup)
   })

@@ -11,6 +11,7 @@ function postComment(Qid){
     headers:{
       "Accept":"application/json,*/*",
       "Content-type":"application/json",
+      "Access-Control-Allow-Origin": "*",
       "Authorization":getToken()
     },
     body:JSON.stringify(data)
@@ -51,6 +52,7 @@ function addComment(Qid){
     headers:{
       "Accept":"application/json,*/*",
       "Content-type":"application/json",
+      "Access-Control-Allow-Origin": "*",
       "Authorization":getToken()
     },
     body:JSON.stringify(data)
