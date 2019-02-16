@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import passport from "passport";
 import path from "path";
+import cors from "cors";
 import dotenv from "dotenv";
 
 //@router
@@ -14,15 +15,13 @@ dotenv.config();
 //@express server
 const app = express();
 //@cors middleware
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods','POST,GET,PUT,PATCH,DELETE,OPTIONS");
-  next();
-});
-//@view engine for API Reference
-//app.set("view engine", "ejs");
-//app.set("views", path.join(__dirname, "frontend"));
+app.use(cors());
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.header("Access-Control-Allow-Methods','POST,GET,PUT,PATCH,DELETE,OPTIONS");
+//   next();
+// });
 //@bodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
