@@ -6,7 +6,7 @@ function postComment(Qid){
     comment:document.querySelector("textarea[keys='"+Qid+"']").value
   };
   // //fetch API
-  fetch(`http://localhost:5000/api/v1/comments/${Qid}`,{
+  fetch(`/api/v1/comments/${Qid}`,{
     method:"POST",
     mode: "cors",
     headers:{
@@ -48,7 +48,7 @@ function addComment(Qid){
     comment:document.querySelector("textarea[keys='"+Qid+"']").value
   };
   // //fetch API
-  fetch(`http://localhost:5000/api/v1/comments/${Qid}`,{
+  fetch(`/api/v1/comments/${Qid}`,{
     method:"POST",
     mode: "cors",
     headers:{

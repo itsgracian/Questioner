@@ -9,7 +9,7 @@ import {IsAdmin} from "../auth/Role.js";
 class ViewMeetup{
   async getData(id){
     try {
-      const response=await fetch(`http://localhost:5000/api/v1/meetups/`+id,{
+      const response=await fetch(`/api/v1/meetups/`+id,{
         method:"GET",
         mode: "cors",
         headers:{

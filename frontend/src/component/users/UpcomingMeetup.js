@@ -7,7 +7,7 @@ import Utils from "../router/Utils.js";
 
 class Upcoming{
   async getData(){
-    const response=await fetch(`http://localhost:5000/api/v1/meetups/m/upcoming`,{
+    const response=await fetch(`/api/v1/meetups/m/upcoming`,{
       method:"GET",
       mode: "cors",
       headers:{

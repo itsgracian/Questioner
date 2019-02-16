@@ -6,7 +6,7 @@ import Load from "../common/Load.js";
 class Profile{
   async getData(){
     try {
-      const response=await fetch(`http://localhost:5000/api/v1/users/current/user`,{
+      const response=await fetch(`/api/v1/users/current/user`,{
         method:"GET",
         mode: "cors",
         headers:{

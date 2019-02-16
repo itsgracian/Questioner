@@ -26,7 +26,7 @@ function saveMeetup(event) {
     happeningOn: document.querySelector("input[name='happeningon']").value
   };
   //fetch
-  fetch("http://localhost:5000/api/v1/meetups", {
+  fetch("/api/v1/meetups", {
     method: "POST",
     mode: "cors",
     headers: {
@@ -68,7 +68,7 @@ function trashMeetup(id) {
   const loadData = document.querySelector(".loadData");
   loadData.style.display = "block";
   //delete
-  fetch(`http://localhost:5000/api/v1/meetups/${id}`, {
+  fetch(`/api/v1/meetups/${id}`, {
     method: "DELETE",
     mode: "cors",
     headers: {
@@ -113,7 +113,7 @@ function updateMeetup(id) {
     happeningOn: document.querySelector("input[name='happeningon']").value
   };
   //send
-  fetch(`http://localhost:5000/api/v1/meetups/${id}`, {
+  fetch(`/api/v1/meetups/${id}`, {
     method: "PATCH",
     mode: "cors",
     headers: {

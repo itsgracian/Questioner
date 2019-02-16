@@ -1,7 +1,7 @@
 function UpVote(qId){
   let upvoting=document.querySelector("small[keys='"+qId+"'].upvoting");
   let downvoting=document.querySelector("small[keys='"+qId+"'].downvoting");
-  fetch(`http://localhost:5000/api/v1/questions/${qId}/upvote`,{
+  fetch(`/api/v1/questions/${qId}/upvote`,{
     method:"POST",
     mode: "cors",
     headers:{
@@ -32,7 +32,7 @@ function UpVote(qId){
 function DownVote(qId){
   let upvoting=document.querySelector("small[keys='"+qId+"'].upvoting");
   let downvoting=document.querySelector("small[keys='"+qId+"'].downvoting");
-  fetch(`http://localhost:5000/api/v1/questions/${qId}/downvote`,{
+  fetch(`/api/v1/questions/${qId}/downvote`,{
     method:"POST",
     mode: "cors",
     headers:{
