@@ -2,7 +2,7 @@ const Left = (`<section class="left-side">
    <div class="top-h">
      <div class="top-name"><span>Welcome ${currentUser() ? currentUser().username : ""} </span></div>
      <div class="top-avatar">
-       <img src="/src/assets/images/avatar.png" alt="avatar">
+       <img src="${currentUser().avatar? currentUser().avatar:'/src/assets/images/avatar.png'}" alt="avatar">
      </div>
    </div>
    <div class="close" onclick="closeMenu()"><p>X</p></div>

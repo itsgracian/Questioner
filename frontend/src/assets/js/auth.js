@@ -71,7 +71,7 @@ function signup(e) {
   const phoneError = document.querySelector("small[key='phone-error']");
   //
   let loadData = document.querySelector(".loadData");
-  loadData = document.querySelector(".loadData").style.display = "block";
+  loadData.style.display = "block";
   const data = {
     firstname: document.querySelector("input[name='firstname']").value,
     lastname: document.querySelector("input[name='lastname']").value,
@@ -92,7 +92,7 @@ function signup(e) {
     .then(res => res.json())
     .then((data) => {
       //stop loading
-      loadData = document.querySelector(".loadData").style.display = "none";
+      loadData.style.display = "none";
       //check for errors
       if (data.errors) {
         const err = data.errors;
@@ -119,10 +119,17 @@ function signup(e) {
             <img src="/src/assets/images/icons/auth/career.svg" alt="success">
             </div>
             <div class="m">
-            <h5>${data.message}. click here to <a href="/#/signin">Login</a></h5>
+            <h5>${data.message}. wait for short time to redirect...</h5>
             </div>
             </div>`;
         success.style = "transform:translateY(0%)";
+        //redirect
+        loadData.style.display="block";
+        const url=`http://localhost:5000/#/signin`;
+        history.pushState({id:"Signin"},"Questioner",url);
+        setTimeout(()=>{
+         window.location.reload(true);
+       },2000);
         //done
       }
     })

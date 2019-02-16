@@ -7,7 +7,8 @@ const currentUser=()=>{
       isAdmin:decode.isadmin,
       firstname:decode.firstname,
       lastname:decode.lastname,
-      phoneNumber:decode.phoneNumber
+      phoneNumber:decode.phoneNumber,
+      avatar:decode.avatar
     };
   }else{
     return false;

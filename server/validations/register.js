@@ -28,14 +28,14 @@ module.exports = (data) => {
     errors.username = "username is required";
   }
   if (!validator.isLength(data.username, { min: 4 })) {
-    errors.username = "username must be 4 characters or long";
+    errors.username = "username(4character or long).";
   }
   //@password
   if (validator.isEmpty(data.password)) {
     errors.password = "password is required";
   }
   if (!validator.isLength(data.password, { min: 6 })) {
-    errors.password = "password must be 6 character or long";
+    errors.password = "password (6character or long).";
   }
   //@check if email is valid
   if (!validator.isEmail(data.email)) {

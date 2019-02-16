@@ -54,7 +54,6 @@ function Ask(id){
   .catch((error)=>{
     console.log(error);
   })
-  //ok
   return false;
 }
 //
@@ -71,7 +70,8 @@ function MeetupAskedQ(url){
 function ViewQuestions(url){
   document.querySelector(".loadData").style.display="block";
   setTimeout(()=>{
-    window.location=url;
+    history.pushState({id:"Questioner"},'Questioner|Questions',url);
+    window.location.reload(true);
   },2000);
   return false;
 }

@@ -21,7 +21,7 @@ const Right = (`  <div class="header">
              </a>
            </li>
            <li class="av">
-             <img src="/src/assets/images/avatar.png" alt="">
+             <img src="${currentUser().avatar? currentUser().avatar:'/src/assets/images/avatar.png'}" alt="">
            </li>
          </ul>
        </div>

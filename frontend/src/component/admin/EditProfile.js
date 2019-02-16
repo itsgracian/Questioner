@@ -1,7 +1,6 @@
 import Left from "../layout/Left.js";
 import Right from "../layout/Right.js";
 import UserCss from "../../assets/js/cssx/users.css.js";
-import IsAdmin from "../auth/IsAdmin.js";
 import Load from "../common/Load.js";
 import Field from "../common/DashboardField.js";
 
@@ -27,9 +26,15 @@ class EditProfile{
     const currentUser=userData ? userData.user: [];
     const body = document.querySelector("body");
     const script = document.createElement("script");
+    const script1 = document.createElement("script");
+    const script2=document.createElement("script");
     script.setAttribute("type", "text/javascript");
     script.setAttribute("src", "/src/assets/js/function/profile.js");
+    script1.setAttribute("src", "/src/assets/js/edit.js");
+    script2.setAttribute("src","/src/assets/js/function/EditProfileImage.js");
     body.appendChild(script);
+    body.appendChild(script2);
+    body.appendChild(script1);
     const template=(`
       ${UserCss}
       ${Load}
@@ -136,9 +141,39 @@ class EditProfile{
           </div>
         </div>
       </div>
+      <div class="editAccount">
+      <div class="other-proInfo">
+        <div class="otherproHeader">
+          <h3>Change Profile Picture</h3>
+        </div>
+        <div class="moreInfo">
+          <form class="forms" onsubmit="return updateProfile(event)">
+             <div class="editForm">
+                  <label for="">Images only(jpg,png,jpeg)</label>
+                <input type="file" name="images" value="" class="files"
+                    accept="image/jpg,image/png,image/jpeg">
+                  <div class="imagText">
+                    <p></p>
+                    <button type="button" name="button" onclick="browseImage()" class="browseBtn">browse image</button>
+                  </div>
+                    <div class="image-upload">
+                    
+                    </div>
+                  <small key="image-error" class="textMuted"></small>
+                </div>
+            <input type="submit" name="submit" class="closeAccountBtn" value="update image">
+            <h5 class="savedMsg imageMsg"></h5>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="msgError">
+
+    </div>
       </section>
     `);
     return template;
   }
+  async after_render(){}
 }
 export default new EditProfile();

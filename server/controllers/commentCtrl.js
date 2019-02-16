@@ -27,13 +27,22 @@ exports.create = (req, res) => {
         .then((comments) => {
           if (!comments) {
             return res.status(500).json({ error: "something wrong try again." });
+          }else{
+            //i just also need to return some info about person who add comment
+            pool.query("SELECT * FROM users WHERE id=$1",[comments.rows[0].commentedby])
+              .then(user=>{
+                return res.status(200).json({
+                  success: true,
+                  message: "comment created successfully.",
+                  status: comments.rowCount,
+                  data: comments.rows,
+                  user:user.rows
+                });
+              })
+              .catch(userErr=>{
+                return res.status(500).json({error:userErr})
+              })
           }
-          return res.status(200).json({
-            success: true,
-            message: "comment created successfully.",
-            status: comments.rowCount,
-            data: comments.rows
-          });
         })
         .catch(er => res.status(500).json(er));
     })
@@ -120,15 +129,16 @@ exports.deleteComment = (req, res) => {
 exports.allComment = (req, res) => {
   const questionId = req.params.questionId;
   //query
-  const sql = "SELECT * FROM comments INNER JOIN users ON users.id=comments.commentedby WHERE question=$1";
-  pool.query("SELECT * FROM questions WHERE question_id=?",[questionId])
-   .then(question=>{
-     //
-     if (question.rows.length===0) {
-       return res.status(404).json({error:"sorry the requested resource could not be found."})
-     }
-     else {
-       pool.query(sql, [questionId])
+  const sql = "SELECT * FROM comments INNER JOIN users ON users.id=comments.commentedby WHERE question=$1 ORDER BY comment_id ASC";
+  const Qsql="SELECT * FROM questions INNER JOIN users ON users.id=questions.user_id WHERE question_id=$1";
+    pool.query(Qsql,[questionId])
+     .then(question=>{
+       //
+       if (question.rows.length===0) {
+         return res.status(404).json({error:"sorry the requested resource could not be found."})
+       }
+       else {
+        pool.query(sql, [questionId])
          .then((data) => {
            //search for question votes
            const voteSql="SELECT SUM(upvotes) AS totalup, SUM(downvotes) AS totaldown FROM votes WHERE question_id=$1";
@@ -144,9 +154,9 @@ exports.allComment = (req, res) => {
            //console.log(error);
            return res.status(500).json({error});
          })
-     }
-   })
-   .catch(qerror=>{
+      }
+     })
+     .catch(qerror=>{
      console.log(qerror);
    })
 };

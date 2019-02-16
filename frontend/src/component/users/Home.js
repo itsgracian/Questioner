@@ -3,6 +3,7 @@ import Right from "../layout/Right.js";
 import UserCss from "../../assets/js/cssx/users.css.js";
 import Load from "../common/Load.js";
 import HomeTemp from "../templates/users/Home.js";
+import {IsUser} from "../auth/Role.js";
 class Home{
   async getData(){
     try {
@@ -10,7 +11,7 @@ class Home{
         method:"GET",
         headers:{
           "Accept":"application/json",
-          "Content-type":"application/json",
+          "Content-Type":"application/json",
           "Authorization":getToken()
         }
       });
@@ -22,8 +23,9 @@ class Home{
   }
   async render(){
     const response=await this.getData();
-    const meetup=response? response.data:[];
+    const meetup=response.data;
     const question=response? response.question:[];
+    IsUser();
     const body = document.querySelector("body");
     const script = document.createElement("script");
     script.setAttribute("type", "text/javascript");
@@ -35,9 +37,12 @@ class Home{
     ${Load}
     <section class="right-side">
     ${Right}
-    ${HomeTemp(meetup,question)}
+    ${meetup.length===0 ?`<div class="container">
+    <div class='errorPage'><h5>Whoops!! Meetup not available! </h5></div></div>`
+     : HomeTemp(meetup,question)}
     </section>`);
     return template;
   }
+  async after_render(){}
 }
 export default new Home();

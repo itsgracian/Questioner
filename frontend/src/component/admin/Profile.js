@@ -1,7 +1,6 @@
 import Left from "../layout/Left.js";
 import Right from "../layout/Right.js";
 import UserCss from "../../assets/js/cssx/users.css.js";
-import IsAdmin from "../auth/IsAdmin.js";
 import Load from "../common/Load.js";
 
 class Profile{
@@ -37,7 +36,7 @@ class Profile{
           <img src="/src/assets/images/profileBack.jpg" alt="profileBackground">
           <div class="profile-info">
             <div class="profile-image">
-              <img src="/src/assets/images/avatar.png" alt="avatar">
+              <img src="${currentUser.avatar? currentUser.avatar:`/src/assets/images/avatar.png`}" alt="avatar">
             </div>
             <div class="profile-detail">
               <div class="profile-names">
@@ -87,5 +86,6 @@ class Profile{
     `);
     return template;
   }
+  async after_render(){}
 }
 export default new Profile();

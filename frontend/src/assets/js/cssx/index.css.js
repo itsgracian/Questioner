@@ -27,7 +27,7 @@ h5{
   width: 4%;
   top: 0;
   bottom: 0;
-  left: 0;
+  right: 0;
   background: rgba(0, 0, 0, 0.2);
   z-index: 100;
 }
@@ -39,7 +39,7 @@ h5{
 .svgIco{
   width: 35px;
 }
-.home,.know,.footer{
+.home,.know,.footer,.NotFound{
   position: relative;
   width: 100%;
   top: 0;
@@ -53,6 +53,9 @@ h5{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.NotFound{
+  background:#f7f7f759!important;
 }
 .know{
   background: linear-gradient(rgba(12, 241, 209, 0.94),rgb(20, 75, 199)),url('/src/assets/images/bk.jpg')!important;
@@ -76,7 +79,7 @@ h5{
 .logo h1{
   font-size: 2.5rem;
 }
-.intro,.knowText{
+.intro,.knowText,.on404Error{
   width: 50%;
   text-align: center;
   color: #fff;
@@ -99,7 +102,7 @@ h5{
   padding: 15px;
   padding-left: 30px;
   padding-right: 30px;
-  height: 60px;
+  height: 55px;
   font-family: "comfortaa",cursive;
   text-transform: capitalize;
   border: none;
@@ -198,6 +201,9 @@ h5{
   .header li{
     margin: auto;
     margin-top: 30px;
+  }
+  .on404Error{
+    width:50%;
   }
 }
 /*landscape tablet*/

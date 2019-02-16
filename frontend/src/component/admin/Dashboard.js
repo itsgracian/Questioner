@@ -2,14 +2,15 @@ import Left from "../layout/Left.js";
 import Right from "../layout/Right.js";
 import UserCss from "../../assets/js/cssx/users.css.js";
 import Load from "../common/Load.js";
-import isAdmin from "../auth/IsAdmin.js";
+import setAttribute from "../helper/SetAttribute.js";
+import {IsAdmin} from "../auth/Role.js";
 class Index {
   async getData() {
     try {
       const response = await fetch("http://localhost:5000/api/v1/index", {
         method: "GET",
         headers: {
-          Accept: "application/json, text/plain, */*",
+          "Accept": "application/json, text/plain, */*",
           "Content-type": "application/json",
           "Authorization": getToken()
         }
@@ -24,12 +25,17 @@ class Index {
   async render() {
     const myData = await this.getData();
     const meetup = myData ? myData.meetup : [];
+    const currentUser=myData?myData.currentUser:[];
+
+    IsAdmin();
+    //
     const body = document.querySelector("body");
-    const script = document.createElement("script");
-    script.setAttribute("type", "text/javascript");
-    script.setAttribute("src", "/src/assets/js/home.js");
-    script.setAttribute("src","/src/assets/js/function/meetupUpdateImage.js");
-    body.appendChild(script);
+    const script1 = document.createElement("script");
+    const script2 = document.createElement("script");
+    const script3 = document.createElement("script");
+    setAttribute(script1,{"src":"/src/assets/js/home.js","type":"text/javascript"});
+    setAttribute(script2,{"src":"/src/assets/js/function/meetup.js","type":"text/javascript"});
+    setAttribute(script3,{"src":"/src/assets/js/function/views.js","type":"text/javascript"});
     const dashboard = (`
     ${UserCss}
     ${Left}
@@ -39,10 +45,10 @@ class Index {
      <!--!-->
      <div class="admin-greeting">
        <div class="admin-avatar">
-         <img src="/src/assets/images/avatar.png" alt="avatar">
+         <img src="${currentUser.avatar ? currentUser.avatar:`/src/assets/images/avatar.png`}" alt="avatar">
        </div>
        <div class="admin-name">
-         <h2>Howdy, ${currentUser() ? `${currentUser().firstname} ${currentUser().lastname}` : " "}</h2>
+         <h2>Howdy, ${currentUser ? `${currentUser.firstname} ${currentUser.lastname}` : " "}</h2>
        </div>
      </div>
      <!--!-->
@@ -114,6 +120,7 @@ class Index {
     `);
     return dashboard;
   }
+  async after_render(){}
 }
 
 export default new Index();

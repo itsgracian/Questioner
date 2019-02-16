@@ -87,7 +87,7 @@ exports.findMeetupById = (req, res) => {
 exports.upcoming = (req, res) => {
   //@date
   const today = new Date();
-  pool.query("SELECT * FROM meetups WHERE happening>=$1", [today],
+  pool.query("SELECT * FROM meetups WHERE happening>=$1 ORDER BY happening ASC", [today],
     (error, result) => {
       if (error) {
         return res.status(500).json(error);

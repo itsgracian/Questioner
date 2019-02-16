@@ -1,8 +1,8 @@
 import Left from "../layout/Left.js";
 import Right from "../layout/Right.js";
 import UserCss from "../../assets/js/cssx/users.css.js";
-import IsAdmin from "../auth/IsAdmin.js";
 import Load from "../common/Load.js";
+import setAttribute from "../helper/SetAttribute.js";
 //load template
 import AllMeetup from "../templates/admin/Meetup.js";
 class Meetup{
@@ -25,6 +25,12 @@ class Meetup{
    async render(){
      const response=await this.getMeetup();
      let meetup= response ? response.data:[];
+     const script1 = document.createElement("script");
+     const script2 = document.createElement("script");
+     const script3 = document.createElement("script");
+     setAttribute(script1,{"src":"/src/assets/js/home.js","type":"text/javascript"});
+     setAttribute(script2,{"src":"/src/assets/js/function/meetup.js","type":"text/javascript"});
+     setAttribute(script3,{"src":"/src/assets/js/function/views.js","type":"text/javascript"});
      const template=(`
       ${UserCss}
       ${Load}
@@ -37,5 +43,6 @@ class Meetup{
       `);
       return template;
    }
+   async after_render(){}
 }
 export default new Meetup();

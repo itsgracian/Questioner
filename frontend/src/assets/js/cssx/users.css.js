@@ -298,6 +298,12 @@ h5{
 .meetQ{
   min-height: 150px!important;
 }
+.MyQuestionPage{
+  min-height:100px!important;
+}
+.errorPage{
+  margin-top: 150px;
+}
 .bImg{
   width: 100%;
   height: 300px;
@@ -528,7 +534,6 @@ h5{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 4px;
 }
 .profile-overlay{
   position: absolute;
@@ -831,6 +836,7 @@ h5{
 .comBtn{
   display: none;
 }
+
 /*media query*/
 @media screen and (max-width:768px) {
   .left-side{
@@ -1038,7 +1044,9 @@ h5{
     color: #333;
     display:block;
   }
-
+ .profile-hover{
+   margin-top: -10px;
+ }
 }
 </style>
 `;

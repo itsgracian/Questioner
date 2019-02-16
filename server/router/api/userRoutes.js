@@ -5,6 +5,7 @@ const router = express.Router();
 
 //@middleware
 const multer = require("../../middleware/multer-config");
+const userProfile = require("../../middleware/profile");
 const role = require("../../middleware/role");
 //@controller
 const userCtrl = require("../../controllers/userCtrl");
@@ -34,6 +35,10 @@ router.patch("/users/change-password", passport.authenticate("jwt", { session: f
 //@router GET
 //@desc find user by id
 router.get("/users/current/user",passport.authenticate("jwt",{session:false}),userCtrl.findById);
+//@router PATCH
+//@change user profile Picture
+router.patch("/users/profile/picture",passport.authenticate("jwt",{session:false}),userProfile,
+userCtrl.changeProfile);
 //@user router end
 //@meetup router
 //@router POST

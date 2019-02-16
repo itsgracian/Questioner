@@ -13,21 +13,25 @@ import SingleMeetup from "../users/SingleMeetup.js";
 import AskedQ from "../users/AskedQuestion.js";
 import UpcomingMeetup from "../users/UpcomingMeetup.js";
 import SingleQuestion from "../users/SingleQuestion.js";
+import MyQuestion from "../users/MyQuestion.js";
+
+//@router registerations
 const Router = {
-  "/": Home.render(),
-  "/signin": Login.render(),
-  "/join": Register.render(),
-  "/dashboard":Dashboard.render(),
-  "/dashboard-meetup":Meetup.render(),
-  "/dashboard-newmeetup":NewMeetup.render(),
-  "/dashboard-meetup/:id":EditMeetup.render(),
-  "/myaccount":MyProfile.render(),
-  "/edit-profile":EditProfile.render(),
-  "/home":HomeUser.render(),
-  "/meetup-m/:id":SingleMeetup.render(),
-  "/meetup-q/:id":AskedQ.render(),
-  "/upcoming-meetups":UpcomingMeetup.render(),
-  "/question/:id":SingleQuestion.render()
+  "/": Home,
+  "/signin": Login,
+  "/join": Register,
+  "/dashboard":Dashboard,
+  "/dashboard-meetup":Meetup,
+  "/dashboard-newmeetup":NewMeetup,
+  "/dashboard-meetup/:id":EditMeetup,
+  "/myaccount":MyProfile,
+  "/edit-profile":EditProfile,
+  "/home":HomeUser,
+  "/meetup-m/:id":SingleMeetup,
+  "/meetup-q/:id":AskedQ,
+  "/upcoming-meetups":UpcomingMeetup,
+  "/question/:id":SingleQuestion,
+  "/myquestion":MyQuestion
 };
 
 export default Router;

@@ -1,5 +1,6 @@
 import Landing from "./layout/Landing.js";
 import IndexCss from "../assets/js/cssx/index.css.js";
+import Verify from "./auth/VerifyUser.js";
 const Index = {
   render: () => {
     const markup = `
@@ -17,12 +18,7 @@ const Index = {
            <h3> and do more with Questioner</h3>
          </div>
          <div class='buttons'>
-          <a href='#/signin'>
-           <button type='button' name='button' class='signInBtn'>Sign in</button>
-          </a>
-          <a href='#/join'>
-           <button type='button' name='button' class='signUpBtn'>Join Questioner</button>
-          </a>
+          ${Verify()}
          </div>
       </div>
     </section>
@@ -38,16 +34,11 @@ const Index = {
            <h5 class='texting'>
               Questioner​​ helps the meetup organizer prioritize
              questions to be answered. Other users can vote on asked
-             questions and they bubble to the top or bottom of the log.
+             questions,sharing ideas and so on.
           </h5>
          </div>
          <div class='buttons'>
-          <a href='#/signin'>
-           <button type='button' name='button' class='signInBtn'>Sign in</button>
-          </a>
-          <a href='#/join'>
-           <button type='button' name='button' class='signUpBtn'>Join Questioner</button>
-          </a>
+          ${Verify()}
          </div>
       </div>
     </section>
@@ -68,6 +59,9 @@ const Index = {
       </div>
     </section>`;
     return markup;
+  },
+  after_render:()=>{
+
   }
 }
 export default Index;

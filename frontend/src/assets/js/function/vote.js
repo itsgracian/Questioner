@@ -12,7 +12,6 @@ function UpVote(qId){
   })
   .then((res)=>res.json())
   .then((result)=>{
-    console.log(result);
     if (result.success) {
       upvoting.innerHTML="";
       downvoting.innerHTML="";
@@ -42,7 +41,6 @@ function DownVote(qId){
   })
   .then((res)=>res.json())
   .then((result)=>{
-    console.log(result);
     if (result.success) {
       upvoting.innerHTML="";
       downvoting.innerHTML="";

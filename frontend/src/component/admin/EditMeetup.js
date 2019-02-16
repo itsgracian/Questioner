@@ -4,6 +4,8 @@ import UserCss from "../../assets/js/cssx/users.css.js";
 import Load from "../common/Load.js";
 import Utils from "../router/Utils.js";
 import MeetupTemp from "../templates/admin/NewMeetup.js";
+import setAttribute from "../helper/SetAttribute.js";
+import {IsAdmin} from "../auth/Role.js";
 class ViewMeetup{
   async getData(id){
     try {
@@ -22,14 +24,18 @@ class ViewMeetup{
     }
   }
  async render(){
-   const body = document.querySelector("body");
-   const script = document.createElement("script");
-   script.setAttribute("type", "text/javascript");
-   script.setAttribute("src", "/src/assets/js/edit.js");
-   body.appendChild(script);
    const request=Utils.parseRequestUrl();
    const response=await this.getData(request.id);
    const meetup=response? response.data:[];
+   IsAdmin();
+   const script1 = document.createElement("script");
+   const script2 = document.createElement("script");
+   const script3 = document.createElement("script");
+   const script4 = document.createElement("script");
+   setAttribute(script1,{"src":"/src/assets/js/home.js","type":"text/javascript"});
+   setAttribute(script2,{"src":"/src/assets/js/function/meetup.js","type":"text/javascript"});
+   setAttribute(script3,{"src":"/src/assets/js/function/meetupUpdateImage.js","type":"text/javascript"});
+   setAttribute(script4,{"src":"/src/assets/js/edit.js","type":"text/javascript"});
    const template=(`
      ${UserCss}
      ${Load}
@@ -88,5 +94,6 @@ class ViewMeetup{
      `);
   return template;
  }
+ async after_render(){}
 }
 export default new ViewMeetup();

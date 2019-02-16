@@ -93,12 +93,16 @@ exports.myquestions = (req, res) => {
   //@find questions according to someone's questions
   const userId = req.user.rows[0].id;
   //query
-  pool.query("SELECT * FROM questions INNER JOIN users ON users.id=questions.user_id WHERE user_id=$1", [userId])
+  pool.query("SELECT * FROM questions q,meetups m WHERE q.meetup=m.meetup_id AND q.user_id=$1",
+    [userId])
     .then((data) => {
-      if (data.rows.length === 0) {
-        return res.status(404).json({ error: "Sorry You didn't ask anything." });
+      const getQuestionId=[];
+      const result=data.rows;
+      if (result.length===0) {
+        return res.status(404).json({error:"Your Questions could not be found."});
+      }else {
+        return res.json({ status: 200, data: data.rows });
       }
-      return res.json({ status: 200, data: data.rows });
     })
-    .catch(error => res.status(500).json(error));
+    .catch(error => res.status(500).json({error}));
 };

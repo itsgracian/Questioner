@@ -4,6 +4,7 @@ import UserCss from "../../assets/js/cssx/users.css.js";
 import Load from "../common/Load.js";
 import SingleMeetup from "../templates/users/SingleMeetup.js";
 import Utils from "../router/Utils.js";
+import {IsUser} from "../auth/Role.js";
 class Single{
   async getData(id){
     try {
@@ -22,10 +23,16 @@ class Single{
     }
   }
   async render(){
+    IsUser();
     const request=await Utils.parseRequestUrl();
     const response=await this.getData(request.id);
     const meetup=response? response.meetup:[];
     const questionCount=response? response.questionCount:0;
+    const body = document.querySelector("body");
+    const script = document.createElement("script");
+    script.setAttribute("type", "text/javascript");
+    script.setAttribute("src", "/src/assets/js/function/views.js");
+    body.appendChild(script);
     const template = (`
     ${UserCss}
     ${Left}
@@ -36,5 +43,6 @@ class Single{
     </section>`);
     return template;
   }
+  async after_render(){}
 }
 export default new Single();

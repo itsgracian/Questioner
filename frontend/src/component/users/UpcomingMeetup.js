@@ -21,15 +21,22 @@ class Upcoming{
   async render(){
    const upcoming=await this.getData();
    const meetup=upcoming? upcoming.data:[];
+   const body = document.querySelector("body");
+   const script = document.createElement("script");
+   script.setAttribute("type", "text/javascript");
+   script.setAttribute("src", "/src/assets/js/function/views.js");
+   body.appendChild(script);
    const template=(`
      ${UserCss}
      ${Left}
      ${Load}
      <section class="right-side">
      ${Right}
-     ${upcoming.error?`<div class="container">${upcoming.error}</div>`:UpcomingMeetup(meetup)}
+     ${upcoming.error?`<div class="container">
+     <div class='errorPage'>${upcoming.error}</div></div>`:UpcomingMeetup(meetup)}
      </section>`)
     return template;
   }
+  async after_render(){}
 }
 export default new Upcoming();

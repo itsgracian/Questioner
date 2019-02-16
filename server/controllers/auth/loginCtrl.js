@@ -29,10 +29,12 @@ module.exports = {
               username: user.rows[0].username,
               phoneNumber: user.rows[0].phonenumber,
               email: user.rows[0].email,
-              isadmin: user.rows[0].isadmin
+              isadmin: user.rows[0].isadmin,
+              avatar:user.rows[0].avatar
             };
             //@create jwt
-            jwt.sign(payload, config.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+            //25200=7hor 10h
+            jwt.sign(payload, config.secretOrKey, { expiresIn: 25200 }, (err, token) => {
               //
               if (err) return res.status(400).json(err);
 

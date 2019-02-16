@@ -1,5 +1,4 @@
 const AskedQ=(meetup,questions,votes)=>{
- let sum=0;
  return (`
    ${questions.map(qt=>
      `<div class="container">

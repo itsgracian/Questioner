@@ -152,3 +152,24 @@ exports.findById=(req,res)=>{
     })
     .catch(e => res.status(500).json({error:e}));
 }
+//changeProfile
+exports.changeProfile=(req,res)=>{
+  const userId =req.user.rows[0].id;
+  if (!req.file) {
+    return res.status(400).json({error:"profile image is required."});
+  }else {
+    //logic
+    const url=`${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+    const sql="UPDATE users SET avatar=$1 WHERE id=$2 RETURNING*";
+    //
+    pool.query(sql,[url,userId])
+     .then((user)=>{
+       return res.status(200).json({success:"true",message:"profile picture updated successfully.",user:user.rows[0]});
+     })
+     .catch((error)=>{
+       //console.log(error);
+       return res.status(500).json({error});
+     })
+  }
+
+}
