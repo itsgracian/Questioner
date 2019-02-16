@@ -20,7 +20,7 @@ function onSubmit(e) {
     headers: {
       "Accept": "application/json, text/plain, */*",
       "Content-type": "application/json",
-      "Access-Control-Allow-Origin": *
+      //"Access-Control-Allow-Origin": "*"
     },
     body: JSON.stringify(user)
   })
