@@ -16,7 +16,7 @@ class ViewMeetup{
           "Accept":"application/json,application/text,*/*",
           "Content-Type":"application/json",
           "Authorization":getToken(),
-          "Access-Control-Allow-Origin", "*"
+          "Access-Control-Allow-Origin":"*"
         }
       });
       const data=await response.json();

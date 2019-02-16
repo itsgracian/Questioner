@@ -33,7 +33,7 @@ function saveMeetup(event) {
       "Accept": "application/json,application/text,*/*",
       "Content-Type": "application/json",
       "Authorization": getToken(),
-      "Access-Control-Allow-Origin", "*"
+      "Access-Control-Allow-Origin": "*"
     },
     body: JSON.stringify(meetup)
   })
@@ -75,7 +75,7 @@ function trashMeetup(id) {
       "Accept": "application/json",
       "Content-Type":"application/json",
       "Authorization": getToken(),
-      "Access-Control-Allow-Origin", "*"
+      "Access-Control-Allow-Origin": "*"
     }
   })
     .then(res => res.json())
@@ -120,7 +120,7 @@ function updateMeetup(id) {
       "Accept": "application/json,*/*",
       "Content-Type": "application/json",
       "Authorization": getToken(),
-      "Access-Control-Allow-Origin", "*"
+      "Access-Control-Allow-Origin": "*"
     },
     body: JSON.stringify(meetup)
   })

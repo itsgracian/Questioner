@@ -12,7 +12,7 @@ function postComment(Qid){
     headers:{
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
-      "Access-Control-Allow-Origin", "*",
+      "Access-Control-Allow-Origin": "*",
       "Authorization":getToken()
     },
     body:JSON.stringify(data)
@@ -55,7 +55,7 @@ function addComment(Qid){
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
       "Authorization":getToken()
-      "Access-Control-Allow-Origin", "*"
+      "Access-Control-Allow-Origin": "*"
     },
     body:JSON.stringify(data)
   })

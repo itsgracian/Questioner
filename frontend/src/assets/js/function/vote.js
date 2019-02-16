@@ -8,7 +8,7 @@ function UpVote(qId){
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
       "Authorization":getToken(),
-      "Access-Control-Allow-Origin", "*"
+      "Access-Control-Allow-Origin": "*"
     },
     body:JSON.stringify({})
   })
@@ -39,7 +39,7 @@ function DownVote(qId){
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
       "Authorization":getToken(),
-      "Access-Control-Allow-Origin", "*"
+      "Access-Control-Allow-Origin": "*"
     },
     body:JSON.stringify({})
   })

@@ -27,7 +27,7 @@ function UpdateUserInfo(e){
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
       "Authorization":getToken(),
-      "Access-Control-Allow-Origin", "*"
+      "Access-Control-Allow-Origin": "*"
     },
     body:JSON.stringify(data)
   })
@@ -88,7 +88,7 @@ function UpdatePassword(e){
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
       "Authorization":getToken(),
-      "Access-Control-Allow-Origin", "*"
+      "Access-Control-Allow-Origin": "*"
     },
     body:JSON.stringify(data)
   })

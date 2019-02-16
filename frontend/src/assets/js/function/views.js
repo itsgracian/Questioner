@@ -30,7 +30,7 @@ function Ask(id){
       "Accept":"application/json, text/plain, */*",
       "Content-Type":"application/json",
       "Authorization":getToken(),
-      "Access-Control-Allow-Origin", "*"
+      "Access-Control-Allow-Origin": "*"
     },
     body:JSON.stringify(data)
   })

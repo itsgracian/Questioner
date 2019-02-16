@@ -17,7 +17,7 @@ function updateImage(e,id){
       headers:{
         "Authorization":getToken(),
         "Content-Type":"application/json",
-        "Access-Control-Allow-Origin", "*"
+        "Access-Control-Allow-Origin": "*"
       },
       body:form
     })

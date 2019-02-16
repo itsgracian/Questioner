@@ -16,7 +16,7 @@ class SingleQuestion{
          "Accept":"application/json,*/*",
          "Content-Type":"application/json",
          "Authorization":getToken(),
-         "Access-Control-Allow-Origin", "*"
+         "Access-Control-Allow-Origin": "*"
        }
      });
      const data=await response.json();
