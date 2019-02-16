@@ -15,7 +15,7 @@ function onSubmit(e) {
   };
   fetch("http://localhost:5000/api/v1/signin", {
     method: "POST",
-    mode: "no-cors",
+    mode: "cors",
     headers: {
       "Accept": "application/json, text/plain, */*",
       "Content-type": "application/json"
