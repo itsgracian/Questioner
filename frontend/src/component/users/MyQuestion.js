@@ -9,7 +9,7 @@ import {IsUser} from "../auth/Role.js";
 class MyQuestion{
   async getData(){
     try {
-      const response=await fetch(`http://localhost:5000/api/v1/questions`,{
+      const response=await fetch(`/api/v1/questions`,{
         method:"GET",
         mode: "no-cors",
         headers:{

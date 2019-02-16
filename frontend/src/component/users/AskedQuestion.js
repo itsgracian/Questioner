@@ -9,7 +9,7 @@ import SetAttribute from "../helper/SetAttribute.js";
 class AskedQuestion{
   async getData(id){
     try{
-      const url=`http://localhost:5000/api/v1/meetups/v/questions/`+id;
+      const url=`/api/v1/meetups/v/questions/`+id;
       const response=await fetch(url,{
         method:"GET",
         mode: "no-cors",

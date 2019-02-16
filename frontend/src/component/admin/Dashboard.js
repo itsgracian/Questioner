@@ -7,7 +7,7 @@ import {IsAdmin} from "../auth/Role.js";
 class Index {
   async getData() {
     try {
-      const response = await fetch("http://localhost:5000/api/v1/index", {
+      const response = await fetch("/api/v1/index", {
         method: "GET",
         mode: "no-cors",
         headers: {

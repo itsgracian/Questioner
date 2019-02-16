@@ -9,7 +9,7 @@ import SetAttribute from "../helper/SetAttribute.js";
 class SingleQuestion{
   async getData(id){
    try {
-     const response=await fetch(`http://localhost:5000/api/v1/questions/${id}/comments`,{
+     const response=await fetch(`/api/v1/questions/${id}/comments`,{
        method:"GET",
        mode: "no-cors",
        headers:{
