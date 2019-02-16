@@ -41,7 +41,7 @@ function onSubmit(e) {
         //@set token to localStorage
         localStorage.setItem("token", token);
         // window.location="/#/dashboard";
-        history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`http://localhost:5000/#/dashboard`);
+        history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`https://protected-beach-95106.herokuapp.com/#/dashboard`);
         window.location.reload(true);
       } else {
         const token = data.token;
