@@ -7,7 +7,7 @@ import {IsUser} from "../auth/Role.js";
 class Home{
   async getData(){
     try {
-      const=corsAny='https://cors-anywhere.herokuapp.com/';
+      const corsAny='https://cors-anywhere.herokuapp.com/';
       const response=await fetch(corsAny+"http://localhost:5000/api/v1/meetups",{
         method:"GET",
         mode: "no-cors",
