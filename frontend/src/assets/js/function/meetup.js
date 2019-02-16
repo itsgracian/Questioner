@@ -28,11 +28,12 @@ function saveMeetup(event) {
   //fetch
   fetch("http://localhost:5000/api/v1/meetups", {
     method: "POST",
-    mode: "no-cors",
+    mode: "cors",
     headers: {
       "Accept": "application/json,application/text,*/*",
-      "Content-type": "application/json",
-      "Authorization": getToken()
+      "Content-Type": "application/json",
+      "Authorization": getToken(),
+      "Access-Control-Allow-Origin", "*"
     },
     body: JSON.stringify(meetup)
   })
@@ -69,10 +70,12 @@ function trashMeetup(id) {
   //delete
   fetch(`http://localhost:5000/api/v1/meetups/${id}`, {
     method: "DELETE",
-    mode: "no-cors",
+    mode: "cors",
     headers: {
       "Accept": "application/json",
-      "Authorization": getToken()
+      "Content-Type":"application/json",
+      "Authorization": getToken(),
+      "Access-Control-Allow-Origin", "*"
     }
   })
     .then(res => res.json())
@@ -112,11 +115,12 @@ function updateMeetup(id) {
   //send
   fetch(`http://localhost:5000/api/v1/meetups/${id}`, {
     method: "PATCH",
-    mode: "no-cors",
+    mode: "cors",
     headers: {
       "Accept": "application/json,*/*",
-      "Content-type": "application/json",
-      "Authorization": getToken()
+      "Content-Type": "application/json",
+      "Authorization": getToken(),
+      "Access-Control-Allow-Origin", "*"
     },
     body: JSON.stringify(meetup)
   })

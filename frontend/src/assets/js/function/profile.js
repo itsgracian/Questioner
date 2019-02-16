@@ -22,11 +22,12 @@ function UpdateUserInfo(e){
   //send
   fetch(`http://localhost:5000/api/v1/users`,{
     method:"PATCH",
-    mode: "no-cors",
+    mode: "cors",
     headers:{
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
-      "Authorization":getToken()
+      "Authorization":getToken(),
+      "Access-Control-Allow-Origin", "*"
     },
     body:JSON.stringify(data)
   })
@@ -82,11 +83,12 @@ function UpdatePassword(e){
   //
   fetch(`http://localhost:5000/api/v1/users/change-password`,{
     method:"PATCH",
-    mode: "no-cors",
+    mode: "cors",
     headers:{
       "Accept":"application/json,*/*",
       "Content-Type":"application/json",
-      "Authorization":getToken()
+      "Authorization":getToken(),
+      "Access-Control-Allow-Origin", "*"
     },
     body:JSON.stringify(data)
   })

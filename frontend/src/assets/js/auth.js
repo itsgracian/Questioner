@@ -19,7 +19,7 @@ function onSubmit(e) {
     mode: "no-cors",
     headers: {
       "Accept": "application/json, text/plain, */*",
-      "Content-type": "application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(user)
   })
@@ -88,7 +88,7 @@ function signup(e) {
     mode: "no-cors",
     headers: {
       "Accept": "application/json, text/plain,*/*",
-      "Content-type": "application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
   })

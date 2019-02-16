@@ -6,8 +6,9 @@ function UpVote(qId){
     mode: "no-cors",
     headers:{
       "Accept":"application/json,*/*",
-      "Content-type":"application/json",
-      "Authorization":getToken()
+      "Content-Type":"application/json",
+      "Authorization":getToken(),
+      "Access-Control-Allow-Origin", "*"
     },
     body:JSON.stringify({})
   })
@@ -36,8 +37,9 @@ function DownVote(qId){
     mode: "no-cors",
     headers:{
       "Accept":"application/json,*/*",
-      "Content-type":"application/json",
-      "Authorization":getToken()
+      "Content-Type":"application/json",
+      "Authorization":getToken(),
+      "Access-Control-Allow-Origin", "*"
     },
     body:JSON.stringify({})
   })

@@ -9,11 +9,12 @@ class Index {
     try {
       const response = await fetch("https://protected-beach-95106.herokuapp.com/api/v1/index", {
         method: "GET",
-        mode: "no-cors",
+        mode: "cors",
         headers: {
           "Accept": "application/json, text/plain, */*",
-          "Content-type": "application/json",
-          "Authorization": getToken()
+          "Content-Type": "application/json",
+          "Authorization": getToken(),
+          "Access-Control-Allow-Origin", "*"
         }
       });
       const data = await response.json();

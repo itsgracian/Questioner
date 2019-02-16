@@ -13,9 +13,11 @@ function updateImage(e,id){
     //
     fetch(`http://localhost:5000/api/v1/meetups/`+id+'/images',{
       method:"POST",
-      mode: "no-cors",
+      mode: "cors",
       headers:{
-        "Authorization":getToken()
+        "Authorization":getToken(),
+        "Content-Type":"application/json",
+        "Access-Control-Allow-Origin", "*"
       },
       body:form
     })

@@ -11,11 +11,12 @@ class ViewMeetup{
     try {
       const response=await fetch(`http://localhost:5000/api/v1/meetups/`+id,{
         method:"GET",
-        mode: "no-cors",
+        mode: "cors",
         headers:{
           "Accept":"application/json,application/text,*/*",
-          "Content-type":"application/json",
-          "Authorization":getToken()
+          "Content-Type":"application/json",
+          "Authorization":getToken(),
+          "Access-Control-Allow-Origin", "*"
         }
       });
       const data=await response.json();
