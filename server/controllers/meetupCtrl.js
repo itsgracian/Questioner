@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   const { errors, isValid } = meetupValidation(req.body);
   //@check validations
   if (!isValid) {
-    return res.status(400).json({errors});
+    return res.status(400).json({ errors });
   }
   //
   const data = {
@@ -44,35 +44,29 @@ exports.allMeetup = (req, res) => {
     });
 };
 //@MeetupQuestions
-exports.singleMeetup=(req,res)=>{
-  const id=req.params.id;
-  pool.query("SELECT * FROM meetups WHERE meetup_id=$1",[id])
-    .then(meetup=>{
-      if (meetup.rows.length===0) {
-        return res.status(404).json({error:"sorry the requestd result could not be found."});
+exports.singleMeetup = (req, res) => {
+  const id = req.params.id;
+  pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id])
+    .then((meetup) => {
+      if (meetup.rows.length === 0) {
+        return res.status(404).json({ error: "sorry the requestd result could not be found." });
       }
-      else{
-        //@select it question
-        pool.query("SELECT * FROM questions WHERE meetup=$1",[id])
-          .then(question=>{
-            return res.status(201).json({meetup:meetup.rows,question:question.rows,questionCount:question.rowCount});
-         })
-         .catch(er=>{
-           //console.log(er);
-           return res.status(500).json({error:"Server Error try again later."});
-         })
-      }
+      //@select it question
+      pool.query("SELECT * FROM questions WHERE meetup=$1", [id])
+        .then(question => res.status(201).json({ meetup: meetup.rows, question: question.rows, questionCount: question.rowCount }))
+        .catch(er =>
+        //console.log(er);
+          res.status(500).json({ error: "Server Error try again later." }));
     })
-    .catch(error=>{
-      //console.log(error);
-      return res.status(500).json({error:"Server Error try again later."});
-    })
-}
+    .catch(error =>{
+      res.status(500).json({ error: "Server Error try again later." })
+    });
+};
 //@meetup findMeetupById
-exports.findMeetupById = (req, res) => {
+exports.findMeetupById = (req, res) =>{
   const id = req.params.id;
   pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id],
-    (error, result) => {
+    (error, result) =>{
       if (error) {
       //console.log(error);
         return res.status(500).json(error);
@@ -84,11 +78,11 @@ exports.findMeetupById = (req, res) => {
     });
 };
 //@exports upcoming meetup
-exports.upcoming = (req, res) => {
+exports.upcoming = (req, res) =>{
   //@date
   const today = new Date();
   pool.query("SELECT * FROM meetups WHERE happening>=$1 ORDER BY happening ASC", [today],
-    (error, result) => {
+    (error, result) =>{
       if (error) {
         return res.status(500).json(error);
       }
@@ -100,10 +94,10 @@ exports.upcoming = (req, res) => {
 };
 
 //@deleteMeetup
-exports.deleteMeetup = (req, res) => {
+exports.deleteMeetup = (req, res) =>{
   const id = req.params.id;
   pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id],
-    (error, result) => {
+    (error, result) =>{
       if (error) {
       //console.log(error);
         return res.status(500).json(error);
@@ -113,7 +107,7 @@ exports.deleteMeetup = (req, res) => {
       }
       //@delete if it is available
       pool.query("DELETE FROM meetups WHERE meetup_id=$1", [id],
-        (er, meetup) => {
+        (er, meetup) =>{
           if (er) {
             return res.status(500).json(er);
           }
@@ -126,12 +120,12 @@ exports.deleteMeetup = (req, res) => {
 };
 
 //@updateMeetup
-exports.updateMeetup = (req, res) => {
+exports.updateMeetup = (req, res) =>{
   const id = req.params.id;
   //@validations
   const { errors, isValid } = meetupValidation(req.body);
   pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id],
-    (error, result) => {
+    (error, result) =>{
       if (error) {
       //console.log(error);
         return res.status(500).json(error);
@@ -141,7 +135,7 @@ exports.updateMeetup = (req, res) => {
       }
       //validation check
       if (!isValid) {
-        return res.status(400).json({errors});
+        return res.status(400).json({ errors });
       }
       const data = {
         topic: req.body.topic.toLowerCase(),
@@ -149,7 +143,7 @@ exports.updateMeetup = (req, res) => {
         happeningOn: new Date(req.body.happeningOn).toDateString()
       };
       pool.query("UPDATE meetups SET topic=$1,location=$2,happening=$3 WHERE meetup_id=$4",
-        [data.topic, data.location, data.happeningOn, id], (er, isUpdated) => {
+        [data.topic, data.location, data.happeningOn, id], (er, isUpdated) =>{
           if (er) {
             return res.status(500).json(er);
           }
@@ -162,12 +156,12 @@ exports.updateMeetup = (req, res) => {
 };
 
 //@addImage to meetups
-exports.addImage = (req, res) => {
+exports.addImage = (req, res) =>{
   //
   const id = req.params.id;
   //@check if meetup id is available
   pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id],
-    (error, result) => {
+    (error, result) =>{
       if (error) {
         return res.status(500).json(error);
       }
@@ -181,15 +175,15 @@ exports.addImage = (req, res) => {
       const url = `${req.protocol}://${req.get("host")}`;
       const imageUrl = [];
       const images = req.files;
-      images.forEach((image) => {
+      images.forEach((image) =>{
         imageUrl.push(`${url}/images/${image.filename}`);
       });
       //update
       pool.query("UPDATE meetups SET images=$1 WHERE meetup_id=$2 RETURNING *",
-        [pgArray(imageUrl), id], (er, meetup) => {
+        [pgArray(imageUrl), id], (er, meetup) =>{
           if (er) {
             //onsole.log(er);
-            return res.status(500).json({error:"something wrong try again later."});
+            return res.status(500).json({ error: "something wrong try again later." });
           }
           if (!meetup) {
             return res.status(500).json({ error: "something wrong try again later." });
@@ -204,9 +198,9 @@ exports.addImage = (req, res) => {
     });
 };
 
-function updateTags(res, tags, id) {
+function updateTags(res, tags, id){
   pool.query("UPDATE meetups SET tags=$1 WHERE meetup_id=$2 RETURNING *",
-    [tags, id], (error, meetup) => {
+    [tags, id], (error, meetup) =>{
       if (error) {
         console.log(error);
       }
@@ -222,11 +216,11 @@ function updateTags(res, tags, id) {
     });
 }
 //@addTags
-exports.addTags = (req, res) => {
+exports.addTags = (req, res) =>{
   const id = req.params.id;
   const { errors, isValid } = tagValidation(req.body);
   pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id],
-    (error, result) => {
+    (error, result) =>{
       if (error) {
         return res.status(500).json(error);
       }
@@ -248,7 +242,7 @@ exports.addTags = (req, res) => {
       } else {
         const pushedTags = tags;
         const d = data.tags;
-        d.forEach((dt) => {
+        d.forEach((dt) =>{
           pushedTags.push(dt);
         });
         updateTags(res, pushedTags, id);
@@ -257,39 +251,34 @@ exports.addTags = (req, res) => {
 };
 
 //meetupAskedQuestions
-exports.meetupAskedQuestions=(req,res)=>{
-  const mId=req.params.meetupId;
-  pool.query("SELECT * FROM meetups WHERE meetup_id=$1",[mId])
-    .then(meetup=>{
-      if (meetup.rows.length===0) {
-        return res.status(404).json({error:"sorry the requestd result could not be found."});
+exports.meetupAskedQuestions = (req, res) =>{
+  const mId = req.params.meetupId;
+  pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [mId])
+    .then((meetup) =>{
+      if (meetup.rows.length === 0) {
+        return res.status(404).json({ error: "sorry the requestd result could not be found." });
       }
-      else{
-        //@select it question
-        pool.query("SELECT * FROM questions INNER JOIN users ON users.id=questions.user_id WHERE meetup=$1 ORDER BY question_id DESC",[mId])
-        .then(question=>{
-          if (question.rows.length===0) {
-            return res.status(404).json({error:"Sorry There is no questions on this meetup."})
+      //@select it question
+      pool.query("SELECT * FROM questions INNER JOIN users ON users.id=questions.user_id WHERE meetup=$1 ORDER BY question_id DESC", [mId])
+        .then((question) =>{
+          if (question.rows.length === 0) {
+            return res.status(404).json({ error: "Sorry There is no questions on this meetup." });
           }
-          const sql="SELECT question_id,SUM(upvotes) AS totalup, SUM(downvotes) AS totaldown FROM votes GROUP BY question_id";
-           pool.query(sql)
-             .then(votes=>{
-               return res.status(201).json({meetup:meetup.rows,questions:question.rows,
-               questionCount:question.rowCount,votes:votes.rows});
-
-             })
-             .catch(votError=>{
-               console.log(votError);
-             })
-         })
-         .catch(er=>{
-           //console.log(er);
-           return res.status(500).json({error:"Server Error try again later."});
-         })
-      }
+          const sql = "SELECT question_id,SUM(upvotes) AS totalup, SUM(downvotes) AS totaldown FROM votes GROUP BY question_id";
+          pool.query(sql)
+            .then((votes) =>{
+              return res.status(201).json({
+                  meetup: meetup.rows, questions: question.rows,
+                  questionCount: question.rowCount, votes: votes.rows
+             })})
+            .catch((votError) =>{
+              console.log(votError);
+            })
+        })
+        .catch((er)=>{
+          return res.status(500).json({ error: "Server Error try again later." });
+        })
     })
-    .catch(error=>{
-      //console.log(error);
-      return res.status(500).json({error:"Server Error try again later."});
-    })
-}
+    .catch(error =>{
+      res.status(500).json({ error: "Server Error try again later." })});
+};

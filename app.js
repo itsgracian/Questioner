@@ -9,23 +9,23 @@ import dotenv from "dotenv";
 import authRoutes from "./server/router/api/authRoute";
 import userRoutes from "./server/router/api/userRoutes";
 import indexRoutes from "./server/router/indexRoutes";
-//import data from "./server/config/db";
+
 dotenv.config();
 
 //@express server
 const app = express();
 //@cors middleware
 app.use(cors());
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.header("Access-Control-Allow-Methods','POST,GET,PUT,PATCH,DELETE,OPTIONS");
-//   next();
-// });
+//app.use((req, res, next) => {
+//res.setHeader("Access-Control-Allow-Origin", "*");
+//res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//res.header("Access-Control-Allow-Methods','POST,GET,PUT,PATCH,DELETE,OPTIONS");
+//next();
+//});
 //@bodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// Provide access to node_modules folder
+//Provide access to node_modules folder
 //app.use('/scripts', express.static(`${__dirname}/node_modules/`));
 //@static folder
 app.use("/images/", express.static(path.join(__dirname, "server/public/uploads")));
@@ -45,7 +45,7 @@ app.use(passport.initialize());
 require("./server/config/passport")(passport);
 //@Error handling
 app.use((req, res, next) => {
-  var error = new Error("Sorry request not  found");
+  const error = new Error("Sorry request not  found");
   error.status = 404;
   next(error);
 });
@@ -58,7 +58,7 @@ app.use((error, req, res, next) => {
     }
   });
   next();
-})
+});
 
 //@populate
 export default app;
