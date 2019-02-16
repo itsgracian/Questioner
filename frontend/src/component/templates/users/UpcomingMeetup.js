@@ -12,7 +12,7 @@ const Upcoming=(meetups)=>{
                  <span class="date">${meet.happening? new Date(meet.happening).toDateString() : ""}</span></p>
               </div>
               <div class="bImg">
-               <img src="${meet.images? meet.images[0] : `http://localhost:5000/images/default-45.jpg`}" alt="">
+               <img src="${meet.images? meet.images[0] : `/images/default-45.jpg`}" alt="">
               </div>
               <div class="asked-question" title="View asked questions on this meet-up">
                 <div class="ft-link totalQuestions">

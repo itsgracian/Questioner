@@ -29,7 +29,7 @@ const AllMeetup = meetup => `
              <tbody>
                ${meetup.map(meet => `<tr>
                  <td>
-                 <img src="${meet.images ? meet.images[0] : "http://localhost:5000/images/default-45.jpg"}" alt="" class="mt-img">
+                 <img src="${meet.images ? meet.images[0] : "/images/default-45.jpg"}" alt="" class="mt-img">
                  </td>
                  <td>${meet.topic ? meet.topic : ""}</td>
                  <td>${meet.location ? meet.location : ""}</td>

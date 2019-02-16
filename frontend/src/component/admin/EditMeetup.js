@@ -69,7 +69,7 @@ class ViewMeetup{
           <div class="editForm">
                <label for="">Images only(jpg,png,jpeg)</label>
                ${meetup.map(meet=>
-                 `<input type="file" name="images" value="${meet.images? meet.images[0]:"http://localhost:5000/images/default-45.jpg"}" class="files"
+                 `<input type="file" name="images" value="${meet.images? meet.images[0]:"/images/default-45.jpg"}" class="files"
                  accept="image/jpg,image/png,image/jpeg">`)}
                <div class="imagText">
                  <p></p>
@@ -77,7 +77,7 @@ class ViewMeetup{
                </div>
                ${meetup.map(meet=>
                  `<div class="image-upload">
-                 <img src="${meet.images? meet.images[0]:"http://localhost:5000/images/default-45.jpg"}">
+                 <img src="${meet.images? meet.images[0]:"/images/default-45.jpg"}">
                  </div>`)}
                <small key="image-error" class="textMuted"></small>
              </div>
