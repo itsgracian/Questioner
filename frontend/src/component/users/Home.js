@@ -8,7 +8,7 @@ class Home{
   async getData(){
     try {
       //const corsAny='https://cors-anywhere.herokuapp.com/';
-      const response=await fetch("http://localhost:5000/api/v1/meetups",{
+      const response=await fetch("/api/v1/meetups",{
         method:"GET",
         mode: "cors",
         headers:{

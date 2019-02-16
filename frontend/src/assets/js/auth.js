@@ -14,7 +14,7 @@ function onSubmit(e) {
     email: document.querySelector("input[type='email']").value,
     password: document.querySelector("input[type='password']").value
   };
-  fetch("http://localhost:5000/api/v1/signin", {
+  fetch("/api/v1/signin", {
     method: "POST",
     headers: {
       "Accept": "application/json, text/plain, */*",
@@ -41,13 +41,13 @@ function onSubmit(e) {
         //@set token to localStorage
         localStorage.setItem("token", token);
         // window.location="/#/dashboard";
-        history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`http://localhost:5000/#/dashboard`);
+        history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`/#/dashboard`);
         window.location.reload(true);
       } else {
         const token = data.token;
         //@set token to localStorage
         localStorage.setItem("token", token);
-        history.pushState({id:"Home"},'Questioner | Home',`http://localhost:5000/#/home`);
+        history.pushState({id:"Home"},'Questioner | Home',`/#/home`);
         window.location.reload(true);
       }
       //
@@ -82,7 +82,7 @@ function signup(e) {
     password: document.querySelector("input[name='password']").value
   };
   //fetch
-  fetch("http://localhost:5000/api/v1/signup", {
+  fetch("/api/v1/signup", {
     method: "POST",
     mode: "cors",
     headers: {
@@ -127,7 +127,7 @@ function signup(e) {
         success.style = "transform:translateY(0%)";
         //redirect
         loadData.style.display="block";
-        const url=`http://localhost:5000/#/signin`;
+        const url=`/#/signin`;
         history.pushState({id:"Signin"},"Questioner",url);
         setTimeout(()=>{
          window.location.reload(true);
@@ -173,7 +173,7 @@ function logout(e){
  localStorage.removeItem("token");
  load.style.display = "block";
  setTimeout(()=>{
-   history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`http://localhost:5000/#/`);
+   history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`/#/`);
    window.location.reload(true);
  },1000);
 }
