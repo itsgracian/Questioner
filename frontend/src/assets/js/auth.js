@@ -1,3 +1,4 @@
+corsAny='https://cors-anywhere.herokuapp.com/';
 function onSubmit(e) {
   e.preventDefault();
   //check if is authenticated
@@ -13,12 +14,13 @@ function onSubmit(e) {
     email: document.querySelector("input[type='email']").value,
     password: document.querySelector("input[type='password']").value
   };
-  fetch("https://protected-beach-95106.herokuapp.com/api/v1/signin", {
+  fetch(corsAny+"http://localhost:5000/api/v1/signin", {
     method: "POST",
     mode: "no-cors",
     headers: {
       "Accept": "application/json, text/plain, */*",
-      "Content-type": "application/json"
+      "Content-type": "application/json",
+      "Access-Control-Allow-Origin": *
     },
     body: JSON.stringify(user)
   })
@@ -41,13 +43,13 @@ function onSubmit(e) {
         //@set token to localStorage
         localStorage.setItem("token", token);
         // window.location="/#/dashboard";
-        history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`https://protected-beach-95106.herokuapp.com/#/dashboard`);
+        history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`${corsAny}http://localhost:5000/#/dashboard`);
         window.location.reload(true);
       } else {
         const token = data.token;
         //@set token to localStorage
         localStorage.setItem("token", token);
-        history.pushState({id:"Home"},'Questioner | Home',`http://localhost:5000/#/home`);
+        history.pushState({id:"Home"},'Questioner | Home',`${corsAny}http://localhost:5000/#/home`);
         window.location.reload(true);
       }
       //
@@ -82,7 +84,7 @@ function signup(e) {
     password: document.querySelector("input[name='password']").value
   };
   //fetch
-  fetch("http://localhost:5000/api/v1/signup", {
+  fetch(corsAny+"http://localhost:5000/api/v1/signup", {
     method: "POST",
     mode: "no-cors",
     headers: {
@@ -127,7 +129,7 @@ function signup(e) {
         success.style = "transform:translateY(0%)";
         //redirect
         loadData.style.display="block";
-        const url=`http://localhost:5000/#/signin`;
+        const url=`${corsAny}http://localhost:5000/#/signin`;
         history.pushState({id:"Signin"},"Questioner",url);
         setTimeout(()=>{
          window.location.reload(true);
@@ -173,7 +175,7 @@ function logout(e){
  localStorage.removeItem("token");
  load.style.display = "block";
  setTimeout(()=>{
-   history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`http://localhost:5000/#/`);
+   history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`${corsAny}http://localhost:5000/#/`);
    window.location.reload(true);
  },1000);
 }
