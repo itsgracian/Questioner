@@ -1,4 +1,4 @@
-corsAny='https://cors-anywhere.herokuapp.com/';
+const corsAny='https://cors-anywhere.herokuapp.com/';
 function onSubmit(e) {
   e.preventDefault();
   //check if is authenticated
@@ -14,7 +14,7 @@ function onSubmit(e) {
     email: document.querySelector("input[type='email']").value,
     password: document.querySelector("input[type='password']").value
   };
-  fetch(corsAny+"http://localhost:5000/api/v1/signin", {
+  fetch(corsAny+"https://protected-beach-95106.herokuapp.com/api/v1/signin", {
     method: "POST",
     mode: "no-cors",
     headers: {
