@@ -13,7 +13,7 @@ function onSubmit(e) {
     email: document.querySelector("input[type='email']").value,
     password: document.querySelector("input[type='password']").value
   };
-  fetch("http://localhost:5000/api/v1/signin", {
+  fetch("/api/v1/signin", {
     method: "POST",
     mode: "cors",
     headers: {
@@ -82,7 +82,7 @@ function signup(e) {
     password: document.querySelector("input[name='password']").value
   };
   //fetch
-  fetch("http://localhost:5000/api/v1/signup", {
+  fetch("/api/v1/signup", {
     method: "POST",
     mode: "no-cors",
     headers: {
