@@ -4,32 +4,34 @@ import UserCss from "../../assets/js/cssx/users.css.js";
 import Load from "../common/Load.js";
 import SingleMeetup from "../templates/users/SingleMeetup.js";
 import Utils from "../router/Utils.js";
-import {IsUser} from "../auth/Role.js";
-class Single{
-  async getData(id){
+import { IsUser } from "../auth/Role.js";
+
+class Single {
+  async getData(id) {
     try {
-      const response=await fetch(`/api/v1/meetups/v/`+id,{
-        method:"GET",
+      const response = await fetch(`/api/v1/meetups/v/${id}`, {
+        method: "GET",
         mode: "cors",
-        headers:{
-          "Accept":"application/json",
-          "Content-Type":"application/json",
-          "Authorization":getToken(),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: getToken(),
           "Access-Control-Allow-Origin": "*"
         }
       });
-      const data=await response.json();
+      const data = await response.json();
       return data;
     } catch (e) {
       console.log(e);
     }
   }
-  async render(){
+
+  async render() {
     IsUser();
-    const request=await Utils.parseRequestUrl();
-    const response=await this.getData(request.id);
-    const meetup=response? response.meetup:[];
-    const questionCount=response? response.questionCount:0;
+    const request = await Utils.parseRequestUrl();
+    const response = await this.getData(request.id);
+    const meetup = response ? response.meetup : [];
+    const questionCount = response ? response.questionCount : 0;
     const body = document.querySelector("body");
     const script = document.createElement("script");
     script.setAttribute("type", "text/javascript");
@@ -41,10 +43,11 @@ class Single{
     ${Load}
     <section class="right-side">
     ${Right}
-    ${SingleMeetup(meetup,questionCount)}
+    ${SingleMeetup(meetup, questionCount)}
     </section>`);
     return template;
   }
-  async after_render(){}
+
+  async after_render() {}
 }
 export default new Single();

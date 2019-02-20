@@ -3,9 +3,10 @@ import Right from "../layout/Right.js";
 import UserCss from "../../assets/js/cssx/users.css.js";
 import MeetupTemp from "../templates/admin/NewMeetup.js";
 import Load from "../common/Load.js";
-import {IsAdmin} from "../auth/Role.js";
-class NewMeetup{
-  render(){
+import { IsAdmin } from "../auth/Role.js";
+
+class NewMeetup {
+  render() {
     IsAdmin();
     const body = document.querySelector("body");
     const script = document.createElement("script");
@@ -13,7 +14,7 @@ class NewMeetup{
     script.setAttribute("src", "/src/assets/js/function/meetup.js");
     //@appendChild
     body.appendChild(script);
-    const template=(`
+    const template = (`
       ${UserCss}
       ${Left}
       <section class="right-side">
@@ -38,6 +39,7 @@ class NewMeetup{
       `);
     return template;
   }
-  async after_render(){}
+
+  async after_render() {}
 }
 export default new NewMeetup();

@@ -1,16 +1,15 @@
-const SingleMeetup=(meetup,totalQuestions)=>{
- return(`
-    ${meetup.map(meet=>`<div class="container">
+const SingleMeetup = (meetup, totalQuestions) => (`
+    ${meetup.map(meet => `<div class="container">
       <div class="more-about">
         <div class="title view-title" >
-          <h5>${meet.topic? meet.topic : ""}</h5>
+          <h5>${meet.topic ? meet.topic : ""}</h5>
           <br>
           <p><img src="/src/assets/images/icons/blackIcons/placeholder.svg" class="location">
-          ${meet.location? meet.location : ""}
-           <span class="date">${meet.happening? new Date(meet.happening).toDateString() : ""}</span></p>
+          ${meet.location ? meet.location : ""}
+           <span class="date">${meet.happening ? new Date(meet.happening).toDateString() : ""}</span></p>
         </div>
         <div class="bImg">
-         <img src="${meet.images? meet.images[0] : `/images/default-45.jpg`}" alt="">
+         <img src="${meet.images ? meet.images[0] : "/images/default-45.jpg"}" alt="">
         </div>
         <div class="asked-question">
           <div class="ft-link totalQuestions" title="View asked questions on this meet-up">
@@ -18,8 +17,8 @@ const SingleMeetup=(meetup,totalQuestions)=>{
               <img src="/src/assets/images/icons/blackIcons/ask.svg" alt="ask question">
             </a>
           </div>
-          <h5>${totalQuestions ? totalQuestions+" questions was created on this meetup":
-          "There is no question on this meetup"}</h5>
+          <h5>${totalQuestions ? `${totalQuestions} questions was created on this meetup`
+    : "There is no question on this meetup"}</h5>
         </div>
         <!--askquestion!-->
         <div class="askMeetup">
@@ -49,5 +48,4 @@ const SingleMeetup=(meetup,totalQuestions)=>{
         </div>
       </div>
     </div>`)}`);
-}
 export default SingleMeetup;

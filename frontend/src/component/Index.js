@@ -1,6 +1,7 @@
 import Landing from "./layout/Landing.js";
 import IndexCss from "../assets/js/cssx/index.css.js";
 import Verify from "./auth/VerifyUser.js";
+
 const Index = {
   render: () => {
     const markup = `
@@ -60,8 +61,8 @@ const Index = {
     </section>`;
     return markup;
   },
-  after_render:()=>{
+  after_render: () => {
 
   }
-}
+};
 export default Index;

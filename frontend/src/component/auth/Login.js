@@ -1,17 +1,16 @@
 import InputField from "../common/InputField.js";
 import Load from "../common/Load.js";
 import AuthCss from "../../assets/js/cssx/auth.css.js";
+
 class Login {
   render() {
     if (localStorage.token) {
-      if (currentUser().isAdmin===true) {
-        window.location="/#/dashboard";
-      }else{
-        window.location="/#/home";
+      if (currentUser().isAdmin === true) {
+        window.location = "/#/dashboard";
+      } else {
+        window.location = "/#/home";
       }
     }
-    //updating dom form error
-    const small = document.querySelectorAll(".textMuted");
     const markUp = (`
       ${AuthCss}
       ${Load}
@@ -28,23 +27,23 @@ class Login {
           <form class="login" autocomplete="off" onsubmit="return onSubmit(event)">
             <div class="form-group">
               ${InputField({
-            type: "email",
-            img: "/src/assets/images/icons/auth/user.svg",
-            name: "email",
-            placeholder: "Type your email",
-            value: "",
-            keys: "email-error"
-            })}
+        type: "email",
+        img: "/src/assets/images/icons/auth/user.svg",
+        name: "email",
+        placeholder: "Type your email",
+        value: "",
+        keys: "email-error"
+      })}
             </div>
             <div class="form-group">
               ${InputField({
-              type: "password",
-              img: "/src/assets/images/icons/auth/pass.svg",
-              placeholder: "Type your password",
-              name: "password",
-              value: "",
-              keys: "password-error"
-        })}
+        type: "password",
+        img: "/src/assets/images/icons/auth/pass.svg",
+        placeholder: "Type your password",
+        name: "password",
+        value: "",
+        keys: "password-error"
+      })}
             </div>
             <div class="form-group">
               <button type="submit" name="button" class="signInBtn">Sign in</button>
@@ -66,7 +65,8 @@ class Login {
        `);
     return markUp;
   }
-  async after_render(){}
+
+  async after_render() {}
 }
 
 export default new Login();

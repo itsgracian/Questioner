@@ -163,6 +163,10 @@ exports.changeProfile = (req, res) => {
   const sql = "UPDATE users SET avatar=$1 WHERE id=$2 RETURNING*";
   //
   pool.query(sql, [url, userId])
-    .then(user => res.status(200).json({ success: "true", message: "profile picture updated successfully.", user: user.rows[0] }))
+    .then(user => res.status(200).json({
+      success: "true",
+      message: "profile picture updated successfully.",
+      user: user.rows[0]
+    }))
     .catch(error => res.status(500).json({ error }));
 };

@@ -2,14 +2,14 @@ const Left = (`<section class="left-side">
    <div class="top-h">
      <div class="top-name"><span>Welcome ${currentUser() ? currentUser().username : ""} </span></div>
      <div class="top-avatar">
-       <img src="${currentUser().avatar? currentUser().avatar:'/src/assets/images/avatar.png'}" alt="avatar">
+       <img src="${currentUser().avatar ? currentUser().avatar : "/src/assets/images/avatar.png"}" alt="avatar">
      </div>
    </div>
    <div class="close" onclick="closeMenu()"><p>X</p></div>
    <div class="top-menu">
       <nav>
         <ul>
-         ${currentUser().isAdmin===true ? `
+         ${currentUser().isAdmin === true ? `
            <li>
               <a href="/#/dashboard">
                   <div class="menuIcon">
@@ -41,8 +41,8 @@ const Left = (`<section class="left-side">
                   </div>
                  <span>Logout</span>
                 </a>
-             </li>`:
-             `
+             </li>`
+    : `
              <li>
                 <a href="/#/home">
                     <div class="menuIcon">

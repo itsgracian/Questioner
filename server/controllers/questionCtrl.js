@@ -6,7 +6,7 @@ exports.create = (req, res) => {
   const meetupId = req.params.meetupId;
   //@check
   if (!isValid) {
-    return res.status(400).json({errors});
+    return res.status(400).json({ errors });
   }
   //@find if user is availble
   const userId = req.user.rows[0].id;
@@ -27,30 +27,23 @@ exports.create = (req, res) => {
         [data.user, data.meetup, data.title, data.body], (error, results) => {
           if (error) {
             return res.status(500).json(error);
-            //console.log(error);
           }
           if (!results) {
             return res.status(500).json({ error: "something wrong try again." });
-          }else{
-            //@by default question votes will be 0
-            pool.query("INSERT INTO votes(users_id,question_id,upvotes,downvotes) VALUES($1,$2,$3,$4)",
-           [data.user,results.rows[0].question_id,1,0])
-            .then((votes)=>{
-              return res.status(200).json({
-                success: true,
-                message: "well done! your question was recorded successfully.",
-                status: results.rowCount,
-                data: results.rows
-              });
-            })
-            .catch((erVot)=>{
-              //console.log(erVot);
-              return res.status(500).json({ error: "something wrong try again." });
-            })
           }
+          //@by default question votes will be 0
+          pool.query("INSERT INTO votes(users_id,question_id,upvotes,downvotes) VALUES($1,$2,$3,$4)",
+            [data.user, results.rows[0].question_id, 1, 0])
+            .then(votes => res.status(200).json({
+              success: true,
+              message: "well done! your question was recorded successfully.",
+              status: results.rowCount,
+              data: results.rows
+            }))
+            .catch(erVot => res.status(500).json({ error: "something wrong try again." }));
         });
     })
-    .catch(er => res.status(500).json({error:er}));
+    .catch(er => res.status(500).json({ error: er }));
 };
 
 //@deleteQuestion
@@ -96,13 +89,11 @@ exports.myquestions = (req, res) => {
   pool.query("SELECT * FROM questions q,meetups m WHERE q.meetup=m.meetup_id AND q.user_id=$1",
     [userId])
     .then((data) => {
-      const getQuestionId=[];
-      const result=data.rows;
-      if (result.length===0) {
-        return res.status(404).json({error:"Your Questions could not be found."});
-      }else {
-        return res.json({ status: 200, data: data.rows });
+      const result = data.rows;
+      if (result.length === 0) {
+        return res.status(404).json({ error: "Your Questions could not be found." });
       }
+      return res.json({ status: 200, data: data.rows });
     })
-    .catch(error => res.status(500).json({error}));
+    .catch(error => res.status(500).json({ error }));
 };

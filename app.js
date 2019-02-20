@@ -4,6 +4,7 @@ import passport from "passport";
 import path from "path";
 import cors from "cors";
 import dotenv from "dotenv";
+import passportAuth from "./server/config/passport";
 
 //@router
 import authRoutes from "./server/router/api/authRoute";
@@ -16,17 +17,9 @@ dotenv.config();
 const app = express();
 //@cors middleware
 app.use(cors());
-//app.use((req, res, next) => {
-//res.setHeader("Access-Control-Allow-Origin", "*");
-//res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//res.header("Access-Control-Allow-Methods','POST,GET,PUT,PATCH,DELETE,OPTIONS");
-//next();
-//});
 //@bodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//Provide access to node_modules folder
-//app.use('/scripts', express.static(`${__dirname}/node_modules/`));
 //@static folder
 app.use("/images/", express.static(path.join(__dirname, "server/public/uploads")));
 //app.use(express.static(path.join(__dirname, "server/public")));
@@ -42,7 +35,7 @@ app.use((req, res) => {
 });
 //@passport middleware
 app.use(passport.initialize());
-require("./server/config/passport")(passport);
+passportAuth(passport);
 //@Error handling
 app.use((req, res, next) => {
   const error = new Error("Sorry request not  found");
@@ -59,6 +52,5 @@ app.use((error, req, res, next) => {
   });
   next();
 });
-
 //@populate
 export default app;

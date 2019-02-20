@@ -1,19 +1,19 @@
-export const IsAdmin=()=>{
+export const IsAdmin = () => {
   if (localStorage.token) {
-    if (currentUser().isAdmin!==true) {
-      window.location="/#/home";
+    if (currentUser().isAdmin !== true) {
+      window.location = "/#/home";
+    }
+  } else {
+    window.location = "/#/signin";
   }
-}else{
-  window.location="/#/signin";
-}
-}
+};
 
-export const IsUser=()=>{
+export const IsUser = () => {
   if (localStorage.token) {
-    if (currentUser().isAdmin===true) {
-      window.location="/#/dashboard";
+    if (currentUser().isAdmin === true) {
+      window.location = "/#/dashboard";
+    }
+  } else {
+    window.location = "/#/signin";
   }
-}else{
-  window.location="/#/signin";
-}
-}
+};

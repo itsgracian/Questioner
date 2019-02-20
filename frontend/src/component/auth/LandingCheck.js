@@ -1,8 +1,8 @@
-const Verify=()=>{
+const Verify = () => {
   if (localStorage.token) {
     //check for user
-    if (currentUser().isAdmin==true) {
-      const returns=(`<li title='Home'>
+    if (currentUser().isAdmin === true) {
+      const returns = (`<li title='Home'>
           <a href="#">
            <img src='/src/assets/images/icons/blackIcons/homes.svg' class='svgIco'>
           </a>
@@ -18,8 +18,8 @@ const Verify=()=>{
           </a>
         </li>`);
       return returns;
-    }else{
-      const returns=(`<li title='Home'>
+    }
+    const returns = (`<li title='Home'>
           <a href="#">
            <img src='/src/assets/images/icons/blackIcons/homes.svg' class='svgIco'>
           </a>
@@ -33,10 +33,9 @@ const Verify=()=>{
            <img src='/src/assets/images/icons/blackIcons/login.svg' class='svgIco'>
           </a>
         </li>`);
-      return returns;
-    }
-  }else{
-    const returns=(`<li title='Home'>
+    return returns;
+  }
+  const returns = (`<li title='Home'>
         <a href="#">
          <img src='/src/assets/images/icons/blackIcons/homes.svg' class='svgIco'>
         </a>
@@ -51,7 +50,6 @@ const Verify=()=>{
          <img src='/src/assets/images/icons/blackIcons/foot.svg' class='svgIco'>
         </a>
       </li>`);
-    return returns;
-  }
-}
+  return returns;
+};
 export default Verify;

@@ -3,31 +3,32 @@ import Right from "../layout/Right.js";
 import UserCss from "../../assets/js/cssx/users.css.js";
 import Load from "../common/Load.js";
 import HomeTemp from "../templates/users/Home.js";
-import {IsUser} from "../auth/Role.js";
-class Home{
-  async getData(){
+import { IsUser } from "../auth/Role.js";
+
+class Home {
+  async getData() {
     try {
-      //const corsAny='https://cors-anywhere.herokuapp.com/';
-      const response=await fetch("/api/v1/meetups",{
-        method:"GET",
+      const response = await fetch("/api/v1/meetups", {
+        method: "GET",
         mode: "cors",
-        headers:{
-          "Accept":"application/json",
-          "Content-Type":"application/json",
-          "Authorization":getToken(),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: getToken(),
           "Access-Control-Allow-Origin": "*"
         }
       });
-      const data=await response.json();
+      const data = await response.json();
       return data;
     } catch (e) {
       console.log(e);
     }
   }
-  async render(){
-    const response=await this.getData();
-    const meetup=response.data;
-    const question=response? response.question:[];
+
+  async render() {
+    const response = await this.getData();
+    const meetup = response.data;
+    const question = response ? response.question : [];
     IsUser();
     const body = document.querySelector("body");
     const script = document.createElement("script");
@@ -40,12 +41,13 @@ class Home{
     ${Load}
     <section class="right-side">
     ${Right}
-    ${meetup.length===0 ?`<div class="container">
+    ${meetup.length === 0 ? `<div class="container">
     <div class='errorPage'><h5>Whoops!! Meetup not available! </h5></div></div>`
-     : HomeTemp(meetup,question)}
+        : HomeTemp(meetup, question)}
     </section>`);
     return template;
   }
-  async after_render(){}
+
+  async after_render() {}
 }
 export default new Home();

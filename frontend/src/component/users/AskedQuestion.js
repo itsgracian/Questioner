@@ -6,52 +6,54 @@ import AskedQ from "../templates/users/AskedQ.js";
 import Utils from "../router/Utils.js";
 import SetAttribute from "../helper/SetAttribute.js";
 
-class AskedQuestion{
-  async getData(id){
-    try{
-      const url=`/api/v1/meetups/v/questions/`+id;
-      const response=await fetch(url,{
-        method:"GET",
+class AskedQuestion {
+  async getData(id) {
+    try {
+      const url = `/api/v1/meetups/v/questions/${id}`;
+      const response = await fetch(url, {
+        method: "GET",
         mode: "cors",
-        headers:{
-          "Accept":"application/json,*/*",
-          "Content-Type":"application/json",
-          "Authorization":getToken(),
+        headers: {
+          Accept: "application/json,*/*",
+          "Content-Type": "application/json",
+          Authorization: getToken(),
           "Access-Control-Allow-Origin": "*"
         }
       });
-      const data=await response.json();
+      const data = await response.json();
       return data;
-    }catch(e){
+    } catch (e) {
       console.log(e);
     }
   }
-  async render(){
-    const request=Utils.parseRequestUrl();
-    const response=await this.getData(request.id);
-    const meetup=response? response.meetup: [];
-    const question=response? response.questions:[];
-    const questionCount=response? response.questionCount:0;
-    const votes=response ? response.votes:[];
+
+  async render() {
+    const request = Utils.parseRequestUrl();
+    const response = await this.getData(request.id);
+    const meetup = response ? response.meetup : [];
+    const question = response ? response.questions : [];
+    const questionCount = response ? response.questionCount : 0;
+    const votes = response ? response.votes : [];
     const script = document.createElement("script");
     const script2 = document.createElement("script");
     const script3 = document.createElement("script");
-    SetAttribute(script,{"type":"text/javascript","src":"/src/assets/js/function/comment.js"});
-    SetAttribute(script2,{"type":"text/javascript","src":"/src/assets/js/function/views.js"});
-    SetAttribute(script3,{"type":"text/javascript","src":"/src/assets/js/function/vote.js"});
-    const template=(`
+    SetAttribute(script, { type: "text/javascript", src: "/src/assets/js/function/comment.js" });
+    SetAttribute(script2, { type: "text/javascript", src: "/src/assets/js/function/views.js" });
+    SetAttribute(script3, { type: "text/javascript", src: "/src/assets/js/function/vote.js" });
+    const template = (`
     ${UserCss}
     ${Left}
     ${Load}
     <section class="right-side">
     ${Right}
-    ${response.error?
-    `<div class="container"><div class="errorPage"><h5>${response.error}</h5></div></div>`
-    :AskedQ(meetup,question,votes)}
+    ${response.error
+        ? `<div class="container"><div class="errorPage"><h5>${response.error}</h5></div></div>`
+        : AskedQ(meetup, question, votes)}
     </section>
     `);
-  return template;
+    return template;
   }
-  async after_render(){}
+
+  async after_render() {}
 }
 export default new AskedQuestion();

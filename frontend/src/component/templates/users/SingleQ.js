@@ -1,16 +1,15 @@
-const SingleQ=(question,comments,total)=>{
- return (`
+const SingleQ = (question, comments, total) => (`
    <div class="container">
        <div class="meetQ">
          <div class="title view-title">
-           <h5>${question[0].title ? question[0].title :""}</h5>
+           <h5>${question[0].title ? question[0].title : ""}</h5>
            <br>
            <p><img src="/src/assets/images/icons/blackIcons/placeholder.svg" class="location">
            <small>Question was asked by <small class="qNames">
            ${question[0].firstname} ${question[0].lastname}</small></small>
          </div>
          <div class="q">
-           <p>${question[0].body?question[0].body: ""}</p>
+           <p>${question[0].body ? question[0].body : ""}</p>
            <div class="add-comment">
            <button type="button" name="button" class="clickLike" title="vote" onclick="UpVote(${question[0].question_id})">
              <img src="/src/assets/images/icons/blackIcons/vote.svg" alt="like" class="likeOrTalk"><h5 class="numberVotes">
@@ -19,20 +18,17 @@ const SingleQ=(question,comments,total)=>{
             <img src="/src/assets/images/icons/blackIcons/downvote.svg" alt="like" class="likeOrTalk">
             </button>
             <div class="totalVotes">
-              ${total.map(vot=>
-                `<small class="numberVotes"><small class="numbers upvoting" keys=${question[0].question_id}>
+              ${total.map(vot => `<small class="numberVotes"><small class="numbers upvoting" keys=${question[0].question_id}>
                 ${vot.totalup}</small>upvotes</small>
                 <small class="numberVotes"><small class="numbers downvoting" keys=${question[0].question_id}>
-                ${vot.totaldown}</small>downvotes</small>`
-              )}
+                ${vot.totaldown}</small>downvotes</small>`)}
             </div>
              </div>
              <!--all comment displaying!-->
              <div class="allcommentDisp">
-             ${comments.map(comment=>
-               `<div class="coment-section">
-               <h5>${comment.firstname?comment.firstname:""} ${comment.lastname?comment.lastname:""}</h5>
-               <span>${comment.comment?comment.comment:""}</span>
+             ${comments.map(comment => `<div class="coment-section">
+               <h5>${comment.firstname ? comment.firstname : ""} ${comment.lastname ? comment.lastname : ""}</h5>
+               <span>${comment.comment ? comment.comment : ""}</span>
              </div>`)}
              </div>
              <div class="post-comment" id="some-${question[0].question_id}">
@@ -58,6 +54,5 @@ const SingleQ=(question,comments,total)=>{
          </div>
        </div>
      </div>`);
-}
 
 export default SingleQ;

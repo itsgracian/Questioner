@@ -20,18 +20,18 @@ const Router = {
   "/": Home,
   "/signin": Login,
   "/join": Register,
-  "/dashboard":Dashboard,
-  "/dashboard-meetup":Meetup,
-  "/dashboard-newmeetup":NewMeetup,
-  "/dashboard-meetup/:id":EditMeetup,
-  "/myaccount":MyProfile,
-  "/edit-profile":EditProfile,
-  "/home":HomeUser,
-  "/meetup-m/:id":SingleMeetup,
-  "/meetup-q/:id":AskedQ,
-  "/upcoming-meetups":UpcomingMeetup,
-  "/question/:id":SingleQuestion,
-  "/myquestion":MyQuestion
+  "/dashboard": Dashboard,
+  "/dashboard-meetup": Meetup,
+  "/dashboard-newmeetup": NewMeetup,
+  "/dashboard-meetup/:id": EditMeetup,
+  "/myaccount": MyProfile,
+  "/edit-profile": EditProfile,
+  "/home": HomeUser,
+  "/meetup-m/:id": SingleMeetup,
+  "/meetup-q/:id": AskedQ,
+  "/upcoming-meetups": UpcomingMeetup,
+  "/question/:id": SingleQuestion,
+  "/myquestion": MyQuestion
 };
 
 export default Router;

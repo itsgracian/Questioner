@@ -8,7 +8,7 @@ module.exports = {
   signin: (req, res) => {
     const { errors, isValid } = userValidation(req.body);
     if (!isValid) {
-      return res.status(400).json({errors});
+      return res.status(400).json({ errors });
     }
     //@login check
     pool.query("SELECT * FROM users WHERE email=$1", [req.body.email])
@@ -30,10 +30,8 @@ module.exports = {
               phoneNumber: user.rows[0].phonenumber,
               email: user.rows[0].email,
               isadmin: user.rows[0].isadmin,
-              avatar:user.rows[0].avatar
+              avatar: user.rows[0].avatar
             };
-            //@create jwt
-            //25200=7hor 10h
             jwt.sign(payload, config.secretOrKey, { expiresIn: 25200 }, (err, token) => {
               //
               if (err) return res.status(400).json(err);
@@ -46,12 +44,14 @@ module.exports = {
             });
           });
         } else {
-          return res.status(404).json({ error:"Whoops Authentication failed." });
+          return res.status(404).json({ error: "Whoops Authentication failed." });
         }
-        //pool.end();
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
+  },
+  logoutUser: (req, res) => {
+    req.logout();
   }
 };

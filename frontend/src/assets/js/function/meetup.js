@@ -30,9 +30,9 @@ function saveMeetup(event) {
     method: "POST",
     mode: "cors",
     headers: {
-      "Accept": "application/json,application/text,*/*",
+      Accept: "application/json,application/text,*/*",
       "Content-Type": "application/json",
-      "Authorization": getToken(),
+      Authorization: getToken(),
       "Access-Control-Allow-Origin": "*"
     },
     body: JSON.stringify(meetup)
@@ -72,9 +72,9 @@ function trashMeetup(id) {
     method: "DELETE",
     mode: "cors",
     headers: {
-      "Accept": "application/json",
-      "Content-Type":"application/json",
-      "Authorization": getToken(),
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: getToken(),
       "Access-Control-Allow-Origin": "*"
     }
   })
@@ -117,9 +117,9 @@ function updateMeetup(id) {
     method: "PATCH",
     mode: "cors",
     headers: {
-      "Accept": "application/json,*/*",
+      Accept: "application/json,*/*",
       "Content-Type": "application/json",
-      "Authorization": getToken(),
+      Authorization: getToken(),
       "Access-Control-Allow-Origin": "*"
     },
     body: JSON.stringify(meetup)

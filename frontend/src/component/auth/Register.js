@@ -5,10 +5,10 @@ import AuthCss from "../../assets/js/cssx/auth.css.js";
 class Register {
   render() {
     if (localStorage.token) {
-      if (currentUser().isAdmin===true) {
-        window.location="/#/dashboard";
-      }else{
-        window.location="/#/home";
+      if (currentUser().isAdmin === true) {
+        window.location = "/#/dashboard";
+      } else {
+        window.location = "/#/home";
       }
     }
     const markUp = `
@@ -31,67 +31,67 @@ class Register {
         <div class="form-group">
           <div class="divide">
             ${InputField({
-            type: "text",
-            img: "./assets/images/icons/auth/ninja.svg",
-            name: "firstname",
-            placeholder: "Your firstname",
-            value: "",
-            keys: "firstname-error"
-          })}
+    type: "text",
+    img: "./assets/images/icons/auth/ninja.svg",
+    name: "firstname",
+    placeholder: "Your firstname",
+    value: "",
+    keys: "firstname-error"
+  })}
           </div>
           <div class="divide">
             ${InputField({
-            type: "text",
-            img: "./assets/images/icons/auth/ninja.svg",
-            name: "lastname",
-            placeholder: "Your lastname",
-            value: "",
-            keys: "lastname-error"
-          })}
+    type: "text",
+    img: "./assets/images/icons/auth/ninja.svg",
+    name: "lastname",
+    placeholder: "Your lastname",
+    value: "",
+    keys: "lastname-error"
+  })}
           </div>
         </div>
         <div class="form-group">
             <div class="divide">
               ${InputField({
-              type: "text",
-              img: "./assets/images/icons/auth/ninja.svg",
-              name: "username",
-              placeholder: "Your username",
-              value: "",
-              keys: "username-error"
-            })}
+    type: "text",
+    img: "./assets/images/icons/auth/ninja.svg",
+    name: "username",
+    placeholder: "Your username",
+    value: "",
+    keys: "username-error"
+  })}
             </div>
             <div class="divide">
               ${InputField({
-              type: "email",
-              img: "./assets/images/icons/auth/arroba.svg",
-              name: "email",
-              placeholder: "Your email",
-              value: "",
-              keys: "email-error"
-            })}
+    type: "email",
+    img: "./assets/images/icons/auth/arroba.svg",
+    name: "email",
+    placeholder: "Your email",
+    value: "",
+    keys: "email-error"
+  })}
             </div>
           </div>
           <div class="form-group">
             <div class="divide">
               ${InputField({
-              type: "number",
-              img: "./assets/images/icons/auth/arroba.svg",
-              name: "phoneNumber",
-              placeholder: "Your phone number",
-              value: "",
-              keys: "phone-error"
-            })}
+    type: "number",
+    img: "./assets/images/icons/auth/arroba.svg",
+    name: "phoneNumber",
+    placeholder: "Your phone number",
+    value: "",
+    keys: "phone-error"
+  })}
             </div>
             <div class="divide">
               ${InputField({
-              type: "password",
-              img: "./assets/images/icons/auth/pass.svg",
-              name: "password",
-              placeholder: "Your password",
-              value: "",
-              keys: "password-error"
-            })}
+    type: "password",
+    img: "./assets/images/icons/auth/pass.svg",
+    name: "password",
+    placeholder: "Your password",
+    value: "",
+    keys: "password-error"
+  })}
             </div>
           </div>
         <div class="form-group">
@@ -115,7 +115,8 @@ class Register {
 </div>`;
     return markUp;
   }
-  async after_render(){}
+
+  async after_render() {}
 }
 
 export default new Register();

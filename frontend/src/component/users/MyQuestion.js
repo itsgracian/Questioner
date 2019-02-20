@@ -4,48 +4,50 @@ import UserCss from "../../assets/js/cssx/users.css.js";
 import Load from "../common/Load.js";
 import MyQuestionTemp from "../templates/users/MyQuestion.js";
 import SetAttribute from "../helper/SetAttribute.js";
-import {IsUser} from "../auth/Role.js";
+import { IsUser } from "../auth/Role.js";
 
-class MyQuestion{
-  async getData(){
+class MyQuestion {
+  async getData() {
     try {
-      const response=await fetch(`/api/v1/questions`,{
-        method:"GET",
+      const response = await fetch("/api/v1/questions", {
+        method: "GET",
         mode: "cors",
-        headers:{
-          "Accept":"application/json,*/*",
-          "Content-Type":"application/json",
-          "Authorization":getToken(),
+        headers: {
+          Accept: "application/json,*/*",
+          "Content-Type": "application/json",
+          Authorization: getToken(),
           "Access-Control-Allow-Origin": "*"
         }
       });
-      const data=await response.json();
+      const data = await response.json();
       return data;
     } catch (e) {
       console.log(e);
     }
   }
-  async render(){
+
+  async render() {
     //protection
     IsUser();
-    const questionData=await this.getData();
-    const question=questionData?questionData.data:[];
+    const questionData = await this.getData();
+    const question = questionData ? questionData.data : [];
     //
-    const script1=document.createElement("script");
-    SetAttribute(script1,{"type":"text/javascript","src":"/src/assets/js/function/views.js"});
-    const template=(`
+    const script1 = document.createElement("script");
+    SetAttribute(script1, { type: "text/javascript", src: "/src/assets/js/function/views.js" });
+    const template = (`
       ${UserCss}
       ${Load}
       ${Left}
       <section class="right-side">
       ${Right}
-      ${question?MyQuestionTemp(question):
-        `<div class="container">
+      ${question ? MyQuestionTemp(question)
+        : `<div class="container">
         <div class='errorPage'><h5>Whoops!! No Questions!</h5></div></div>`}
       </section>
     `);
     return template;
   }
-  async after_render(){}
+
+  async after_render() {}
 }
 export default new MyQuestion();

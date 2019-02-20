@@ -1,13 +1,12 @@
-const MyQuestion=(questions)=>{
-  return (`
-    ${questions.map(qt=>`<div class="container">
+const MyQuestion = questions => (`
+    ${questions.map(qt => `<div class="container">
       <div class="meetQ MyQuestionPage">
       <div class="title view-title" >
-        <h5>${qt.title? qt.title : ""}</h5>
+        <h5>${qt.title ? qt.title : ""}</h5>
         <br>
          <p><img src="/src/assets/images/icons/blackIcons/placeholder.svg" class="location">
-        ${qt.topic? qt.topic : ""}
-        <span class="date">${qt.happening? new Date(qt.happening).toDateString() : ""}</span></p>
+        ${qt.topic ? qt.topic : ""}
+        <span class="date">${qt.happening ? new Date(qt.happening).toDateString() : ""}</span></p>
       </div>
       <div class="q">
         <p>${qt.body}</p>
@@ -28,7 +27,6 @@ const MyQuestion=(questions)=>{
         </div>
       </div>
     </div>`)}`);
-}
 /*
 */
 export default MyQuestion;

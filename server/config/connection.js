@@ -5,8 +5,8 @@ dotenv.config();
 
 //@database connection
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-  // connectionString:config.databaseURI
+  // connectionString: process.env.DATABASE_URL
+  connectionString:config.databaseURI
 });
 
 module.exports=pool;

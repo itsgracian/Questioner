@@ -27,7 +27,5 @@ exports.respond = (req, res) => {
         })
         .catch(error => res.status(500).jsn(error));
     })
-    .catch(errors =>
-      //console.log(errors);
-      res.status(500).json(errors));
+    .catch(errors => res.status(500).json(errors));
 };

@@ -1,15 +1,12 @@
-const AskedQ=(meetup,questions,votes)=>{
- return (`
-   ${questions.map(qt=>
-     `<div class="container">
+const AskedQ = (meetup, questions, votes) => (`
+   ${questions.map(qt => `<div class="container">
        <div class="meetQ">
        <div class="title view-title" >
-         <h5>${qt.title? qt.title : ""}</h5>
+         <h5>${qt.title ? qt.title : ""}</h5>
          <br>
-         ${meetup.map(meet=>
-          `<p><img src="/src/assets/images/icons/blackIcons/placeholder.svg" class="location">
-         ${meet.topic? meet.topic : ""}
-         <span class="date">${meet.happening? new Date(meet.happening).toDateString() : ""}</span></p>`)}
+         ${meetup.map(meet => `<p><img src="/src/assets/images/icons/blackIcons/placeholder.svg" class="location">
+         ${meet.topic ? meet.topic : ""}
+         <span class="date">${meet.happening ? new Date(meet.happening).toDateString() : ""}</span></p>`)}
        </div>
        <div class="q">
          <p>${qt.body}</p>
@@ -24,13 +21,11 @@ const AskedQ=(meetup,questions,votes)=>{
           title="view all comment related to this question" class="comBtn">view comments
           </a>
           <div class="totalVotes">
-            ${votes.map(vot=>
-              (vot.question_id===qt.question_id) ?
-              `<small class="numberVotes"><small class="numbers upvoting" keys=${qt.question_id}>
+            ${votes.map(vot => ((vot.question_id === qt.question_id)
+    ? `<small class="numberVotes"><small class="numbers upvoting" keys=${qt.question_id}>
               ${vot.totalup}</small>upvotes</small>
               <small class="numberVotes"><small class="numbers downvoting" keys=${qt.question_id}>
-              ${vot.totaldown}</small>downvotes</small>`:""
-            )}
+              ${vot.totaldown}</small>downvotes</small>` : ""))}
           </div>
            </div>
            <div class="post-comment" id="some-${qt.question_id}">
@@ -58,6 +53,5 @@ const AskedQ=(meetup,questions,votes)=>{
          </div>
        </div>
      </div>`)}`);
-}
 
 export default AskedQ;

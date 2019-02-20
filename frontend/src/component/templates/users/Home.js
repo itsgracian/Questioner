@@ -1,18 +1,16 @@
-const Home=(meetups,question)=>{
-  let total=[];
-  return (`
-    ${meetups.map(meet=>`
+const Home = (meetups, question) => (`
+    ${meetups.map(meet => `
       <div class="container">
             <div class="more-about">
               <div class="title view-title" >
-                <h5>${meet.topic? meet.topic : ""}</h5>
+                <h5>${meet.topic ? meet.topic : ""}</h5>
                 <br>
                 <p><img src="/src/assets/images/icons/blackIcons/placeholder.svg" class="location">
-                 ${meet.location? meet.location : ""}
-                 <span class="date">${meet.happening? new Date(meet.happening).toDateString() : ""}</span></p>
+                 ${meet.location ? meet.location : ""}
+                 <span class="date">${meet.happening ? new Date(meet.happening).toDateString() : ""}</span></p>
               </div>
               <div class="bImg">
-               <img src="${meet.images? meet.images[0] : `/images/default-45.jpg`}" alt="">
+               <img src="${meet.images ? meet.images[0] : "/images/default-45.jpg"}" alt="">
               </div>
               <div class="asked-question" title="View asked questions on this meet-up">
                 <div class="ft-link totalQuestions">
@@ -42,5 +40,4 @@ const Home=(meetups,question)=>{
             </div>
           </div>
   `)}`);
-}
 export default Home;

@@ -1,4 +1,31 @@
-//corsAny='https://cors-anywhere.herokuapp.com/';
+//this function will check if user is authenticated before
+function CheckAuth() {
+  if (localStorage.token) {
+    if (currentUser().isAdmin === true) {
+      window.location = "/#/dashboard";
+    } else {
+      window.location = "/#/home";
+    }
+  }
+}
+//
+function resetData() {
+  document.querySelector("small[key='email-error']").innerHTML = "";
+  document.querySelector("small[key='password-error']").innerHTML = "";
+  document.querySelector("small[key='username-error']").innerHTML = "";
+  document.querySelector("small[key='firstname-error']").innerHTML = "";
+  document.querySelector("small[key='lastname-error']").innerHTML = "";
+  document.querySelector("small[key='phone-error']").innerHTML = "";
+}
+function resetInput() {
+  document.querySelector("input[name='firstname']").value = "";
+  document.querySelector("input[name='lastname']").value = "";
+  document.querySelector("input[name='username']").value = "";
+  document.querySelector("input[name='phoneNumber']").value = "";
+  document.querySelector("input[name='email']").value = "";
+  document.querySelector("input[name='password']").value = "";
+}
+//
 function onSubmit(e) {
   e.preventDefault();
   //check if is authenticated
@@ -17,7 +44,7 @@ function onSubmit(e) {
   fetch("/api/v1/signin", {
     method: "POST",
     headers: {
-      "Accept": "application/json, text/plain, */*",
+      Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json"
     },
     body: JSON.stringify(user)
@@ -36,18 +63,18 @@ function onSubmit(e) {
         passwordError.innerHTML = data.error;
       }
       //@set token to globals so that can be called everywhere
-      if (data.user.isadmin == true) {
+      if (data.user.isadmin === true) {
         const token = data.token;
         //@set token to localStorage
         localStorage.setItem("token", token);
-        // window.location="/#/dashboard";
-        history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`/#/dashboard`);
+        //window.location="/#/dashboard";
+        history.pushState({ id: "Dashbboard" }, "Questioner | Dashbboard", "/#/dashboard");
         window.location.reload(true);
       } else {
         const token = data.token;
         //@set token to localStorage
         localStorage.setItem("token", token);
-        history.pushState({id:"Home"},'Questioner | Home',`/#/home`);
+        history.pushState({ id: "Home" }, "Questioner | Home", "/#/home");
         window.location.reload(true);
       }
       //
@@ -71,7 +98,7 @@ function signup(e) {
   const lastnameError = document.querySelector("small[key='lastname-error']");
   const phoneError = document.querySelector("small[key='phone-error']");
   //
-  let loadData = document.querySelector(".loadData");
+  const loadData = document.querySelector(".loadData");
   loadData.style.display = "block";
   const data = {
     firstname: document.querySelector("input[name='firstname']").value,
@@ -86,18 +113,18 @@ function signup(e) {
     method: "POST",
     mode: "cors",
     headers: {
-      "Accept": "application/json, text/plain,*/*",
+      Accept: "application/json, text/plain,*/*",
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
   })
     .then(res => res.json())
-    .then((data) => {
+    .then((result) => {
       //stop loading
       loadData.style.display = "none";
       //check for errors
-      if (data.errors) {
-        const err = data.errors;
+      if (result.errors) {
+        const err = result.errors;
         emailError.textContent = err.email;
         passwordError.textContent = err.password;
         firstnameError.textContent = err.firstname;
@@ -106,11 +133,11 @@ function signup(e) {
         phoneError.textContent = err.phoneNumber;
       }
       //@check for email exist
-      if (data.error) {
-        emailError.textContent = data.error;
+      if (result.error) {
+        emailError.textContent = result.error;
       }
       //@check for success
-      if (data.success) {
+      if (result.success) {
         //@to reset error empty before
         resetInput();
         //append
@@ -121,17 +148,17 @@ function signup(e) {
             <img src="/src/assets/images/icons/auth/career.svg" alt="success">
             </div>
             <div class="m">
-            <h5>${data.message}. wait for short time to redirect...</h5>
+            <h5>${result.message}. wait for short time to redirect...</h5>
             </div>
             </div>`;
         success.style = "transform:translateY(0%)";
         //redirect
-        loadData.style.display="block";
-        const url=`/#/signin`;
-        history.pushState({id:"Signin"},"Questioner",url);
-        setTimeout(()=>{
-         window.location.reload(true);
-       },2000);
+        loadData.style.display = "block";
+        const url = "/#/signin";
+        history.pushState({ id: "Signin" }, "Questioner", url);
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 2000);
         //done
       }
     })
@@ -139,41 +166,17 @@ function signup(e) {
       console.log(error);
     });
 }
-function resetData() {
-  document.querySelector("small[key='email-error']").innerHTML = "";
-  document.querySelector("small[key='password-error']").innerHTML = "";
-  document.querySelector("small[key='username-error']").innerHTML = "";
-  document.querySelector("small[key='firstname-error']").innerHTML = "";
-  document.querySelector("small[key='lastname-error']").innerHTML = "";
-  document.querySelector("small[key='phone-error']").innerHTML = "";
-}
-function resetInput() {
-  document.querySelector("input[name='firstname']").value = "";
-  document.querySelector("input[name='lastname']").value = "";
-  document.querySelector("input[name='username']").value = "";
-  document.querySelector("input[name='phoneNumber']").value = "";
-  document.querySelector("input[name='email']").value = "";
-  document.querySelector("input[name='password']").value = "";
-}
-function CheckAuth(){
-  if(localStorage.token){
-    if (currentUser().isAdmin===true) {
-      window.location="/#/dashboard";
-    }else{
-      window.location="/#/home";
-    }
-}
-}
+
 //@lagout user
-function logout(e){
+function logout(e) {
   e.preventDefault();
   //load data
   const load = document.querySelector(".loadData");
- //@remove localStorage
- localStorage.removeItem("token");
- load.style.display = "block";
- setTimeout(()=>{
-   history.pushState({id:"Dashbboard"},'Questioner | Dashbboard',`/#/`);
-   window.location.reload(true);
- },1000);
+  //@remove localStorage
+  localStorage.removeItem("token");
+  load.style.display = "block";
+  setTimeout(() => {
+    history.pushState({ id: "Dashbboard" }, "Questioner | Dashbboard", "/#/");
+    window.location.reload(true);
+  }, 1000);
 }

@@ -3,17 +3,18 @@ import Right from "../layout/Right.js";
 import UserCss from "../../assets/js/cssx/users.css.js";
 import Load from "../common/Load.js";
 import setAttribute from "../helper/SetAttribute.js";
-import {IsAdmin} from "../auth/Role.js";
+import { IsAdmin } from "../auth/Role.js";
+
 class Index {
   async getData() {
     try {
       const response = await fetch("/api/v1/index", {
         method: "GET",
-        mode:"cors",
+        mode: "cors",
         headers: {
-          "Accept": "application/json, text/plain, */*",
+          Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
-          "Authorization": getToken()
+          Authorization: getToken()
         }
       });
       const data = await response.json();
@@ -23,10 +24,11 @@ class Index {
       console.log(e);
     }
   }
+
   async render() {
     const myData = await this.getData();
     const meetup = myData ? myData.meetup : [];
-    const currentUser=myData?myData.currentUser:[];
+    const currentUser = myData ? myData.currentUser : [];
 
     IsAdmin();
     //
@@ -34,9 +36,9 @@ class Index {
     const script1 = document.createElement("script");
     const script2 = document.createElement("script");
     const script3 = document.createElement("script");
-    setAttribute(script1,{"src":"/src/assets/js/home.js","type":"text/javascript"});
-    setAttribute(script2,{"src":"/src/assets/js/function/meetup.js","type":"text/javascript"});
-    setAttribute(script3,{"src":"/src/assets/js/function/views.js","type":"text/javascript"});
+    setAttribute(script1, { src: "/src/assets/js/home.js", type: "text/javascript" });
+    setAttribute(script2, { src: "/src/assets/js/function/meetup.js", type: "text/javascript" });
+    setAttribute(script3, { src: "/src/assets/js/function/views.js", type: "text/javascript" });
     const dashboard = (`
     ${UserCss}
     ${Left}
@@ -46,7 +48,7 @@ class Index {
      <!--!-->
      <div class="admin-greeting">
        <div class="admin-avatar">
-         <img src="${currentUser.avatar ? currentUser.avatar:`/src/assets/images/avatar.png`}" alt="avatar">
+         <img src="${currentUser.avatar ? currentUser.avatar : "/src/assets/images/avatar.png"}" alt="avatar">
        </div>
        <div class="admin-name">
          <h2>Howdy, ${currentUser ? `${currentUser.firstname} ${currentUser.lastname}` : " "}</h2>
@@ -121,7 +123,8 @@ class Index {
     `);
     return dashboard;
   }
-  async after_render(){}
+
+  async after_render() {}
 }
 
 export default new Index();

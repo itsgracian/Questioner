@@ -1,5 +1,6 @@
 import validator from "validator";
 import isEmpty from "./isEmpty";
+
 module.exports = {
   postComment: (data) => {
     const errors = {};

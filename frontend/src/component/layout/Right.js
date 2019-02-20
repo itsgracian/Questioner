@@ -4,10 +4,10 @@ const Right = (`  <div class="header">
          <li class="menuBar" onclick="menu()">
           <img src="/src/assets/images/icons/blackIcons/menu.svg" alt="">
          </li>
-         ${currentUser().isAdmin===true? `<li>
+         ${currentUser().isAdmin === true ? `<li>
            <a href="/#/dashboard-meetup">view meetups</a>
-         </li>`:
-       `<li>
+         </li>`
+    : `<li>
          <a href="/#/upcoming-meetups">Upcoming meetups</a>
        </li>`}
        </ul>
@@ -21,7 +21,7 @@ const Right = (`  <div class="header">
              </a>
            </li>
            <li class="av">
-             <img src="${currentUser().avatar? currentUser().avatar:'/src/assets/images/avatar.png'}" alt="">
+             <img src="${currentUser().avatar ? currentUser().avatar : "/src/assets/images/avatar.png"}" alt="">
            </li>
          </ul>
        </div>

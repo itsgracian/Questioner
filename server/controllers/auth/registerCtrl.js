@@ -6,7 +6,7 @@ module.exports = {
   signup: (req, res) => {
     const { errors, isValid } = userValidation(req.body);
     if (!isValid) {
-      return res.status(400).json({errors});
+      return res.status(400).json({ errors });
     }
     pool.query("SELECT * FROM users WHERE email=$1", [req.body.email])
       .then((result) => {
@@ -23,24 +23,27 @@ module.exports = {
                   email: req.body.email,
                   password: req.body.password,
                   phoneNumber: req.body.phoneNumber,
-                  isadmin:(req.body.isadmin) ? req.body.isadmin: false
+                  isadmin: (req.body.isadmin) ? req.body.isadmin : false
                 };
                 //hash password
                 bcrypt.genSalt(10, (err, salt) => {
                   if (err) res.status(400).json(err);
                   //@hash
                   bcrypt.hash(newUser.password, salt, (hashErr, hash) => {
-                    if (hashErr) res.status(400).json({error:"something wrong please try again."});
+                    if (hashErr) res.status(400).json({ error: "something wrong please try again." });
                     newUser.password = hash;
                     //@save it to database
                     pool.query("INSERT INTO users(firstname,lastname,username,othername,email,password,phoneNumber,isadmin)"
                      + "VALUES($1,$2,$3,$4,$5,$6,$7,$8)",
                     [newUser.firstname, newUser.lastname, newUser.username, newUser.othername,
-                      newUser.email, newUser.password, newUser.phoneNumber,newUser.isadmin])
+                      newUser.email, newUser.password, newUser.phoneNumber, newUser.isadmin])
                       .then((saved) => {
                         if (saved) {
-                          return res.json({ success: true,
-                          message: "well done! thank your for signup", user: newUser });
+                          return res.json({
+                            success: true,
+                            message: "well done! thank your for signup",
+                            user: newUser
+                          });
                         }
                         return res.status(500).json({ error: "something wrong try again." });
                       })

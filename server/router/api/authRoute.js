@@ -13,5 +13,7 @@ router.post("/signup",registerCtrl.signup);
 //@router POST
 //@desc user login
 router.post("/signin", loginCtrl.signin);
+//logout
+router.get("/logout",loginCtrl.logoutUser);
 
 module.exports = router;
