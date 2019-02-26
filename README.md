@@ -52,14 +52,14 @@ Use this link on heroku https://protected-beach-95106.herokuapp.com
 ### #Users API
 |  API METHODS                                    |  API URL                                                 | DESCRIPTIONS
 |----------------------|--------------------------------------------------------------------------------|-----------------------
-| POST                  | https://protected-beach-95106.herokuapp.com/api/v1/signup| this URL allows user to create account.
-|POST                  | https://protected-beach-95106.herokuapp.com/api/v1/signin | it allows user to signin or login to his/her account
-|
-|
-|
-|
-|
-|
+| POST                  | https://protected-beach-95106.herokuapp.com/api/v1/signup| this allows user to create account.
+|POST                  | https://protected-beach-95106.herokuapp.com/api/v1/signin | this allows user to signin or login to his/her account
+| GET                   | https://protected-beach-95106.herokuapp.com/api/v1/users/username| this allows other users to find user by username
+| PATCH              | https://protected-beach-95106.herokuapp.com/api/v1/users | it allows user to update account
+| PATCH              | https://protected-beach-95106.herokuapp.com/api/v1/users/change-password | It allows users to change their password
+| GET                  | https://protected-beach-95106.herokuapp.com/api/v1/users/current/user | It allows to find current user who logged in
+| PATCH             | https://protected-beach-95106.herokuapp.com/api/v1/users/profile/picture| It allows users to change their profile picture
+| DELETE          | https://protected-beach-95106.herokuapp.com/api/v1/users | It allows User to delete his/ her account 
 |
 |
 |
