@@ -88,7 +88,7 @@ npm test
 | PATCH               | https://protected-beach-95106.herokuapp.com/api/v1/comments/:id | It allows users to update his/her comment.
 | DELETE            | https://protected-beach-95106.herokuapp.com/api/v1/comments/:id | This allows users to delete his/her comment.
 
-# FULLSTACK APP HOSTED LINK.
+# HOSTED LINK.
  FullStack APP  also is hosted on heroku.
 Use this link on heroku https://protected-beach-95106.herokuapp.com
 
