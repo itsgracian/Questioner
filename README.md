@@ -45,9 +45,6 @@ npm test
 
 ```
 
-# APP is hosted on Heroku
-Use this link on heroku https://protected-beach-95106.herokuapp.com
-
 # API Reference
 ### # Users API
 |  API METHODS                                    |  API URL                                                 | DESCRIPTIONS
@@ -90,4 +87,8 @@ Use this link on heroku https://protected-beach-95106.herokuapp.com
 | GET                    | https://protected-beach-95106.herokuapp.com/api/v1/comments/:id | It allows users to view and edit his/her comment.
 | PATCH               | https://protected-beach-95106.herokuapp.com/api/v1/comments/:id | It allows users to update his/her comment.
 | DELETE            | https://protected-beach-95106.herokuapp.com/api/v1/comments/:id | This allows users to delete his/her comment.
+
+# FULLSTACK APP HOSTED LINK.
+ FullStack APP  also is hosted on heroku.
+Use this link on heroku https://protected-beach-95106.herokuapp.com
 
