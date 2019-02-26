@@ -8,8 +8,12 @@ Other users can vote on asked questions and they bubble to the top or bottom of 
 [![Coverage Status](https://coveralls.io/repos/github/itsgracian/Questioner/badge.svg?branch=develop)]
 [![Maintainability](https://api.codeclimate.com/v1/badges/4f0320ef536642de8d46/maintainability)](https://codeclimate.com/github/itsgracian/Questioner/maintainability)
 
+# Frontend
+* Only Vanilla JavaScript, (No Frontend Framework)
+* HTML
+* CSS
 
-# Framework Used:
+# Backend:
 * [Express](https://expressjs.com/)
 * [Nodejs](https://nodejs.org/en/)
 
@@ -41,5 +45,8 @@ npm test
 
 ```
 
-# APP is hosted on HEROKU
+# APP is hosted on Heroku
 Use this link on heroku https://protected-beach-95106.herokuapp.com
+
+# API Reference
+### Users API
