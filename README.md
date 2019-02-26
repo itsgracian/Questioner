@@ -50,10 +50,10 @@ Use this link on heroku https://protected-beach-95106.herokuapp.com
 
 # API Reference
 ### #Users API
-|  API METHODS                                    |  API URL                                                                                   |
+|  API METHODS                                    |  API URL                                                 | DESCRIPTIONS
 |----------------------|--------------------------------------------------------------------------------
-| POST  (creating new User)                 | https://protected-beach-95106.herokuapp.com/api/v1/signup|
-|-----------------------------------------------|                                 -------------------------------------------------------------------------------------|
+| POST                  | https://protected-beach-95106.herokuapp.com/api/v1/signup| this URL allows user to create account.
+|POST                  | https://protected-beach-95106.herokuapp.com/api/v1/signin | it allows user to signin or login to his/her account
 |
 |
 |
