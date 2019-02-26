@@ -4,18 +4,9 @@ Questioner helps the meetup organizer prioritize questions to be answered.
 Other users can vote on asked questions and they bubble to the top or bottom of the log.
 
 
-.....
 [![Build Status](https://travis-ci.com/itsgracian/Questioner-API-datastructure.svg?branch=develop)](https://travis-ci.com/itsgracian/Questioner-API-datastructure)
-
-
 [![Coverage Status](https://coveralls.io/repos/github/itsgracian/Questioner-API-datastructure/badge.svg?branch=develop)]
-(https://coveralls.io/github/itsgracian/Questioner-API-datastructure?branch=develop)
-
-
 [![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://codeclimate.com/github/itsgracian/Questioner-API-datastructure?branch=develop "view this repo on code climate")
-
-[![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://evening-sierra-90401.herokuapp.com/ "you can watch API Route on heroku")
-
 
 # Framework Used:
 * [Express](https://expressjs.com/)
@@ -24,7 +15,7 @@ Other users can vote on asked questions and they bubble to the top or bottom of 
 # Installation
 ```
 
-git clone https://github.com/itsgracian/Questioner-API-datastructure
+git clone https://github.com/itsgracian/Questioner
 
 cd questioner
 
@@ -35,6 +26,7 @@ npm install
 ```
 
 npm start
+
 
 # To Start the server using nodemon package
 ```

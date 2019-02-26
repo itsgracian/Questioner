@@ -12,7 +12,7 @@
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "dev": "nodemon --require babel-register server.js",
     "babel": "babel --preset es2015 ./server.js -d ./build",
-    "start": "nodemon --require babel-register server.js"
+    "start": "node --require babel-register server.js"
   },
   "author": "gratian",
   "license": "ISC",

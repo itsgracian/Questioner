@@ -109,7 +109,7 @@ function signup(e) {
     password: document.querySelector("input[name='password']").value
   };
   //fetch
-  fetch("/api/v1/signup", {
+  fetch("/api/v1/signup",{
     method: "POST",
     mode: "cors",
     headers: {
