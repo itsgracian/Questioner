@@ -49,4 +49,17 @@ npm test
 Use this link on heroku https://protected-beach-95106.herokuapp.com
 
 # API Reference
-### Users API
+### #Users API
+|  API METHODS                                    |  API URL                                                                                   |
+|----------------------|--------------------------------------------------------------------------------
+| POST  (creating new User)                 | https://protected-beach-95106.herokuapp.com/api/v1/signup|
+|----------------------|-------------------------------------------------------------------------------------|
+|
+|
+|
+|
+|
+|
+|
+|
+|
