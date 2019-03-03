@@ -33,7 +33,7 @@ router.delete("/users", passport.authenticate("jwt", { session: false }), userCt
 router.patch("/users/change-password", passport.authenticate("jwt", { session: false }),
   userCtrl.changePassword);
 //@router GET
-//@desc find user by id
+//@desc find current user
 router.get("/users/current/user",passport.authenticate("jwt",{session:false}),userCtrl.findById);
 //@router PATCH
 //@change user profile Picture
@@ -50,7 +50,7 @@ router.post("/meetups", passport.authenticate("jwt", { session: false }), role.i
 router.get("/meetups", passport.authenticate("jwt", { session: false }), meetupCtrl.allMeetup);
 //@router GET
 //@desc view meetups and its questions
-router.get("/meetups/v/:id",passport.authenticate("jwt",{session:false}),meetupCtrl.singleMeetup);
+router.get("/meetups/v/:meetup_id",passport.authenticate("jwt",{session:false}),meetupCtrl.singleMeetup);
 //@GET
 //@asked questions on single meetup
 router.get("/meetups/v/questions/:meetupId",passport.authenticate("jwt",{session:false}),

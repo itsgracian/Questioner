@@ -67,7 +67,7 @@ exports.deleteQuestion = (req, res) => {
       pool.query("DELETE FROM questions WHERE user_id=$1 AND question_id=$2 RETURNING *",
         [userId, id], (err, question) => {
           if (err) {
-            return res.status(500).json(err);
+            return res.status(500).json({err});
           }
           if (!question) {
             return res.status(500).json({ error: "failed to remove your question." });

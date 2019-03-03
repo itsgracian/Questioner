@@ -1,6 +1,6 @@
+import pool from "../../config/connection";
 const bcrypt = require("bcryptjs");
 const userValidation = require("../../validations/register");
-const pool = require("../../config/connection");
 //@methods
 module.exports = {
   signup: (req, res) => {
@@ -39,7 +39,7 @@ module.exports = {
                       newUser.email, newUser.password, newUser.phoneNumber, newUser.isadmin])
                       .then((saved) => {
                         if (saved) {
-                          return res.json({
+                          return res.status(201).json({
                             success: true,
                             message: "well done! thank your for signup",
                             user: newUser
@@ -47,7 +47,7 @@ module.exports = {
                         }
                         return res.status(500).json({ error: "something wrong try again." });
                       })
-                      .catch(e => res.status(400).json(e));
+                      .catch(e => res.status(400).json({e}));
                   });
                 });
               } else {

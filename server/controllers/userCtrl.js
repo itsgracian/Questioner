@@ -148,7 +148,7 @@ exports.findById = (req, res) => {
       if (user.rows.length === 0) {
         return res.status(404).json({ error: "sorry the requested result could not be found." });
       }
-      return res.json({ user: user.rows[0] });
+      return res.status(200).json({ user: user.rows[0] });
     })
     .catch(e => res.status(500).json({ error: e }));
 };

@@ -44,7 +44,7 @@ exports.allMeetup = (req, res) => {
 };
 //@MeetupQuestions
 exports.singleMeetup = (req, res) => {
-  const id = req.params.id;
+  const id = req.params.meetup_id;
   pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id])
     .then((meetup) => {
       if (meetup.rows.length === 0) {
@@ -69,7 +69,7 @@ exports.findMeetupById = (req, res) => {
   pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id],
     (error, result) => {
       if (error) {
-        return res.status(500).json(error);
+        return res.status(500).json({error});
       }
       if (result.rows.length === 0) {
         return res.status(400).json({ error: "the requested result could not be found." });
@@ -84,7 +84,7 @@ exports.upcoming = (req, res) => {
   pool.query("SELECT * FROM meetups WHERE happening>=$1 ORDER BY happening ASC", [today],
     (error, result) => {
       if (error) {
-        return res.status(500).json(error);
+        return res.status(500).json({error});
       }
       if (result.rows.length === 0) {
         return res.status(404).json({ error: "the requested result could not be found." });
@@ -108,7 +108,7 @@ exports.deleteMeetup = (req, res) => {
       pool.query("DELETE FROM meetups WHERE meetup_id=$1", [id],
         (er, meetup) => {
           if (er) {
-            return res.status(500).json(er);
+            return res.status(500).json({er});
           }
           if (!meetup) {
             return res.status(500).json({ error: "something wrong try again later" });
@@ -126,7 +126,7 @@ exports.updateMeetup = (req, res) => {
   pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id],
     (error, result) => {
       if (error) {
-        return res.status(500).json(error);
+        return res.status(500).json({error});
       }
       if (result.rows.length === 0) {
         return res.status(400).json({ error: "the requested result could not be found." });
@@ -143,7 +143,7 @@ exports.updateMeetup = (req, res) => {
       pool.query("UPDATE meetups SET topic=$1,location=$2,happening=$3 WHERE meetup_id=$4",
         [data.topic, data.location, data.happeningOn, id], (er, isUpdated) => {
           if (er) {
-            return res.status(500).json(er);
+            return res.status(500).json({er});
           }
           if (!isUpdated) {
             return res.status(500).json({ error: "something wrong try again later" });
@@ -161,7 +161,7 @@ exports.addImage = (req, res) => {
   pool.query("SELECT * FROM meetups WHERE meetup_id=$1", [id],
     (error, result) => {
       if (error) {
-        return res.status(500).json(error);
+        return res.status(500).json({error});
       }
       if (result.rows.length === 0) {
         return res.status(400).json({ error: "the requested result could not be found." });
@@ -185,7 +185,7 @@ exports.addImage = (req, res) => {
           if (!meetup) {
             return res.status(500).json({ error: "something wrong try again later." });
           }
-          return res.json({
+          return res.status(200).json({
             success: true,
             message: "well done! image uploaded successfully.",
             status: meetup.rowCount,
