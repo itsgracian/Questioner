@@ -17,7 +17,6 @@ if(process.env.NODE_ENV==="TEST"){
    pool = new Pool({
    connectionString:config.dbTestURI
   });
-
   }
   export default pool;
 

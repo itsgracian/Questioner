@@ -10,7 +10,7 @@ import passportAuth from "./server/config/passport";
 import authRoutes from "./server/router/api/authRoute";
 import userRoutes from "./server/router/api/userRoutes";
 //run database
-import Run from "./server/config/dbRun";
+// import Run from "./server/config/dbRun";
 dotenv.config();
 
 //@express server
