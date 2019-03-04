@@ -87,7 +87,7 @@ class RunTable{
     });
 
     //@votes table
-    const voteTable=`CREATE TABLE  IF EXISTS votes(
+    const voteTable=`CREATE TABLE  IF NOT EXISTS votes(
         vote_id bigserial NOT NULL,
         users_id bigint NOT NULL,
         question_id bigint NOT NULL,
@@ -142,6 +142,19 @@ class RunTable{
         }
         console.log(uForeign);
     })
+    //rsvp table
+    const rsvpTable=`CREATE TABLE  IF NOT EXISTS rsvp(
+        rsvp_id bigserial NOT NULL,
+        user_id bigint NOT NULL,
+        meetup bigint NOT NULL,
+        response character varying COLLATE pg_catalog."default" NOT NULL,
+        CONSTRAINT rsvp_pkey PRIMARY KEY (rsvp_id) )`;
+        pool.query(rsvpTable,(rsvpErr,rsvp)=>{
+            if(rsvpErr){
+                console.log(rsvpErr);
+            }
+            console.log(rsvp);
+        })
     }
 }
 

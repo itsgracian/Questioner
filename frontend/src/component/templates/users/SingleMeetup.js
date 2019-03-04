@@ -22,20 +22,35 @@ const SingleMeetup = (meetup, totalQuestions) => (`
         </div>
         <!--askquestion!-->
         <div class="askMeetup">
-          <h1>Ask Question</h1>
-          <form onsubmit="return Ask('${meet.meetup_id}')">
-          <div class="askInput">
-          <input type="text" name="title" value="" placeholder="question title">
-          </div>
-            <div>
-            <textarea name="body" class="textAreaView"
-             placeholder="feel free to ask your question"></textarea>
-             <small class="textMuted" key="body-error"></small>
-             <small class="textMuted" key="title-error"></small>
+          <div class="text-editor">
+            <div class="u-intro" onclick="openQuestion()">
+              <div class="u-avatar">
+                  <img src="${currentUser.avatar ? currentUser.avatar:"/src/assets/images/avatar.png"}">
+                 </div>
+                 <div class="u-placeholder">
+                     <h5>You can also ask question for this meetup</h5>
+                 </div>
             </div>
-            <h5 class="askMsg"></h5>
-            <input type="submit" name="ask" value="save question" class="saveQ">
-          </form>
+            <!--!-->
+            <div class="response">
+             <form onsubmit="return Ask('${meet.meetup_id}')">
+                 <div class="form-response askInput">
+                      <input type="text" placeholder="title" name="title" 
+                      class="responseInput"> 
+                 </div>
+                 <div class="form-response">
+                  <textarea name="body" cols="30" rows="10" 
+                  placeholder="write your question" class="responseText responseInput textAreaView"></textarea>
+                 </div>
+                 <div class="form-response">
+                   <input type="submit" class="respBtn" value="Publish">
+                 </div>
+                 <small class="textMuted" key="body-error"></small>
+                 <small class="textMuted" key="title-error"></small>
+             </form>
+             <h5 class='askMsg'></h5>
+            </div>
+          </div>
         </div>
       </div>
       <div class="meet-link onView">

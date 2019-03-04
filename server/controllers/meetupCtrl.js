@@ -108,6 +108,7 @@ exports.deleteMeetup = (req, res) => {
       pool.query("DELETE FROM meetups WHERE meetup_id=$1", [id],
         (er, meetup) => {
           if (er) {
+            console.log(er);
             return res.status(500).json({er});
           }
           if (!meetup) {

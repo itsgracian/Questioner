@@ -1,6 +1,4 @@
 import express from "express";
-//
-const auth = require("../../middleware/auth");
 const router = express.Router();
 
 //@controllers

@@ -10,7 +10,7 @@ exports.upvote = (req, res) => {
   pool.query("SELECT * FROM questions WHERE question_id=$1", [id],
     (error, result) => {
       if (error) {
-        return res.status(500).json(error);
+        return res.status(500).json({error});
       }
       if (result.rows.length === 0) {
         return res.status(404).json({ error: "sorry the requested result could not be found." });
@@ -35,7 +35,7 @@ exports.upvote = (req, res) => {
                     });
                   })
                   .catch((totError) => {
-                    console.log(totError);
+                    return res.status(500).json({error:totError})
                   });
               })
               .catch(er => res.status(500).json({ error: er }));
@@ -50,12 +50,12 @@ exports.upvote = (req, res) => {
                   .then((totals) => {
                     res.status(200).json({ success: true, message: "voted successfully.", total: totals.rows });
                   })
-                  .catch((totError) => {
-                    console.log(totError);
+                  .catch((totError1) => {
+                    return res.status(500).json({error:totError1})
                   });
               })
               .catch((er) => {
-                console.log(er);
+                return res.status(500).json({error:er})
               });
           } else if (votes.rows[0].downvotes !== "" || votes.rows[0].downvotes !== 0) {
             //when downvote==0 we don't need to go under 0
@@ -71,7 +71,7 @@ exports.upvote = (req, res) => {
                     res.status(200).json({ success: true, message: "voted successfully.", total: totals.rows });
                   })
                   .catch((totError) => {
-                    console.log(totError);
+                    return res.status(500).json({error:totError})
                   });
               })
               .catch(er => res.status(500).json({ error: er }));
@@ -93,7 +93,7 @@ exports.downvote = (req, res) => {
   pool.query("SELECT * FROM questions WHERE question_id=$1", [id],
     (error, result) => {
       if (error) {
-        return res.status(500).json(error);
+        return res.status(500).json({error});
       }
       if (result.rows.length === 0) {
         return res.status(404).json({ error: "sorry the requested result could not be found." });
@@ -113,7 +113,7 @@ exports.downvote = (req, res) => {
                     res.status(200).json({ success: true, message: "downvoted successfully.", total: totals.rows });
                   })
                   .catch((totError) => {
-                    console.log(totError);
+                    return res.status(500).json({error:totError})
                   });
               })
               .catch(er => res.status(500).json({ error: er }));
@@ -129,8 +129,8 @@ exports.downvote = (req, res) => {
                   .then((totals) => {
                     res.status(200).json({ success: true, message: "Downvoted successfully.", total: totals.rows });
                   })
-                  .catch((totError) => {
-                    console.log(totError);
+                  .catch((totError1) => {
+                    return res.status(500).json({error:totError1})
                   });
               })
               .catch(er => res.status(500).json({ error: er }));
@@ -147,8 +147,8 @@ exports.downvote = (req, res) => {
                   .then((totals) => {
                     res.status(200).json({ success: true, message: "Downvoted successfully.", total: totals.rows });
                   })
-                  .catch((totError) => {
-                    console.log(totError);
+                  .catch((totError2) => {
+                    return res.status(500).json({error:totError2})
                   });
               })
               .catch(er => res.status(500).json({ error: er }));
@@ -157,7 +157,7 @@ exports.downvote = (req, res) => {
           }
         })
         .catch((err) => {
-          console.log(err);
+          return res.status(500).json({err:err})
         });
     });
 };

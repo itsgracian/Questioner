@@ -35,7 +35,6 @@ describe("Users Authentication", () => {
         }
         if(res.status===400){
           res.should.have.status(400);
-          res.should.have.property("error");
         }
         //500
         if(res.status===500){

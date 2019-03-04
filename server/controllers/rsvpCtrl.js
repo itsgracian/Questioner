@@ -25,7 +25,7 @@ exports.respond = (req, res) => {
           }
           return res.json({ success: true, status: 200, data: data.rows });
         })
-        .catch(error => res.status(500).jsn(error));
+        .catch(error => res.status(500).json({error}));
     })
-    .catch(errors => res.status(500).json(errors));
+    .catch(errors => res.status(500).json({errors}));
 };

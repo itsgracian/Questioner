@@ -9,7 +9,6 @@ import passportAuth from "./server/config/passport";
 //@router
 import authRoutes from "./server/router/api/authRoute";
 import userRoutes from "./server/router/api/userRoutes";
-import indexRoutes from "./server/router/indexRoutes";
 //run database
 import Run from "./server/config/dbRun";
 dotenv.config();
@@ -27,7 +26,6 @@ app.use("/images/", express.static(path.join(__dirname, "server/public/uploads")
 app.use(express.static(path.join(__dirname, "frontend")));
 
 //@router configuration
-app.use("/", indexRoutes);
 app.use("/api/v1/", authRoutes);
 app.use("/api/v1/", userRoutes);
 //@redirect all traffic to frontend directory

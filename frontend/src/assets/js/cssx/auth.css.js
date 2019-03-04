@@ -12,6 +12,9 @@ body{
   font-family: "Comfortaa",cursive;
   background:#f8f8f83d;
 }
+@-ms-viewport{
+  width: device-width;
+}
 a{
   text-decoration: none;
 }

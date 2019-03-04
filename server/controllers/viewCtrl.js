@@ -20,10 +20,10 @@ exports.rsvp = (req, res) => {
   res.render("rsvp");
 };
 
-exports.try = (req, res) => {
-  pool.query("SELECT * FROM users")
-    .then(result => res.json({ data: result.rows }))
-    .catch((errors) => {
-      console.log(errors);
-    });
-};
+// exports.try = (req, res) => {
+//   pool.query("SELECT * FROM users")
+//     .then(result => res.json({ data: result.rows }))
+//     .catch((errors) => {
+//       console.log(errors);
+//     });
+// };

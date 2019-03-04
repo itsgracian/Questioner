@@ -13,6 +13,9 @@ body{
   overflow-y: scroll;
   overflow-x: hidden;
 }
+@-ms-viewport{
+  width: device-width;
+}
 a{
   text-decoration: none;
 }

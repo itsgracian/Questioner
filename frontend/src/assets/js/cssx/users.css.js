@@ -10,6 +10,9 @@ body{
   font-family: "comfortaa",cursive;
   background: #f8f8f845;
 }
+@-ms-viewport{
+  width: device-width;
+}
 a{
   text-decoration: none;
 }
@@ -60,6 +63,63 @@ h5{
   font-weight: bold;
   font-size: 12px;
   color: #000;
+}
+/*new css file for updating */
+.text-editor{
+  border:1px solid #fcfcfc;
+  padding: 10px;
+  border-radius: 4px;
+}
+.u-intro{
+    display: grid;
+    grid-template-columns: 50px  1fr;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.u-avatar{
+    width: 40px;
+    height: 40px;
+}
+.u-avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+.u-placeholder{
+    margin-top: 10px;
+}
+.response{
+    width: 100%;
+    position: relative;
+    display: block;
+}
+.responseInput{
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 12px;
+    font-family: "comfortaa",cursive
+}
+.responseText{
+    min-height: 60px;
+}
+.respBtn{
+    padding: 5px;
+    width: 80px;
+    background: none;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 35px;
+    text-transform: capitalize;
+    border-color: #000000;
+    font-family: comfortaa;
+}
+::placeholder{
+    color: #000000;
+    text-transform: capitalize;
+    font-size: 10px;
 }
 @-webkit-keyframes loading {
   0%{

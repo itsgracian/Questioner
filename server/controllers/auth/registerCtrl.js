@@ -27,7 +27,7 @@ module.exports = {
                 };
                 //hash password
                 bcrypt.genSalt(10, (err, salt) => {
-                  if (err) res.status(400).json(err);
+                  if (err) res.status(400).json({err});
                   //@hash
                   bcrypt.hash(newUser.password, salt, (hashErr, hash) => {
                     if (hashErr) res.status(400).json({ error: "something wrong please try again." });

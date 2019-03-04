@@ -34,9 +34,13 @@ class Single {
     const questionCount = response ? response.questionCount : 0;
     const body = document.querySelector("body");
     const script = document.createElement("script");
+    const script2=document.createElement("script");
     script.setAttribute("type", "text/javascript");
+    script2.setAttribute("type","text/javascript");
     script.setAttribute("src", "/src/assets/js/function/views.js");
+    script2.setAttribute("src","/src/assets/js/ask.js");
     body.appendChild(script);
+    body.appendChild(script2);
     const template = (`
     ${UserCss}
     ${Left}
