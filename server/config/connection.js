@@ -10,6 +10,7 @@ pool = new Pool({
  connectionString:process.env.DATABASE_URL
 });
 }
+console.log(process.env.DATABASE_URL);
 //@this runs when someone is testing app using TDD
 if(process.env.NODE_ENV==="TEST"){
   //@database connection

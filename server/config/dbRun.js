@@ -111,14 +111,14 @@ class RunTable{
             CONSTRAINT "question_fkey_from_questionsTable" FOREIGN KEY (question)
                 REFERENCES public.questions (question_id) MATCH SIMPLE
                 ON UPDATE NO ACTION
-                ON DELETE NO ACTION,
+                ON DELETE  CASCADE,
             CONSTRAINT "user_fkey_from_usersTable" FOREIGN KEY (commentedby)
                 REFERENCES public.users (id) MATCH SIMPLE
                 ON UPDATE NO ACTION
                 ON DELETE NO ACTION )`;
         pool.query(commentTable,(errCt,comments)=>{
             if(errCt){
-                console.log(errVt);
+                console.log(errCt);
             }
             console.log(comments);
         })
