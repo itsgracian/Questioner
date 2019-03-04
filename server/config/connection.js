@@ -16,6 +16,6 @@ const pool = new Pool({
 //    pool = new Pool({
 //    connectionString:config.dbTestURI
 //   });
-  }
+  //}
   export default pool;
 
