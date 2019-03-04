@@ -6,9 +6,8 @@ let pool;
 //@
 if(process.env.NODE_ENV==="DEV"){
 //@database connection
-console.log(config.databaseURI);
 pool = new Pool({
- connectionString:config.databaseURI
+ connectionString:process.env.DATABASE_URL
 });
 }
 //@this runs when someone is testing app using TDD
