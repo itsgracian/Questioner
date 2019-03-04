@@ -102,7 +102,7 @@ exports.deleteMeetup = (req, res) => {
         return res.status(500).json(error);
       }
       if (result.rows.length === 0) {
-        return res.status(400).json({ error: "whoops! no upcoming meetup." });
+        return res.status(400).json({ error: "whoops! sorry the requested resource could not be found." });
       }
       //@delete if it is available
       pool.query("DELETE FROM meetups WHERE meetup_id=$1", [id],

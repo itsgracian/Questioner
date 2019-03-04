@@ -54,7 +54,7 @@ class RunTable{
         CONSTRAINT "meetup_fkey_from_meetupsTable" FOREIGN KEY (meetup)
             REFERENCES public.meetups (meetup_id) MATCH SIMPLE
             ON UPDATE NO ACTION
-            ON DELETE NO ACTION,
+            ON DELETE CASCADE,
         CONSTRAINT "user_fkey_from_usersTable" FOREIGN KEY (user_id)
             REFERENCES public.users (id) MATCH SIMPLE
             ON UPDATE NO ACTION
@@ -94,9 +94,9 @@ class RunTable{
         upvotes numeric DEFAULT 0,
         downvotes numeric DEFAULT 0,
         CONSTRAINT votes_pkey PRIMARY KEY (vote_id))`;
-        pool.query(voteTable,(errVt,votes)=>{
-            if(errVt){
-                console.log(errVt);
+        pool.query(voteTable,(errors1,votes)=>{
+            if(errors1){
+                console.log(errors1);
             }
             console.log(votes);
         })
