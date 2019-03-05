@@ -12,7 +12,8 @@
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "dev": "NODE_ENV=DEV nodemon --require babel-register server.js",
     "babel": "babel --preset es2015 ./server.js -d ./build",
-    "start": "NODE_ENV=DEV node --require babel-register server.js"
+    "start": "NODE_ENV=DEV node --require babel-register server.js",
+    "table":" babel-node  ./server/config/create.js"
   },
   "author": "gratian",
   "license": "ISC",

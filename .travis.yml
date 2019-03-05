@@ -10,3 +10,4 @@ after_success:
   - postgresql
   before_script:
    - psql -c 'create database questionertest;' -U postgres
+   -NODE_ENV=TEST npm run test
