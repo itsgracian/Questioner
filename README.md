@@ -5,7 +5,7 @@ Other users can vote on asked questions and they bubble to the top or bottom of 
 
 
 [![Build Status](https://travis-ci.com/itsgracian/Questioner.svg?branch=develop)](https://travis-ci.com/itsgracian/Questioner)
-[![Coverage Status](https://coveralls.io/repos/github/itsgracian/Questioner/badge.svg?branch=develop)]
+[![Coverage Status](https://coveralls.io/repos/github/itsgracian/Questioner/badge.svg?branch=develop)](https://coveralls.io/github/itsgracian/Questioner?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4f0320ef536642de8d46/maintainability)](https://codeclimate.com/github/itsgracian/Questioner/maintainability)
 
 # Frontend
