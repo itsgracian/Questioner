@@ -3,7 +3,6 @@ import isEmpty from "./isEmpty";
 
 module.exports = (data) => {
   const errors = {};
-
   data.email = !isEmpty(data.email) ? data.email : "";
   data.firstname = !isEmpty(data.firstname) ? data.firstname : "";
   data.lastname = !isEmpty(data.lastname) ? data.lastname : "";

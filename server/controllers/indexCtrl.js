@@ -1,5 +1,4 @@
 import pool from "../config/connection";
-
 //@index
 exports.adminIndex = (req, res) => {
   const id = req.user.rows[0].id;
@@ -15,6 +14,6 @@ exports.adminIndex = (req, res) => {
         .catch(e => res.status(500).json(e));
     })
     .catch((error) => {
-      console.log(error);
+      return res.status(500).json({error})
     });
 };

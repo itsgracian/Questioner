@@ -1,7 +1,7 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../../app";
-const should=chai.should();
+import {should} from "chai";
 
 chai.use(chaiHttp);
 //@meetup test start
@@ -29,30 +29,21 @@ let token;
 })
 //@index test
 describe("Index",()=>{
-    it("Should get all meetups,user /api/v1/index",(done)=>{
+    it("Should get all meetups,user /api/v1/index",()=>{
         chai.request(app)
         .get("/api/v1/index")
         .set("Content-type","application/json")
         .set("Accept","application/json")
         .set("Authorization",token)
-        .end((err,res)=>{
-            if(err){
-                done(err);
-            }
-            res.should.be.an("object");
-            //200
-            if(res.status===200){
-                res.should.have.status(200);
-            }
-              //500
-              if(res.status===500){
-                res.should.have.status(500);
-            }
-              //404
-              if(res.status===404){
+        .then((users)=>{
+            if(users.rows.length===0){
                 res.should.have.status(404);
             }
-            done();
+            res.should.have.status(200);
+            res.body.should.have.property("currentUser");
+        })
+        .catch((error)=>{
+            res.should.have.status(500);
         })
     })
 })
