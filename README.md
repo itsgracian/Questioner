@@ -2,7 +2,7 @@
 
 Questioner helps the meetup organizer prioritize questions to be answered.
 Other users can vote on asked questions and they bubble to the top or bottom of the log.
-
+[![Test Coverage](https://api.codeclimate.com/v1/badges/4f0320ef536642de8d46/test_coverage)](https://codeclimate.com/github/itsgracian/Questioner/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4f0320ef536642de8d46/maintainability)](https://codeclimate.com/github/itsgracian/Questioner/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/itsgracian/Questioner/badge.svg?branch=develop)](https://coveralls.io/github/itsgracian/Questioner?branch=develop)
 # Frontend
