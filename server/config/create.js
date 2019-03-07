@@ -71,8 +71,6 @@ const create=()=>{
     const meetupFkey=`CREATE INDEX  IF NOT EXISTS "fki_meetup_fkey_from_meetupsTable"
     ON public.questions USING btree
     (meetup)`;
-
-
     //@votes table
     const voteTable=`CREATE TABLE  IF NOT EXISTS votes(
         vote_id bigserial NOT NULL,
@@ -128,6 +126,10 @@ const create=()=>{
         console.log(err);
         pool.end();
     })
+    pool.on('remove', () => {
+        console.log('removed');
+        process.exit(0);
+      });
     }
 
 export{

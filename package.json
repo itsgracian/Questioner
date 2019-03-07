@@ -4,7 +4,7 @@
   "description": "Questioner product",
   "main": "index.js",
   "engines": {
-    "node": "8.12.0",
+    "node": "10.15.1",
     "npm": "6.6.0"
   },
   "scripts": {
@@ -13,10 +13,10 @@
     "dev": "NODE_ENV=DEV nodemon --require babel-register server.js",
     "babel": "babel --preset es2015 ./server.js -d ./build",
     "start": "NODE_ENV=DEV node --require babel-register server.js",
-    "table":" babel-node  ./server/config/create.js"
+    "table": "babel-node  ./server/config/create.js create"
   },
   "author": "gratian",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-es2015": "^7.0.0-beta.53",
@@ -35,7 +35,6 @@
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "file-system": "^2.2.2",
     "g": "^2.0.1",
     "jsonwebtoken": "^8.4.0",
     "jwt-decode": "^2.2.0",
@@ -46,13 +45,10 @@
     "pg": "^7.7.1",
     "pg-array": "^0.5.0",
     "pug": "^2.0.3",
-    "uuid": "^3.3.2",
-    "validator": "^10.9.0",
-    "vanilla-router": "^1.2.7",
-    "vanilla-ui-router": "^1.2.2"
+    "validator": "^10.9.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
     "babel-cli": "^6.26.0",
     "chai-param": "^0.1.2",
