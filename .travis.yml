@@ -1,16 +1,26 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=ABC123
 language: node_js
 node_js:
   - "stable"
-script:
-  - npm test
-
-after_success:
-  -npm run coveralls
-
   services:
     -postgresql
-
   before_script:
   - psql -c 'CREATE DATABASE questionertest;' -U postgres
     - npm install --save-dev coveralls
   - npm install --save-dev nyc
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  - npm test
+  - bundle exec rspec
+after_success:
+  -npm run coveralls
+
+  after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+
