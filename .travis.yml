@@ -1,14 +1,21 @@
 env:
   global:
-    - CC_TEST_REPORTER_ID=ABC123
+    - CC_TEST_REPORTER_ID=8c7f17a08574a65e197a427549e583d1d25c1d7449790bd1109a972ca645b672
 language: node_js
 node_js:
   - "stable"
+  addons:
+  code_climate:
+    repo_token: oRblQGlTExDemtJJHpCpzQ
+  cache:
+  directories:
+    - "node_modules"
   services:
     -postgresql
   before_script:
   - psql -c 'CREATE DATABASE questionertest;' -U postgres
-    - npm install --save-dev coveralls
+  -NODE_ENV=TEST npm run
+   - npm install --save-dev coveralls
   - npm install --save-dev nyc
     - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
