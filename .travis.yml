@@ -1,6 +1,7 @@
 env:
   global:
     - CC_TEST_REPORTER_ID=8c7f17a08574a65e197a427549e583d1d25c1d7449790bd1109a972ca645b672
+    - DATABASE_TEST=postgres://postgres@localhost:5432/questionertest
 language: node_js
 node_js:
   - "stable"
