@@ -45,7 +45,7 @@
     "pg": "^7.7.1",
     "pg-array": "^0.5.0",
     "pug": "^2.0.3",
-    "validator": "^10.9.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
